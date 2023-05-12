@@ -6,7 +6,7 @@ import { View, Text, ScrollView, Image } from 'react-native';
 import theme from 'theme';
 import { styles } from './style';
 import NextButton from './components/NextButton';
-import Button from 'design-system/Button';
+import { Button } from 'design-system';
 import { AuthStackParamList } from 'types';
 import { StackNavigationProp } from '@react-navigation/stack';
 

@@ -24,7 +24,7 @@ interface ButtonProps {
   titleColor?: string;
 }
 
-const Button = ({
+export const Button = ({
   title,
   disabled,
   loading,
@@ -82,5 +82,3 @@ const styles = StyleSheet.create({
     opacity: 0.5,
   },
 });
-
-export default Button;
