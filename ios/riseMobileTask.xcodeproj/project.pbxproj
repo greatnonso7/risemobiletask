@@ -12,15 +12,15 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		14071CF79EDE4EE09F8F71F0 /* TomatoGrotesk-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = ECFE9F72A31D46388AB7DA5B /* TomatoGrotesk-Black.otf */; };
+		227BC5ECF8CB436AAFC541A1 /* DMSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 90B3F906FDD848A5B0ABC41B /* DMSans-Medium.ttf */; };
+		43448F13A9FB4244B30A7824 /* TomatoGrotesk-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 098014E6652F4AB9B8A4DB24 /* TomatoGrotesk-Medium.otf */; };
+		512B3FCAC5BA44F688DEF654 /* TomatoGrotesk-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9A04ED8020B84747921EFF5A /* TomatoGrotesk-Bold.otf */; };
 		7699B88040F8A987B510C191 /* libPods-riseMobileTask-riseMobileTaskTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-riseMobileTask-riseMobileTaskTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		14071CF79EDE4EE09F8F71F0 /* TomatoGrotesk-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = ECFE9F72A31D46388AB7DA5B /* TomatoGrotesk-Black.otf */; };
-		512B3FCAC5BA44F688DEF654 /* TomatoGrotesk-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9A04ED8020B84747921EFF5A /* TomatoGrotesk-Bold.otf */; };
-		43448F13A9FB4244B30A7824 /* TomatoGrotesk-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 098014E6652F4AB9B8A4DB24 /* TomatoGrotesk-Medium.otf */; };
-		CFC94DBC578E43CF92A69073 /* TomatoGrotesk-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6C036789561C41D997F39CA8 /* TomatoGrotesk-Regular.otf */; };
 		AAC4093982C5440199A41C32 /* TomatoGrotesk-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4BC8748C96B14D60AF63BEA7 /* TomatoGrotesk-SemiBold.otf */; };
 		B9A6704200534E6098AE613F /* DMSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F24F0DBCD5B84658BCB04A4F /* DMSans-Bold.ttf */; };
-		227BC5ECF8CB436AAFC541A1 /* DMSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 90B3F906FDD848A5B0ABC41B /* DMSans-Medium.ttf */; };
+		CFC94DBC578E43CF92A69073 /* TomatoGrotesk-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6C036789561C41D997F39CA8 /* TomatoGrotesk-Regular.otf */; };
 		DD879E8636C14E4E8E86FD0A /* DMSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE15365E32644D5FAF40E9C7 /* DMSans-Regular.ttf */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +38,7 @@
 		00E356EE1AD99517003FC87E /* riseMobileTaskTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = riseMobileTaskTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* riseMobileTaskTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = riseMobileTaskTests.m; sourceTree = "<group>"; };
+		098014E6652F4AB9B8A4DB24 /* TomatoGrotesk-Medium.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "TomatoGrotesk-Medium.otf"; path = "../src/assets/fonts/TomatoGrotesk-Medium.otf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* riseMobileTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = riseMobileTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = riseMobileTask/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = riseMobileTask/AppDelegate.mm; sourceTree = "<group>"; };
@@ -46,20 +47,19 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = riseMobileTask/main.m; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-riseMobileTask-riseMobileTaskTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-riseMobileTask-riseMobileTaskTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4392A12AC88292D35C810B /* Pods-riseMobileTask.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-riseMobileTask.debug.xcconfig"; path = "Target Support Files/Pods-riseMobileTask/Pods-riseMobileTask.debug.xcconfig"; sourceTree = "<group>"; };
+		4BC8748C96B14D60AF63BEA7 /* TomatoGrotesk-SemiBold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "TomatoGrotesk-SemiBold.otf"; path = "../src/assets/fonts/TomatoGrotesk-SemiBold.otf"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-riseMobileTask.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-riseMobileTask.release.xcconfig"; path = "Target Support Files/Pods-riseMobileTask/Pods-riseMobileTask.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-riseMobileTask-riseMobileTaskTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-riseMobileTask-riseMobileTaskTests.debug.xcconfig"; path = "Target Support Files/Pods-riseMobileTask-riseMobileTaskTests/Pods-riseMobileTask-riseMobileTaskTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-riseMobileTask.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-riseMobileTask.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6C036789561C41D997F39CA8 /* TomatoGrotesk-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "TomatoGrotesk-Regular.otf"; path = "../src/assets/fonts/TomatoGrotesk-Regular.otf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = riseMobileTask/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-riseMobileTask-riseMobileTaskTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-riseMobileTask-riseMobileTaskTests.release.xcconfig"; path = "Target Support Files/Pods-riseMobileTask-riseMobileTaskTests/Pods-riseMobileTask-riseMobileTaskTests.release.xcconfig"; sourceTree = "<group>"; };
+		90B3F906FDD848A5B0ABC41B /* DMSans-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "DMSans-Medium.ttf"; path = "../src/assets/fonts/DMSans-Medium.ttf"; sourceTree = "<group>"; };
+		9A04ED8020B84747921EFF5A /* TomatoGrotesk-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "TomatoGrotesk-Bold.otf"; path = "../src/assets/fonts/TomatoGrotesk-Bold.otf"; sourceTree = "<group>"; };
+		CE15365E32644D5FAF40E9C7 /* DMSans-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "DMSans-Regular.ttf"; path = "../src/assets/fonts/DMSans-Regular.ttf"; sourceTree = "<group>"; };
+		ECFE9F72A31D46388AB7DA5B /* TomatoGrotesk-Black.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "TomatoGrotesk-Black.otf"; path = "../src/assets/fonts/TomatoGrotesk-Black.otf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		ECFE9F72A31D46388AB7DA5B /* TomatoGrotesk-Black.otf */ = {isa = PBXFileReference; name = "TomatoGrotesk-Black.otf"; path = "../src/assets/fonts/TomatoGrotesk-Black.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		9A04ED8020B84747921EFF5A /* TomatoGrotesk-Bold.otf */ = {isa = PBXFileReference; name = "TomatoGrotesk-Bold.otf"; path = "../src/assets/fonts/TomatoGrotesk-Bold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		098014E6652F4AB9B8A4DB24 /* TomatoGrotesk-Medium.otf */ = {isa = PBXFileReference; name = "TomatoGrotesk-Medium.otf"; path = "../src/assets/fonts/TomatoGrotesk-Medium.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		6C036789561C41D997F39CA8 /* TomatoGrotesk-Regular.otf */ = {isa = PBXFileReference; name = "TomatoGrotesk-Regular.otf"; path = "../src/assets/fonts/TomatoGrotesk-Regular.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		4BC8748C96B14D60AF63BEA7 /* TomatoGrotesk-SemiBold.otf */ = {isa = PBXFileReference; name = "TomatoGrotesk-SemiBold.otf"; path = "../src/assets/fonts/TomatoGrotesk-SemiBold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		F24F0DBCD5B84658BCB04A4F /* DMSans-Bold.ttf */ = {isa = PBXFileReference; name = "DMSans-Bold.ttf"; path = "../src/assets/fonts/DMSans-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		90B3F906FDD848A5B0ABC41B /* DMSans-Medium.ttf */ = {isa = PBXFileReference; name = "DMSans-Medium.ttf"; path = "../src/assets/fonts/DMSans-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		CE15365E32644D5FAF40E9C7 /* DMSans-Regular.ttf */ = {isa = PBXFileReference; name = "DMSans-Regular.ttf"; path = "../src/assets/fonts/DMSans-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F24F0DBCD5B84658BCB04A4F /* DMSans-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "DMSans-Bold.ttf"; path = "../src/assets/fonts/DMSans-Bold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +110,22 @@
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
 			name = riseMobileTask;
+			sourceTree = "<group>";
+		};
+		209FBC78ED8A4E67B37867BF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				ECFE9F72A31D46388AB7DA5B /* TomatoGrotesk-Black.otf */,
+				9A04ED8020B84747921EFF5A /* TomatoGrotesk-Bold.otf */,
+				098014E6652F4AB9B8A4DB24 /* TomatoGrotesk-Medium.otf */,
+				6C036789561C41D997F39CA8 /* TomatoGrotesk-Regular.otf */,
+				4BC8748C96B14D60AF63BEA7 /* TomatoGrotesk-SemiBold.otf */,
+				F24F0DBCD5B84658BCB04A4F /* DMSans-Bold.ttf */,
+				90B3F906FDD848A5B0ABC41B /* DMSans-Medium.ttf */,
+				CE15365E32644D5FAF40E9C7 /* DMSans-Regular.ttf */,
+			);
+			name = Resources;
+			path = "";
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
@@ -164,22 +180,6 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
-		};
-		209FBC78ED8A4E67B37867BF /* Resources */ = {
-			isa = "PBXGroup";
-			children = (
-				ECFE9F72A31D46388AB7DA5B /* TomatoGrotesk-Black.otf */,
-				9A04ED8020B84747921EFF5A /* TomatoGrotesk-Bold.otf */,
-				098014E6652F4AB9B8A4DB24 /* TomatoGrotesk-Medium.otf */,
-				6C036789561C41D997F39CA8 /* TomatoGrotesk-Regular.otf */,
-				4BC8748C96B14D60AF63BEA7 /* TomatoGrotesk-SemiBold.otf */,
-				F24F0DBCD5B84658BCB04A4F /* DMSans-Bold.ttf */,
-				90B3F906FDD848A5B0ABC41B /* DMSans-Medium.ttf */,
-				CE15365E32644D5FAF40E9C7 /* DMSans-Regular.ttf */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-			path = "";
 		};
 /* End PBXGroup section */
 
