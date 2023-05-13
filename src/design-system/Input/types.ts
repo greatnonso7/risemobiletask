@@ -6,12 +6,11 @@ export interface InputProps {
   password?: boolean;
   onTogglePassword?: () => void;
   onToggleDropDown?: () => void;
-  type?: 'crypto' | 'calendar' | 'longPress' | 'select';
+  type?: 'calendar' | 'longPress' | 'select';
   isDropDown?: boolean;
   isMultiLine?: boolean;
   onLongPress?: () => void;
   onSelectChange?: (val: number | string) => void;
   isLoading?: boolean;
   blurText?: () => void;
-  open?: boolean;
 }

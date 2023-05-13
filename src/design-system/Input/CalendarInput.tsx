@@ -15,6 +15,8 @@ const CalendarInput = ({ onChangeValue }: CalendarProps) => {
 
   const isSelected = selectedDate !== null;
 
+  console.log(isSelected);
+
   return (
     <View>
       <DatePicker

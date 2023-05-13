@@ -58,7 +58,7 @@ export const Button = ({
 const styles = StyleSheet.create({
   containerStyle: {
     position: 'absolute',
-    bottom: hp(40) + getBottomSpace(),
+    bottom: hp(50) + getBottomSpace(),
     justifyContent: 'center',
     alignSelf: 'center',
   },
@@ -79,6 +79,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   disabledButton: {
-    opacity: 0.5,
+    opacity: 0.3,
   },
 });

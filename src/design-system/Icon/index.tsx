@@ -12,12 +12,10 @@ const SvgImage = ({ color, name }: Props) => (
   <SvgXml xml={getMarkup(color)[name]} />
 );
 
-const Icon = ({ name, color }: Props) => {
+export const Icon = ({ name, color }: Props) => {
   return (
     <View pointerEvents="none">
       <SvgImage color={color} name={name} />
     </View>
   );
 };
-
-export default Icon;

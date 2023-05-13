@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   ActivityIndicator,
 } from 'react-native';
-import Icon from '../Icon';
+import { Icon } from '../Icon';
 import { styles } from './styles';
 import CalendarInput from './CalendarInput';
 import theme from 'theme';
@@ -28,7 +28,6 @@ export const Input = (props: TextInputProps & InputProps) => {
     onLongPress,
     isLoading,
     blurText,
-    open,
   } = props;
 
   useEffect(() => {
@@ -43,11 +42,6 @@ export const Input = (props: TextInputProps & InputProps) => {
 
   return (
     <>
-      {Boolean(props.title) && (
-        <View style={styles.titleContainer}>
-          <Text style={styles.titleText}>{props.title}</Text>
-        </View>
-      )}
       <View
         style={[
           styles.container,
@@ -97,7 +91,7 @@ export const Input = (props: TextInputProps & InputProps) => {
             activeOpacity={0.7}
             onPress={onTogglePassword}
             style={styles.passwordIcon}>
-            <Icon name={open ? 'eyeOpen' : 'eyeClose'} />
+            <Icon name={props.secureTextEntry ? 'eyeOpen' : 'eyeClose'} />
           </TouchableOpacity>
         )}
         {isDropDown && (
@@ -108,6 +102,11 @@ export const Input = (props: TextInputProps & InputProps) => {
             style={styles.dropDownIcon}>
             <Icon name="downChevronArrow" />
           </TouchableOpacity>
+        )}
+        {isCalendar && (
+          <View style={styles.passwordIcon}>
+            <Icon name="calendarIcon" />
+          </View>
         )}
         {isLoading && (
           <View style={styles.loadingContainer}>

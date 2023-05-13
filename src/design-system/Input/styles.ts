@@ -12,6 +12,7 @@ export const styles = StyleSheet.create({
     backgroundColor: theme.colors.WHITE,
     padding: 16,
     flexGrow: 1,
+    marginBottom: hp(17),
   },
   removePadding: {
     paddingHorizontal: 0,
@@ -21,7 +22,7 @@ export const styles = StyleSheet.create({
   },
   textInput: {
     ...theme.typography.body.semiRegularText,
-    color: theme.colors.WHITE,
+    color: theme.colors.TEXT_BLACK,
     flexGrow: 1,
   },
   titleContainer: {
@@ -36,8 +37,8 @@ export const styles = StyleSheet.create({
   },
   passwordIcon: {
     position: 'absolute',
-    right: 20,
-    top: 19,
+    right: wp(20),
+    top: hp(20),
     zIndex: 2,
   },
   dropDownIcon: {

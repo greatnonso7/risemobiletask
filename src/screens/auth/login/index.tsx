@@ -1,7 +1,7 @@
 import AvoidingView from 'components/AvoidingView';
 import Screen from 'components/Screen';
 import { Button, Input } from 'design-system';
-import React from 'react';
+import React, { useState } from 'react';
 import { StackScreenProps } from '@react-navigation/stack';
 import { AuthStackParamList } from 'types';
 import * as yup from 'yup';
@@ -25,6 +25,7 @@ const schema = yup.object().shape({
 type ScreenProps = StackScreenProps<AuthStackParamList, 'Login'>;
 
 const Login = ({ navigation }: ScreenProps) => {
+  const [showPassword, setShowPassword] = useState(true);
   const queryClient = useQueryClient();
 
   const initialState = {
@@ -85,7 +86,6 @@ const Login = ({ navigation }: ScreenProps) => {
               value={values.email}
               onChangeText={handleChange('email')}
               placeholder="Email"
-              title="Email"
               autoCapitalize="none"
               keyboardType="email-address"
             />
@@ -93,8 +93,10 @@ const Login = ({ navigation }: ScreenProps) => {
               value={values.email}
               onChangeText={handleChange('email')}
               placeholder="Email"
-              title="Email"
               autoCapitalize="none"
+              password
+              secureTextEntry={showPassword}
+              onTogglePassword={() => setShowPassword(!showPassword)}
               keyboardType="email-address"
             />
           </View>
@@ -107,6 +109,15 @@ const Login = ({ navigation }: ScreenProps) => {
           />
         </View>
       </AvoidingView>
+      <View style={styles.signUpAccountContainer}>
+        <Text style={styles.signUpMainText}>Don't have an account?</Text>
+        <Text
+          style={styles.signUpSubText}
+          onPress={() => navigation.navigate('Register')}>
+          {' '}
+          Sign up
+        </Text>
+      </View>
     </Screen>
   );
 };

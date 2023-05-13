@@ -26,8 +26,7 @@ export const styles = StyleSheet.create({
     marginBottom: hp(8),
   },
   buttonStyle: {
-    marginTop: hp(16),
-    backgroundColor: theme.colors.WHITE,
+    marginTop: hp(7),
   },
   titleStyle: {
     color: theme.colors.PRIMARY,
@@ -50,5 +49,27 @@ export const styles = StyleSheet.create({
     color: theme.colors.PRIMARY,
     fontSize: hp(15),
     lineHeight: hp(19),
+  },
+  termsConditionContainer: {
+    marginTop: hp(27),
+    marginHorizontal: wp(20),
+    width: wp(232),
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+  },
+  termsConditionText: {
+    fontFamily: theme.font.DMSansRegular,
+    textAlign: 'center',
+    fontSize: hp(12),
+    color: theme.colors.DARK_TEXT,
+  },
+  textColor: {
+    color: theme.colors.PRIMARY,
+  },
+  completeOnboardingContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: hp(100),
   },
 });

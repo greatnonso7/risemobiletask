@@ -7,6 +7,8 @@ export const colors = {
   ORANGE_LIGHT: '#FFFAF8',
   WHITE: '#FFFFFF',
   TEXT_BLACK: '#222222',
+  BLACK: '#000000',
+  DARK_TEXT: '#012224',
   SOFT_TEXT: '#71879C',
   OFF_WHITE: '#71879C1A',
   OFF_WHITE_100: '#71879C1A',
