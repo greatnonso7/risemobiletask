@@ -76,21 +76,22 @@ const CompleteRegister = ({ navigation: { navigate } }: ScreenProps) => {
             <Input
               value={values.first_name}
               onChangeText={handleChange('first_name')}
-              placeholder="Legal first name"
+              label="Legal first name"
             />
             <Input
               value={values.last_name}
               onChangeText={handleChange('last_name')}
-              placeholder="Legal last name"
+              label="Legal last name"
             />
             <Input
               value={values.username}
               onChangeText={handleChange('username')}
-              placeholder="Nick name"
+              label="Nick name"
             />
             <Input
               type="calendar"
-              title="Date of birth"
+              label="Date of birth"
+              dateFocused={true}
               onChangeValue={date => setFieldValue('date_of_birth', date)}
             />
           </View>

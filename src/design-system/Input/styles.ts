@@ -35,6 +35,12 @@ export const styles = StyleSheet.create({
   focusedContainer: {
     borderColor: theme.colors.PRIMARY,
   },
+  focusedDateContainer: {
+    borderColor: theme.colors.OFF_WHITE,
+  },
+  errorTextContainer: {
+    borderColor: theme.colors.RED,
+  },
   passwordIcon: {
     position: 'absolute',
     right: wp(20),
@@ -83,8 +89,23 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 8,
     backgroundColor: 'white',
   },
+  labelDateFocused: {
+    bottom: hp(35),
+  },
   label: {
     fontFamily: theme.font.DMSansBold,
     fontSize: hp(14),
+  },
+  error: {
+    color: theme.colors.RED,
+    fontFamily: theme.font.DMSansRegular,
+    fontSize: hp(12),
+    paddingHorizontal: wp(20),
+    bottom: hp(15),
+  },
+  placeholderText: {
+    color: theme.colors.TEXT_BLACK,
+    fontFamily: theme.font.DMSansBold,
+    fontSize: hp(15),
   },
 });

@@ -1,5 +1,5 @@
 import Axios from 'services/Axios';
-import { LoginParams } from 'types';
+import { LoginParams, RegisterParams } from 'types';
 
 export const setLogin = (req: LoginParams) =>
   Axios.post('sessions', req).then(({ data }) => data);

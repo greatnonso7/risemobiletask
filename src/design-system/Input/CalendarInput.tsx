@@ -12,10 +12,7 @@ interface CalendarProps {
 const CalendarInput = ({ onChangeValue }: CalendarProps) => {
   const [showModal, setShowModal] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
-
-  const isSelected = selectedDate !== null;
-
-  console.log(isSelected);
+  const [isSelected, setIsSelected] = useState(false);
 
   return (
     <View>
@@ -25,16 +22,9 @@ const CalendarInput = ({ onChangeValue }: CalendarProps) => {
         theme="light"
         open={showModal}
         date={selectedDate}
-        onConfirm={(
-          date:
-            | string
-            | number
-            | React.SetStateAction<Date>
-            | dayjs.Dayjs
-            | null
-            | undefined,
-        ) => {
+        onConfirm={(date: any) => {
           setShowModal(false);
+          setIsSelected(true);
           setSelectedDate(date);
           onChangeValue &&
             onChangeValue(dayjs(date).format('YYYY-MM-DDTHH:mm:ssZ'));
@@ -44,8 +34,8 @@ const CalendarInput = ({ onChangeValue }: CalendarProps) => {
         }}
       />
       <TouchableOpacity onPress={() => setShowModal(true)}>
-        <Text style={[styles.textInput, !isSelected && styles.placeholderText]}>
-          {!isSelected ? 'Select date' : `${formatDOB(selectedDate)}`}
+        <Text style={[styles.textInput, isSelected && styles.placeholderText]}>
+          {!isSelected ? 'Choose date' : `${formatDOB(selectedDate)}`}
         </Text>
       </TouchableOpacity>
     </View>

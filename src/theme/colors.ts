@@ -15,4 +15,5 @@ export const colors = {
   GREY: '#94A1AD',
   PLACEHOLDER_TEXT_COLOR: '#292F33',
   INPUT_BORDER_COLOR: '#E1E8ED',
+  RED: '#FF0000',
 };

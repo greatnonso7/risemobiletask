@@ -16,8 +16,14 @@ interface FormData {
 }
 
 const schema = yup.object().shape({
-  email: yup.string().email().required(),
-  password: yup.string().required(),
+  email: yup
+    .string()
+    .email('Email must be a valid email address')
+    .required('Email address is required'),
+  password: yup
+    .string()
+    .required('Password is required')
+    .min(8, 'Password must be at least 8 characters'),
 });
 
 type ScreenProps = StackScreenProps<AuthStackParamList, 'Register'>;
@@ -32,18 +38,25 @@ const Register = ({ navigation: { navigate } }: ScreenProps) => {
     email: '',
     password: '',
   };
-  const { isValid, values, handleChange, handleSubmit, setFieldValue } =
-    useFormik({
-      validateOnMount: true,
-      initialValues: initialState,
-      validationSchema: schema,
-      onSubmit: ({ email, password }) => {
-        navigate('CompleteRegister', {
-          email,
-          password,
-        });
-      },
-    });
+  const {
+    isValid,
+    values,
+    handleChange,
+    handleSubmit,
+    errors,
+    setFieldValue,
+  }: FormikProps<FormData> = useFormik({
+    validateOnBlur: false,
+    validateOnChange: false,
+    initialValues: initialState,
+    validationSchema: schema,
+    onSubmit: ({ email, password }) => {
+      navigate('CompleteRegister', {
+        email,
+        password,
+      });
+    },
+  });
 
   const checkPassword = async (text: string) => {
     const hasCapital = /[A-Z]/;
@@ -73,16 +86,18 @@ const Register = ({ navigation: { navigate } }: ScreenProps) => {
             <Input
               value={values.email}
               onChangeText={handleChange('email')}
-              placeholder="Email"
+              label="Email"
               autoCapitalize="none"
+              errorText={errors.email}
               keyboardType="email-address"
             />
             <Input
               value={values.password}
               onChangeText={text => checkPassword(text)}
-              placeholder="Password"
+              label="Password"
               autoCapitalize="none"
               password
+              errorText={errors.password}
               secureTextEntry={showPassword}
               onTogglePassword={() => setShowPassword(!showPassword)}
               keyboardType="email-address"

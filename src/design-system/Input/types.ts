@@ -15,4 +15,5 @@ export interface InputProps {
   blurText?: () => void;
   label?: string;
   errorText?: string;
+  dateFocused?: boolean;
 }

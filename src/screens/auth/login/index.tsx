@@ -18,8 +18,14 @@ interface FormData {
 }
 
 const schema = yup.object().shape({
-  email: yup.string().email().required(),
-  password: yup.string().required(),
+  email: yup
+    .string()
+    .email('Email must be a valid email address')
+    .required('Email address is required'),
+  password: yup
+    .string()
+    .required('Password is required')
+    .min(8, 'Password must be at least 8 characters'),
 });
 
 type ScreenProps = StackScreenProps<AuthStackParamList, 'Login'>;
@@ -32,8 +38,15 @@ const Login = ({ navigation }: ScreenProps) => {
     email: '',
     password: '',
   };
-  const { isValid, values, handleChange }: FormikProps<FormData> = useFormik({
-    validateOnMount: true,
+  const {
+    isValid,
+    values,
+    handleChange,
+    errors,
+    handleSubmit,
+  }: FormikProps<FormData> = useFormik({
+    validateOnBlur: false,
+    validateOnChange: false,
     initialValues: initialState,
     validationSchema: schema,
     onSubmit: ({ email, password }) => {
@@ -88,6 +101,7 @@ const Login = ({ navigation }: ScreenProps) => {
               label="Email"
               autoCapitalize="none"
               keyboardType="email-address"
+              errorText={errors.email}
             />
             <Input
               value={values.password}
@@ -98,9 +112,15 @@ const Login = ({ navigation }: ScreenProps) => {
               secureTextEntry={showPassword}
               onTogglePassword={() => setShowPassword(!showPassword)}
               keyboardType="email-address"
+              errorText={errors.password}
             />
           </View>
-          <Button isNotBottom disabled={!isValid} title="Sign In" />
+          <Button
+            isNotBottom
+            disabled={!isValid}
+            title="Sign In"
+            onPress={handleSubmit}
+          />
           <Button
             isNotBottom
             title="I forgot my password"

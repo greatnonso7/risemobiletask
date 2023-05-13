@@ -5,7 +5,6 @@ import {
   TextInputProps,
   TextInput,
   TouchableOpacity,
-  ActivityIndicator,
   Animated,
   Easing,
   TouchableWithoutFeedback,
@@ -18,19 +17,16 @@ import { InputProps } from './types';
 
 export const Input = (props: TextInputProps & InputProps) => {
   const inputRef = useRef<TextInput>(null);
-  const [isFocused, setIsFocused] = useState(false);
+  const [isFocused, setIsFocused] = useState(props.dateFocused || false);
 
   const {
     password,
     onTogglePassword,
-    onToggleDropDown,
     type,
     onChangeValue,
     isDropDown,
     isMultiLine,
-    onLongPress,
     value,
-    isLoading,
     onBlur,
     onFocus,
     blurText,
@@ -53,7 +49,7 @@ export const Input = (props: TextInputProps & InputProps) => {
   useEffect(() => {
     Animated.timing(focusAnim, {
       toValue: isFocused || !!value ? 1 : 0,
-      duration: 150,
+      duration: 350,
       easing: Easing.bezier(0.4, 0, 0.2, 1),
       useNativeDriver: true,
     }).start();
@@ -65,10 +61,12 @@ export const Input = (props: TextInputProps & InputProps) => {
         style={[
           styles.container,
           isFocused && styles.focusedContainer,
+          props.dateFocused && styles.focusedDateContainer,
           isCalendar && styles.centerContent,
           isMultiLine && styles.multiInput,
           isLongPress && styles.removePadding,
           isSelectInput && styles.selectPadding,
+          errorText && styles.errorTextContainer,
           props.style && props.style,
         ]}>
         {!type ? (
@@ -96,16 +94,6 @@ export const Input = (props: TextInputProps & InputProps) => {
                 <CalendarInput onChangeValue={onChangeValue} />
               </View>
             )}
-            {isLongPress && (
-              <TouchableOpacity
-                onLongPress={onLongPress}
-                activeOpacity={0.8}
-                style={styles.pressableContainer}>
-                <Text style={styles.pressableText}>
-                  {props.value || 'Long press to paste address'}
-                </Text>
-              </TouchableOpacity>
-            )}
           </>
         )}
         {password && (
@@ -117,29 +105,16 @@ export const Input = (props: TextInputProps & InputProps) => {
             <Icon name={props.secureTextEntry ? 'eyeOpen' : 'eyeClose'} />
           </TouchableOpacity>
         )}
-        {isDropDown && (
-          <TouchableOpacity
-            hitSlop={{ top: 5, bottom: 5, left: 5, right: 5 }}
-            activeOpacity={0.7}
-            onPress={onToggleDropDown}
-            style={styles.dropDownIcon}>
-            <Icon name="downChevronArrow" />
-          </TouchableOpacity>
-        )}
         {isCalendar && (
           <View style={styles.passwordIcon}>
             <Icon name="calendarIcon" />
-          </View>
-        )}
-        {isLoading && (
-          <View style={styles.loadingContainer}>
-            <ActivityIndicator size={'small'} color={theme.colors.WHITE} />
           </View>
         )}
         <TouchableWithoutFeedback onPress={() => inputRef.current?.focus()}>
           <Animated.View
             style={[
               styles.labelContainer,
+              props?.dateFocused && styles.labelDateFocused,
               {
                 transform: [
                   {
@@ -167,15 +142,21 @@ export const Input = (props: TextInputProps & InputProps) => {
               style={[
                 styles.label,
                 {
-                  // color,
+                  color:
+                    isFocused && value?.length > 0
+                      ? theme.colors.PRIMARY
+                      : errorText
+                        ? theme.colors.RED
+                        : theme.colors.PLACEHOLDER_TEXT_COLOR,
                 },
               ]}>
               {label}
-              {errorText ? '*' : ''}
+              {errorText && isFocused ? '*' : ''}
             </Text>
           </Animated.View>
         </TouchableWithoutFeedback>
       </View>
+      {!!errorText && <Text style={styles.error}>{errorText}</Text>}
     </>
   );
 };
