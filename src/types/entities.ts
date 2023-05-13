@@ -9,3 +9,8 @@ export type AuthStackParamList = {
   Login: undefined;
   Register: undefined;
 };
+
+export type LoginParams = {
+  email_address: string;
+  password: string;
+};

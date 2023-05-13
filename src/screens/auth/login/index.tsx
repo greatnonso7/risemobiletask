@@ -1,14 +1,16 @@
 import AvoidingView from 'components/AvoidingView';
 import Screen from 'components/Screen';
-import { RegularInput, Button } from 'design-system';
-import React, { useRef } from 'react';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useForm } from 'react-hook-form';
+import { Button, Input } from 'design-system';
+import React from 'react';
 import { StackScreenProps } from '@react-navigation/stack';
 import { AuthStackParamList } from 'types';
 import * as yup from 'yup';
 import { Text, View } from 'react-native';
 import { styles } from './style';
+import { FormikProps, useFormik } from 'formik';
+import * as API from 'services/apis';
+import { useMutation, useQueryClient } from 'react-query';
+import { storage } from 'utils/storage';
 
 interface FormData {
   email: string;
@@ -23,23 +25,52 @@ const schema = yup.object().shape({
 type ScreenProps = StackScreenProps<AuthStackParamList, 'Login'>;
 
 const Login = ({ navigation }: ScreenProps) => {
-  const {
-    control,
-    setFocus,
-    formState: { errors, isValid, touchedFields },
-  } = useForm<FormData>({
-    resolver: yupResolver(schema),
-    defaultValues: {
-      email: '',
-      password: '',
+  const queryClient = useQueryClient();
+
+  const initialState = {
+    email: '',
+    password: '',
+  };
+  const { isValid, values, handleChange }: FormikProps<FormData> = useFormik({
+    validateOnMount: true,
+    initialValues: initialState,
+    validationSchema: schema,
+    onSubmit: ({ email, password }) => {
+      setLogin({
+        email_address: email,
+        password,
+      });
     },
-    mode: 'all',
   });
-  const emailRef = useRef(null);
-  const passwordRef = useRef(null);
+  const {
+    mutate: setLogin,
+    error,
+    status,
+  } = useMutation(API.setLogin, {
+    onSuccess: async data => {
+      console.log(data);
+      // const userData = data?.data?.user;
+      // queryClient.setQueryData('user', userData);
+      // storage.set('user_token', data?.data?.token);
+      // storage.set('user_data', JSON.stringify(userData));
 
-  console.log(touchedFields);
+      // const checkVerification = storage.getBoolean('has_done_verification');
+      // const verificationKeys = ['Pending', 'None'];
+      // await Keychain.setGenericPassword(formattedPhone, formik.values.password);
 
+      // setTimeout(() => {
+      //   setLoading(false);
+      //   if (
+      //     verificationKeys.includes(userData.id_verification) &&
+      //     !checkVerification
+      //   ) {
+      //     navigation.navigate('KYCVerification');
+      //   } else {
+      //     navigation.replace('Main');
+      //   }
+      // }, 500);
+    },
+  });
   return (
     <Screen>
       <AvoidingView>
@@ -50,17 +81,21 @@ const Login = ({ navigation }: ScreenProps) => {
             dollar-denominated investment portfolio.
           </Text>
           <View style={styles.formContainer}>
-            <RegularInput
-              ref={emailRef}
-              control={control}
-              onFocus={() => setFocus('email')}
-              placeholder="Email address"
+            <Input
+              value={values.email}
+              onChangeText={handleChange('email')}
+              placeholder="Email"
+              title="Email"
+              autoCapitalize="none"
+              keyboardType="email-address"
             />
-            <RegularInput
-              control={control}
-              placeholder="Password"
-              ref={passwordRef}
-              onFocus={() => setFocus('password')}
+            <Input
+              value={values.email}
+              onChangeText={handleChange('email')}
+              placeholder="Email"
+              title="Email"
+              autoCapitalize="none"
+              keyboardType="email-address"
             />
           </View>
           <Button isNotBottom disabled={!isValid} title="Sign In" />
