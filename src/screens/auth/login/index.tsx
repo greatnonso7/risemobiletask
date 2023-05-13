@@ -85,14 +85,14 @@ const Login = ({ navigation }: ScreenProps) => {
             <Input
               value={values.email}
               onChangeText={handleChange('email')}
-              placeholder="Email"
+              label="Email"
               autoCapitalize="none"
               keyboardType="email-address"
             />
             <Input
-              value={values.email}
-              onChangeText={handleChange('email')}
-              placeholder="Email"
+              value={values.password}
+              onChangeText={handleChange('password')}
+              label="Password"
               autoCapitalize="none"
               password
               secureTextEntry={showPassword}

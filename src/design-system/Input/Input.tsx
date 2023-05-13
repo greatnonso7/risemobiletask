@@ -6,6 +6,9 @@ import {
   TextInput,
   TouchableOpacity,
   ActivityIndicator,
+  Animated,
+  Easing,
+  TouchableWithoutFeedback,
 } from 'react-native';
 import { Icon } from '../Icon';
 import { styles } from './styles';
@@ -14,7 +17,7 @@ import theme from 'theme';
 import { InputProps } from './types';
 
 export const Input = (props: TextInputProps & InputProps) => {
-  const inputRef = useRef<any>(null);
+  const inputRef = useRef<TextInput>(null);
   const [isFocused, setIsFocused] = useState(false);
 
   const {
@@ -26,8 +29,13 @@ export const Input = (props: TextInputProps & InputProps) => {
     isDropDown,
     isMultiLine,
     onLongPress,
+    value,
     isLoading,
+    onBlur,
+    onFocus,
     blurText,
+    label,
+    errorText,
   } = props;
 
   useEffect(() => {
@@ -39,6 +47,17 @@ export const Input = (props: TextInputProps & InputProps) => {
   const isCalendar = type === 'calendar';
   const isLongPress = type === 'longPress';
   const isSelectInput = type === 'select';
+
+  const focusAnim = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    Animated.timing(focusAnim, {
+      toValue: isFocused || !!value ? 1 : 0,
+      duration: 150,
+      easing: Easing.bezier(0.4, 0, 0.2, 1),
+      useNativeDriver: true,
+    }).start();
+  }, [focusAnim, isFocused, value]);
 
   return (
     <>
@@ -58,11 +77,15 @@ export const Input = (props: TextInputProps & InputProps) => {
             ref={inputRef}
             editable={isDropDown || isLongPress ? false : true}
             style={styles.textInput}
-            placeholderTextColor={theme.colors.PLACEHOLDER_TEXT_COLOR}
-            onFocus={() => setIsFocused(true)}
-            onBlur={() => {
+            onBlur={event => {
               setIsFocused(false);
+              onBlur?.(event);
               password && blurText && blurText();
+            }}
+            selectionColor={theme.colors.PRIMARY}
+            onFocus={event => {
+              setIsFocused(true);
+              onFocus?.(event);
             }}
             multiline={isMultiLine}
           />
@@ -113,6 +136,45 @@ export const Input = (props: TextInputProps & InputProps) => {
             <ActivityIndicator size={'small'} color={theme.colors.WHITE} />
           </View>
         )}
+        <TouchableWithoutFeedback onPress={() => inputRef.current?.focus()}>
+          <Animated.View
+            style={[
+              styles.labelContainer,
+              {
+                transform: [
+                  {
+                    scale: focusAnim.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [1, 0.75],
+                    }),
+                  },
+                  {
+                    translateY: focusAnim.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [20, -14],
+                    }),
+                  },
+                  {
+                    translateX: focusAnim.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [16, 0],
+                    }),
+                  },
+                ],
+              },
+            ]}>
+            <Text
+              style={[
+                styles.label,
+                {
+                  // color,
+                },
+              ]}>
+              {label}
+              {errorText ? '*' : ''}
+            </Text>
+          </Animated.View>
+        </TouchableWithoutFeedback>
       </View>
     </>
   );

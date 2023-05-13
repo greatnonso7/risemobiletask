@@ -13,4 +13,6 @@ export interface InputProps {
   onSelectChange?: (val: number | string) => void;
   isLoading?: boolean;
   blurText?: () => void;
+  label?: string;
+  errorText?: string;
 }

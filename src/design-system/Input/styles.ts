@@ -78,4 +78,13 @@ export const styles = StyleSheet.create({
     right: 20,
     top: 20,
   },
+  labelContainer: {
+    position: 'absolute',
+    paddingHorizontal: 8,
+    backgroundColor: 'white',
+  },
+  label: {
+    fontFamily: theme.font.DMSansBold,
+    fontSize: hp(14),
+  },
 });
