@@ -452,3 +452,74 @@ export const investOptions = [
       'You are in charge. Make changes to your plan, from adding funds, funding source, adding money to your wallet and more.',
   },
 ];
+
+export const planInfo = [
+  {
+    id: 1,
+    title: 'Total earnings',
+    value: '$12,000.09',
+  },
+  {
+    id: 2,
+    title: 'Current earnings',
+    value: '$12,000.09',
+  },
+  {
+    id: 3,
+    title: 'Deposit value',
+    value: '$50,543.05',
+  },
+  {
+    id: 4,
+    title: 'Balance in Naira (*₦505)',
+    value: '₦31,918,837.5',
+  },
+  {
+    id: 5,
+    title: 'Plan created on',
+    value: '23rd July, 2019',
+  },
+  {
+    id: 6,
+    title: 'Maturity date',
+    value: '24th July 2022',
+  },
+];
+
+export const transactionsList = [
+  {
+    id: 1,
+    title: 'Received from Bank Account (BOSUN TONY ADEMOSU)',
+    value: '+$320.90',
+    icon: theme.images.credit,
+    date: 'Jul 6, 2021',
+  },
+  {
+    id: 2,
+    title: 'Sent to Bank Account (ADEBAYO MUSILIU JAGUN)',
+    value: '-$2,942.55',
+    icon: theme.images.debit,
+    date: 'Jul 2, 2021',
+  },
+  {
+    id: 3,
+    title: 'Sent to Service (PAYSTACK 001WA00948 - AMARDA VENTURES LIMITED)',
+    value: '-$500.12',
+    icon: theme.images.debit,
+    date: 'Jun 27, 2021',
+  },
+  {
+    id: 4,
+    title: 'Received from Bank Account (TITUS CLEOPATRA MEDINA)',
+    value: '+$1,840.69',
+    icon: theme.images.credit,
+    date: 'Jun 19, 2021',
+  },
+  {
+    id: 5,
+    title: 'Received from Rise Plan (SAVE FOR SCHOOL)',
+    value: '+$528.04',
+    icon: theme.images.credit,
+    date: 'Jun 19, 2021',
+  },
+];

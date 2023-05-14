@@ -10,6 +10,8 @@ export const images = {
   'arrow-left': require('assets/images/icons/arrow-left.png'),
   bell: require('assets/images/icons/bell.png'),
   calendar: require('assets/images/icons/calendar.png'),
+  credit: require('assets/images/icons/credit.png'),
+  debit: require('assets/images/icons/debit.png'),
   delete: require('assets/images/icons/delete.png'),
   'gain-icon': require('assets/images/icons/gain-icon.png'),
   graph: require('assets/images/graph.png'),
