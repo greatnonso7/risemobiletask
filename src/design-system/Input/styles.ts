@@ -1,4 +1,4 @@
-import { hp, wp } from 'constants/layout';
+import { deviceWidth, hp, wp } from 'constants/layout';
 import { StyleSheet } from 'react-native';
 import theme from 'theme';
 
@@ -25,6 +25,9 @@ export const styles = StyleSheet.create({
     color: theme.colors.TEXT_BLACK,
     flexGrow: 1,
   },
+  phoneTextInput: {
+    paddingLeft: wp(10),
+  },
   titleContainer: {
     marginBottom: 10,
   },
@@ -37,6 +40,9 @@ export const styles = StyleSheet.create({
   },
   focusedDateContainer: {
     borderColor: theme.colors.OFF_WHITE,
+  },
+  phoneInputContainer: {
+    flexDirection: 'row',
   },
   errorTextContainer: {
     borderColor: theme.colors.RED,
@@ -92,6 +98,9 @@ export const styles = StyleSheet.create({
   labelDateFocused: {
     bottom: hp(35),
   },
+  phoneFocused: {
+    bottom: hp(50),
+  },
   label: {
     fontFamily: theme.font.DMSansBold,
     fontSize: hp(14),
@@ -107,5 +116,70 @@ export const styles = StyleSheet.create({
     color: theme.colors.TEXT_BLACK,
     fontFamily: theme.font.DMSansBold,
     fontSize: hp(15),
+  },
+  countryListContainer: {
+    height: hp(450),
+    backgroundColor: theme.colors.WHITE,
+    borderTopLeftRadius: hp(15),
+    borderTopRightRadius: hp(15),
+    paddingVertical: hp(30),
+    paddingHorizontal: wp(24),
+  },
+  closeButtonContainer: {
+    position: 'absolute',
+    right: wp(8),
+    top: -hp(40),
+    borderRadius: hp(100),
+    backgroundColor: theme.colors.WHITE,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  singleCountryContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: hp(10),
+    minWidth: wp(330),
+  },
+  countryName: {
+    fontSize: hp(14),
+    fontFamily: theme.font.DMSansMedium,
+    paddingHorizontal: hp(10),
+    color: theme.colors.BLACK,
+  },
+  emojiFlag: {
+    fontSize: hp(14),
+    color: theme.colors.BLACK,
+  },
+  countryCode: {
+    fontSize: hp(16),
+    fontFamily: theme.font.DMSansBold,
+    color: theme.colors.BLACK,
+  },
+  emptyContainer: {
+    paddingVertical: hp(130),
+    alignSelf: 'center',
+  },
+  emptyText: {
+    fontSize: hp(14),
+    fontFamily: theme.font.DMSansMedium,
+    color: theme.colors.PRIMARY,
+  },
+  phoneCountry: {
+    width: wp(100),
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+    borderRightWidth: 1,
+    borderRightColor: theme.colors.OFF_WHITE,
+  },
+  flagText: {
+    fontSize: hp(14),
+  },
+  searchInput: {
+    borderWidth: 1,
+    marginBottom: hp(20),
+    padding: hp(12),
+    borderRadius: hp(10),
+    borderColor: theme.colors.OFF_WHITE,
   },
 });

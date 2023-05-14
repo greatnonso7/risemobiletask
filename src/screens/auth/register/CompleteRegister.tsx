@@ -1,7 +1,7 @@
 import AvoidingView from 'components/AvoidingView';
 import Screen from 'components/Screen';
 import { Button, Input } from 'design-system';
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { View, Text } from 'react-native';
 import { styles } from './style';
 import { FormikProps, useFormik } from 'formik';
@@ -9,6 +9,7 @@ import { AuthStackParamList } from 'types';
 import { StackScreenProps } from '@react-navigation/stack';
 import * as yup from 'yup';
 import { useRoute } from '@react-navigation/native';
+import { PhoneCountry } from 'design-system/Input/types';
 
 type ScreenProps = StackScreenProps<AuthStackParamList, 'CompleteRegister'>;
 
@@ -28,6 +29,10 @@ const schema = yup.object().shape({
 
 const CompleteRegister = ({ navigation: { navigate } }: ScreenProps) => {
   const { params }: any = useRoute();
+  const [selectedCountry, setSelectedCountry] = useState<PhoneCountry | null>(
+    null,
+  );
+
   const initialState = {
     first_name: '',
     last_name: '',
@@ -63,7 +68,6 @@ const CompleteRegister = ({ navigation: { navigate } }: ScreenProps) => {
       navigate('CompleteOnboarding');
     },
   });
-
   return (
     <Screen>
       <AvoidingView>
@@ -87,6 +91,14 @@ const CompleteRegister = ({ navigation: { navigate } }: ScreenProps) => {
               value={values.username}
               onChangeText={handleChange('username')}
               label="Nick name"
+              autoCapitalize="none"
+            />
+            <Input
+              type="phone"
+              selectedCountry={selectedCountry}
+              setSelectedCountry={setSelectedCountry}
+              phoneFocused={true}
+              label="Phone number"
             />
             <Input
               type="calendar"

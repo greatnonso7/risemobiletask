@@ -27,5 +27,10 @@ export const getMarkup: any = () => {
 <path d="M2.36469 14.6629L12.4983 23.3704L36.6355 2.62939" stroke="#0898A0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
 `,
+
+    arrowDropDown: `<svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M6 9.25L12 15.25L18 9.25" stroke="#8B9EAB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+`,
   };
 };

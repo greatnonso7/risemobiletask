@@ -13,11 +13,14 @@ import { Icon } from '../Icon';
 import { styles } from './styles';
 import CalendarInput from './CalendarInput';
 import theme from 'theme';
-import { InputProps } from './types';
+import { InputProps, PhoneInputProps } from './types';
+import PhoneInput from './PhoneInput';
 
-export const Input = (props: TextInputProps & InputProps) => {
+export const Input = (props: TextInputProps & PhoneInputProps & InputProps) => {
   const inputRef = useRef<TextInput>(null);
-  const [isFocused, setIsFocused] = useState(props.dateFocused || false);
+  const [isFocused, setIsFocused] = useState(
+    props.dateFocused || props.phoneFocused || false,
+  );
 
   const {
     password,
@@ -43,6 +46,7 @@ export const Input = (props: TextInputProps & InputProps) => {
   const isCalendar = type === 'calendar';
   const isLongPress = type === 'longPress';
   const isSelectInput = type === 'select';
+  const isPhoneInput = type === 'phone';
 
   const focusAnim = useRef(new Animated.Value(0)).current;
 
@@ -62,6 +66,7 @@ export const Input = (props: TextInputProps & InputProps) => {
           styles.container,
           isFocused && styles.focusedContainer,
           props.dateFocused && styles.focusedDateContainer,
+          isPhoneInput && styles.focusedDateContainer,
           isCalendar && styles.centerContent,
           isMultiLine && styles.multiInput,
           isLongPress && styles.removePadding,
@@ -94,6 +99,18 @@ export const Input = (props: TextInputProps & InputProps) => {
                 <CalendarInput onChangeValue={onChangeValue} />
               </View>
             )}
+            {isPhoneInput && (
+              <View style={styles.calendarContainer}>
+                <PhoneInput
+                  {...props}
+                  setIsFocused={setIsFocused}
+                  onFocus={onFocus}
+                  onBlur={onBlur}
+                  blurText={blurText}
+                  isFocused={isFocused}
+                />
+              </View>
+            )}
           </>
         )}
         {password && (
@@ -115,6 +132,7 @@ export const Input = (props: TextInputProps & InputProps) => {
             style={[
               styles.labelContainer,
               props?.dateFocused && styles.labelDateFocused,
+              props?.phoneFocused && styles.labelDateFocused,
               {
                 transform: [
                   {
