@@ -8,9 +8,9 @@ const Stack = createStackNavigator<DashboardStackParamList>();
 const DashboardNavigation = () => {
   return (
     <Stack.Navigator
-      initialRouteName={'Dashboard'}
+      initialRouteName={'DashboardSection'}
       screenOptions={{ headerShown: false }}>
-      <Stack.Screen component={BottomTabBar} name="Dashboard" />
+      <Stack.Screen component={BottomTabBar} name="DashboardSection" />
     </Stack.Navigator>
   );
 };

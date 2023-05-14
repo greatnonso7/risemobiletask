@@ -2,7 +2,7 @@ import { NavigatorScreenParams } from '@react-navigation/native';
 
 export type RootStackParamList = {
   Auth: NavigatorScreenParams<AuthStackParamList>;
-  Dashboard: NavigatorScreenParams<DashboardStackParamList>;
+  DashboardStack: NavigatorScreenParams<DashboardStackParamList>;
 };
 
 export type AuthStackParamList = {
@@ -17,7 +17,7 @@ export type AuthStackParamList = {
 };
 
 export type DashboardStackParamList = {
-  Dashboard: BottomTabParamsList;
+  DashboardSection: BottomTabParamsList;
 };
 
 export type BottomTabParamsList = {

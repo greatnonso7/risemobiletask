@@ -16,4 +16,7 @@ export const images = {
   feed: require('assets/images/bottom-tabs/feed.png'),
   plans: require('assets/images/bottom-tabs/plans.png'),
   wallet: require('assets/images/bottom-tabs/wallet.png'),
+
+  //bg
+  'dashboard-bg': require('assets/images/dashboard-bg.png'),
 };

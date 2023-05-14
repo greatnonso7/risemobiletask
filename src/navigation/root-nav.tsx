@@ -12,10 +12,10 @@ const AppNavigation = () => {
   return (
     <NavigationContainer ref={navigationRef}>
       <Stack.Navigator
-        initialRouteName={'Dashboard'}
+        initialRouteName={'DashboardStack'}
         screenOptions={{ headerShown: false }}>
         <Stack.Screen component={AuthNavigation} name="Auth" />
-        <Stack.Screen component={DashboardNavigation} name="Dashboard" />
+        <Stack.Screen component={DashboardNavigation} name="DashboardStack" />
       </Stack.Navigator>
     </NavigationContainer>
   );
