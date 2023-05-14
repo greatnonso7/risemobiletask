@@ -6,19 +6,21 @@ import Login from 'screens/auth/login';
 import Register from 'screens/auth/register';
 import CompleteRegister from 'screens/auth/register/CompleteRegister';
 import CompleteOnboarding from 'screens/auth/register/CompleteOnboarding';
+import SetupPin from 'screens/auth/setup-pin';
 
 const Stack = createStackNavigator<AuthStackParamList>();
 
 const AuthNavigation = () => {
   return (
     <Stack.Navigator
-      initialRouteName={'CompleteRegister'}
+      initialRouteName={'SetupPin'}
       screenOptions={{ headerShown: false }}>
       <Stack.Screen component={Onboarding} name="Onboarding" />
       <Stack.Screen component={Login} name="Login" />
       <Stack.Screen component={Register} name="Register" />
       <Stack.Screen component={CompleteRegister} name="CompleteRegister" />
       <Stack.Screen component={CompleteOnboarding} name="CompleteOnboarding" />
+      <Stack.Screen component={SetupPin} name="SetupPin" />
     </Stack.Navigator>
   );
 };

@@ -1,4 +1,4 @@
-import { deviceWidth, hp, wp } from 'constants/layout';
+import { hp, wp } from 'constants/layout';
 import { StyleSheet } from 'react-native';
 import theme from 'theme';
 

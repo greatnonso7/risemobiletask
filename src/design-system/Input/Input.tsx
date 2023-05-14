@@ -104,9 +104,6 @@ export const Input = (props: TextInputProps & PhoneInputProps & InputProps) => {
                 <PhoneInput
                   {...props}
                   setIsFocused={setIsFocused}
-                  onFocus={onFocus}
-                  onBlur={onBlur}
-                  blurText={blurText}
                   isFocused={isFocused}
                 />
               </View>
@@ -164,8 +161,8 @@ export const Input = (props: TextInputProps & PhoneInputProps & InputProps) => {
                     isFocused && value?.length > 0
                       ? theme.colors.PRIMARY
                       : errorText
-                        ? theme.colors.RED
-                        : theme.colors.PLACEHOLDER_TEXT_COLOR,
+                      ? theme.colors.RED
+                      : theme.colors.PLACEHOLDER_TEXT_COLOR,
                 },
               ]}>
               {label}

@@ -22,10 +22,7 @@ export interface InputProps {
 export interface PhoneInputProps {
   setSelectedCountry?: (val: PhoneCountry) => void;
   selectedCountry?: any;
-  setIsFocused: (val: boolean) => void;
-  onFocus: (e: any) => void;
-  onBlur: (e: any) => void;
-  blurText?: () => void;
+  setIsFocused?: (val: boolean) => void;
   isFocused?: boolean;
 }
 

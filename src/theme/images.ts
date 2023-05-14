@@ -7,5 +7,6 @@ export const images = {
   //icons
   'arrow-right': require('assets/images/icons/arrow-right.png'),
   'arrow-left': require('assets/images/icons/arrow-left.png'),
+  delete: require('assets/images/icons/delete.png'),
   x: require('assets/images/icons/x.png'),
 };

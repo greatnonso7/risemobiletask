@@ -1,7 +1,7 @@
 import AvoidingView from 'components/AvoidingView';
 import Screen from 'components/Screen';
 import { Button, Input } from 'design-system';
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { View, Text } from 'react-native';
 import { styles } from './style';
 import { FormikProps, useFormik } from 'formik';

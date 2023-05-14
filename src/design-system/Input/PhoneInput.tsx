@@ -10,15 +10,7 @@ import theme from 'theme';
 const PhoneInput = (props: PhoneInputProps) => {
   const [showPicker, setShowPicker] = useState(false);
 
-  const {
-    setSelectedCountry,
-    selectedCountry,
-    setIsFocused,
-    isFocused,
-    onFocus,
-    onBlur,
-    blurText,
-  } = props;
+  const { setSelectedCountry, selectedCountry, isFocused } = props;
 
   useEffect(() => {
     const nigeriaData = countryList?.find(

@@ -8,6 +8,7 @@ export type AuthStackParamList = {
   Onboarding: undefined;
   Login: undefined;
   Register: undefined;
+  SetupPin: undefined;
   CompleteRegister: { email: string; password: string };
   CompleteOnboarding: undefined;
 };
