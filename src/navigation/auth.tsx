@@ -15,7 +15,7 @@ const Stack = createStackNavigator<AuthStackParamList>();
 const AuthNavigation = () => {
   return (
     <Stack.Navigator
-      initialRouteName={'CompletePinSetup'}
+      initialRouteName={'Onboarding'}
       screenOptions={{ headerShown: false }}>
       <Stack.Screen component={Onboarding} name="Onboarding" />
       <Stack.Screen component={Login} name="Login" />

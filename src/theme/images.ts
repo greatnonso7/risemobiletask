@@ -5,11 +5,13 @@ export const images = {
   'onboarding-3': require('assets/images/onboarding/onboarding-3.png'),
 
   //icons
+  add: require('assets/images/icons/add.png'),
   'arrow-right': require('assets/images/icons/arrow-right.png'),
   'arrow-left': require('assets/images/icons/arrow-left.png'),
   bell: require('assets/images/icons/bell.png'),
   delete: require('assets/images/icons/delete.png'),
   'gain-icon': require('assets/images/icons/gain-icon.png'),
+  'right-arrow': require('assets/images/icons/right-arrow.png'),
   x: require('assets/images/icons/x.png'),
 
   // bottom-tabs

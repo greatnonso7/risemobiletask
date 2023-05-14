@@ -36,7 +36,7 @@ const DashboardWallet = () => {
 
   return (
     <LinearGradient
-      colors={['rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0) 103.15 %)']}>
+      colors={['rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0)']}>
       <View style={styles.dashboardWalletContainer}>
         <ScrollView
           horizontal
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: hp(20),
     backgroundColor: theme.colors.WHITE,
-    borderColor: theme.colors.WHITE,
+    borderColor: theme.colors.OFF_WHITE,
   },
   contentContainer: {
     justifyContent: 'center',
@@ -209,7 +209,7 @@ const styles = StyleSheet.create({
     width: wp(8),
     height: hp(8),
     borderRadius: 100,
-    marginLeft: wp(12),
+    marginLeft: wp(6),
     backgroundColor: theme.colors.OFF_WHITE_200,
   },
   activePagination: {

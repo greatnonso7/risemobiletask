@@ -8,6 +8,7 @@ import {
   ViewStyle,
   ActivityIndicator,
   StyleSheet,
+  Image,
 } from 'react-native';
 import theme from 'theme';
 
@@ -22,6 +23,7 @@ interface ButtonProps {
   disabled?: boolean;
   backgroundColor?: string;
   titleColor?: string;
+  hasIcon?: boolean;
 }
 
 export const Button = ({
@@ -33,6 +35,7 @@ export const Button = ({
   titleStyle,
   containerStyle,
   onPress,
+  hasIcon,
 }: ButtonProps) => {
   return (
     <View style={!isNotBottom && [styles.containerStyle, containerStyle]}>
@@ -48,7 +51,16 @@ export const Button = ({
         {loading ? (
           <ActivityIndicator size="small" color={theme.colors.WHITE} />
         ) : (
-          <Text style={[styles.title, titleStyle]}>{title}</Text>
+          <View style={styles.buttonTextContainer}>
+            {hasIcon && (
+              <Image
+                source={theme.images.add}
+                resizeMode="contain"
+                style={styles.addIcon}
+              />
+            )}
+            <Text style={[styles.title, titleStyle]}>{title}</Text>
+          </View>
         )}
       </TouchableOpacity>
     </View>
@@ -80,5 +92,14 @@ const styles = StyleSheet.create({
   },
   disabledButton: {
     opacity: 0.3,
+  },
+  buttonTextContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  addIcon: {
+    width: wp(21),
+    height: hp(21),
+    marginRight: 9,
   },
 });
