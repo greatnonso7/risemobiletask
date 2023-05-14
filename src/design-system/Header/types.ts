@@ -1,4 +1,4 @@
-import { ImageSourcePropType, ViewStyle } from 'react-native';
+import { ImageSourcePropType, TextStyle, ViewStyle } from 'react-native';
 
 export interface HeaderProps {
   hasBackButton?: boolean;
@@ -15,4 +15,5 @@ export interface HeaderProps {
   rightIconStyle?: ViewStyle;
   titleColor?: string;
   hasSubText?: string;
+  headerTitleStyle?: TextStyle;
 }

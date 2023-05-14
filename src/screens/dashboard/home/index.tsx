@@ -37,11 +37,11 @@ const Home = ({ navigation: { navigate } }: ScreenProps) => {
             <Button
               isNotBottom
               hasIcon
+              onPress={() => navigate('FundWallet')}
               buttonStyle={styles.buttonStyle}
               title="Add money"
               titleStyle={styles.titleStyle}
             />
-            {/* <View style={styles.backgroundCover} /> */}
             <View style={styles.investmentPlanContainer}>
               <View style={styles.createPlanContainer}>
                 <Text style={styles.planMainText}>Create a plan</Text>

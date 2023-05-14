@@ -9,6 +9,7 @@ import PlanDate from 'screens/dashboard/plans/create-plan/PlanDate';
 import ReviewPlan from 'screens/dashboard/plans/create-plan/ReviewPlan';
 import PlanComplete from 'screens/dashboard/plans/create-plan/PlanComplete';
 import ViewPlan from 'screens/dashboard/plans/view-plan';
+import FundWallet from 'screens/dashboard/wallet/fund-wallet';
 
 const Stack = createStackNavigator<DashboardStackParamList>();
 
@@ -25,6 +26,7 @@ const DashboardNavigation = () => {
       <Stack.Screen component={ReviewPlan} name="ReviewPlan" />
       <Stack.Screen component={PlanComplete} name="PlanComplete" />
       <Stack.Screen component={ViewPlan} name="ViewPlan" />
+      <Stack.Screen component={FundWallet} name="FundWallet" />
     </Stack.Navigator>
   );
 };

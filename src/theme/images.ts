@@ -31,6 +31,13 @@ export const images = {
   plans: require('assets/images/bottom-tabs/plans.png'),
   wallet: require('assets/images/bottom-tabs/wallet.png'),
 
+  //Fund options
+  bank: require('assets/images/icons/bank.png'),
+  card: require('assets/images/icons/card.png'),
+  crypto: require('assets/images/icons/crypto.png'),
+  'direct-debit': require('assets/images/icons/direct-debit.png'),
+  'usd-card': require('assets/images/icons/usd-card.png'),
+
   //bg
   'dashboard-bg': require('assets/images/dashboard-bg.png'),
 };

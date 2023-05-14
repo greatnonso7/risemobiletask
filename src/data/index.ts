@@ -523,3 +523,43 @@ export const transactionsList = [
     date: 'Jun 19, 2021',
   },
 ];
+
+export const fundOptions = [
+  {
+    id: 1,
+    title: 'Naira bank transfer',
+    timeline: 'Timeline - 15 mins',
+    rate: 'Rate - $1 = ₦490',
+    fee: 'Fee - 1.5%',
+    icon: theme.images.bank,
+  },
+  {
+    id: 2,
+    title: 'Naira debit card',
+    timeline: 'Timeline - 15 mins',
+    rate: 'Rate - $1 = ₦490',
+    fee: 'Fee - 1.5%',
+    icon: theme.images.card,
+  },
+  {
+    id: 3,
+    title: 'Naira direct debit',
+    timeline: 'Timeline - 15 mins',
+    rate: 'Rate - $1 = ₦490',
+    icon: theme.images['direct-debit'],
+  },
+  {
+    id: 4,
+    title: 'USD Debit/Credit Card',
+    timeline: 'Timeline - 1 business day',
+    rate: 'Rate - $1 = ₦490',
+    icon: theme.images['usd-card'],
+  },
+  {
+    id: 5,
+    title: 'Crypto',
+    timeline: 'Timeline - 15 mins',
+    fee: 'Fee - 0.1%',
+    icon: theme.images.crypto,
+  },
+];

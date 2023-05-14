@@ -17,6 +17,7 @@ export const Header = ({
   onPressRightIcon,
   titleColor,
   hasSubText,
+  headerTitleStyle,
 }: HeaderProps) => {
   const renderHeaderLeft = () => {
     if (hasBackButton) {
@@ -72,7 +73,12 @@ export const Header = ({
     if (headerTitle) {
       return (
         <View>
-          <Text style={[styles.headerTitle, { color: titleColor }]}>
+          <Text
+            style={[
+              styles.headerTitle,
+              headerTitleStyle,
+              { color: titleColor },
+            ]}>
             {headerTitle}
           </Text>
           {hasSubText && <Text style={styles.subText}>{hasSubText}</Text>}

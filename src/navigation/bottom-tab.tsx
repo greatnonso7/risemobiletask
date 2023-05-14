@@ -27,8 +27,8 @@ const BottomTabBar = () => {
           resizeMode="contain"
           // eslint-disable-next-line react-native/no-inline-styles
           style={{
-            height: 30,
-            width: 30,
+            height: wp(34),
+            width: hp(34),
           }}
         />
       </View>
