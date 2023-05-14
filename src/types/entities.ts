@@ -11,6 +11,8 @@ export type AuthStackParamList = {
   SetupPin: undefined;
   CompleteRegister: { email: string; password: string };
   CompleteOnboarding: undefined;
+  ConfirmPin: { pin: string };
+  CompletePinSetup: undefined;
 };
 
 export type LoginParams = {

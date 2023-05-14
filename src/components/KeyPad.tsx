@@ -37,7 +37,6 @@ const KeyPad = (props: any) => {
     let completePin;
     if (item === 'del') {
       setPin(pin?.slice(0, -1));
-      props.setErrorPin();
       return;
     }
     if (item === 'pin') {
@@ -53,22 +52,21 @@ const KeyPad = (props: any) => {
   };
   return (
     <Screen>
-      {/* <View style={[styles.pinInfoContainer]}>
+      <View style={[styles.pinInfoContainer]}>
         {[1, 2, 3, 4, 5, 6].map((item, index) => {
           let hasCompleted = pin?.length >= index + 1;
           return (
-            <Image
+            <View
               key={index}
-              source={sharedImages._}
-              resizeMode="contain"
               style={[
                 styles.placeholder,
-                hasCompleted && { tintColor: colors.primary },
-              ]}
-            />
+                hasCompleted && styles.activeContainer,
+              ]}>
+              {hasCompleted && <Text style={styles.pointText}>•</Text>}
+            </View>
           );
         })}
-      </View> */}
+      </View>
       <View style={styles.numberContainer}>
         <View style={styles.numberRow}>
           {firstRow.map((item, index) => (
@@ -116,14 +114,17 @@ const KeyPad = (props: any) => {
                 hitSlop={{ top: 20, bottom: 20, left: 50, right: 50 }}
                 delayPressIn={0}
                 activeOpacity={0.7}
-                style={styles.keypadButton}>
+                style={[
+                  styles.keypadButton,
+                  item === '' && styles.emptyContainer,
+                ]}>
                 {item === 'del' ? (
                   <Image
                     source={theme.images.delete}
                     resizeMode="contain"
                     style={styles.clearButton}
                   />
-                ) : (
+                ) : item === '' ? null : (
                   <Text style={styles.keyText}>{item}</Text>
                 )}
               </TouchableOpacity>
@@ -137,48 +138,65 @@ const KeyPad = (props: any) => {
 
 const styles = StyleSheet.create({
   keyText: {
-    fontSize: hp(40),
+    fontSize: hp(30),
     color: theme.colors.PRIMARY,
     fontFamily: theme.font.TomatoGroteskSemiBold,
   },
   keypadButton: {
-    height: hp(82),
-    width: wp(82),
+    height: hp(72),
+    width: wp(72),
     borderRadius: 100,
     backgroundColor: theme.colors.OFF_WHITE,
     justifyContent: 'center',
     alignItems: 'center',
   },
+  emptyContainer: {
+    backgroundColor: theme.colors.WHITE,
+  },
   pinInfoContainer: {
-    width: wp(330),
-    marginTop: hp(50),
+    width: wp(317),
+    bottom: hp(40),
+    marginBottom: hp(40),
     height: hp(70),
     borderRadius: hp(14),
     flexDirection: 'row',
     alignItems: 'center',
     alignSelf: 'center',
-    justifyContent: 'space-evenly',
-    paddingHorizontal: hp(20),
+    justifyContent: 'space-between',
   },
   placeholder: {
-    height: hp(28),
-    width: wp(28),
+    height: hp(42),
+    width: wp(42),
+    borderWidth: 1,
+    borderRadius: hp(5),
+    borderColor: theme.colors.OFF_WHITE_200,
   },
-
+  activeContainer: {
+    borderColor: theme.colors.PRIMARY,
+    borderWidth: 1.5,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  pointText: {
+    fontSize: hp(30),
+    bottom: hp(3),
+  },
   clearButton: {
-    width: wp(40),
-    height: hp(40),
+    width: wp(30),
+    height: hp(30),
   },
   numberContainer: {
     width: deviceWidth,
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: hp(40),
+    height: hp(300),
   },
   numberRow: {
     flexDirection: 'row',
-    width: wp(343),
+    width: wp(320),
     alignItems: 'center',
+    flexWrap: 'wrap',
     justifyContent: 'space-between',
     marginBottom: hp(20),
     marginHorizontal: wp(30),

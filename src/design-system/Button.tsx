@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     fontFamily: theme.font.DMSansMedium,
   },
   buttonStyle: {
-    height: hp(60),
+    height: hp(52),
     width: wp(335),
     backgroundColor: theme.colors.PRIMARY,
     borderRadius: hp(5),
