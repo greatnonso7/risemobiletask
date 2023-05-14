@@ -404,3 +404,27 @@ export const countryList = [
   { name: 'Zimbabwe', dial_code: '+263', code: 'ZW', flag: '🇿🇼' },
   { name: 'Åland Islands', dial_code: '+358', code: 'AX', flag: '🇦🇽' },
 ];
+
+export const walletDataInfo = [
+  {
+    id: 1,
+    title: 'Total Balance',
+    amount: '$0.00',
+    gain: '0.00%',
+    hasGain: true,
+  },
+  {
+    id: 2,
+    title: 'Investing Balance',
+    amount: '$0.00',
+    gain: '0.00%',
+    hasGain: true,
+  },
+  {
+    id: 3,
+    title: 'Wallet Balance',
+    amount: '$0.00',
+    gain: '0.00%',
+    hasGain: false,
+  },
+];

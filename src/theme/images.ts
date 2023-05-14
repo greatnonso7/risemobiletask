@@ -7,7 +7,9 @@ export const images = {
   //icons
   'arrow-right': require('assets/images/icons/arrow-right.png'),
   'arrow-left': require('assets/images/icons/arrow-left.png'),
+  bell: require('assets/images/icons/bell.png'),
   delete: require('assets/images/icons/delete.png'),
+  'gain-icon': require('assets/images/icons/gain-icon.png'),
   x: require('assets/images/icons/x.png'),
 
   // bottom-tabs

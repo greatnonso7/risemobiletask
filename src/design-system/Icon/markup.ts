@@ -32,5 +32,9 @@ export const getMarkup: any = () => {
 <path d="M6 9.25L12 15.25L18 9.25" stroke="#8B9EAB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
 `,
+    arrowRight: `<svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M1.5011 1.5L5.5011 6L1.5011 10.5" stroke="#71879C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+`,
   };
 };
