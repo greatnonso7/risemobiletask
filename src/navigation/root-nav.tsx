@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { navigationRef } from './utils';
 import AuthNavigation from './auth';
 import { RootStackParamList } from 'types';
+import DashboardNavigation from './dashboard';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -11,9 +12,10 @@ const AppNavigation = () => {
   return (
     <NavigationContainer ref={navigationRef}>
       <Stack.Navigator
-        initialRouteName={'Auth'}
+        initialRouteName={'Dashboard'}
         screenOptions={{ headerShown: false }}>
         <Stack.Screen component={AuthNavigation} name="Auth" />
+        <Stack.Screen component={DashboardNavigation} name="Dashboard" />
       </Stack.Navigator>
     </NavigationContainer>
   );

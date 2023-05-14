@@ -9,4 +9,11 @@ export const images = {
   'arrow-left': require('assets/images/icons/arrow-left.png'),
   delete: require('assets/images/icons/delete.png'),
   x: require('assets/images/icons/x.png'),
+
+  // bottom-tabs
+  home: require('assets/images/bottom-tabs/home.png'),
+  account: require('assets/images/bottom-tabs/account.png'),
+  feed: require('assets/images/bottom-tabs/feed.png'),
+  plans: require('assets/images/bottom-tabs/plans.png'),
+  wallet: require('assets/images/bottom-tabs/wallet.png'),
 };

@@ -2,6 +2,7 @@ import { NavigatorScreenParams } from '@react-navigation/native';
 
 export type RootStackParamList = {
   Auth: NavigatorScreenParams<AuthStackParamList>;
+  Dashboard: NavigatorScreenParams<DashboardStackParamList>;
 };
 
 export type AuthStackParamList = {
@@ -13,6 +14,18 @@ export type AuthStackParamList = {
   CompleteOnboarding: undefined;
   ConfirmPin: { pin: string };
   CompletePinSetup: undefined;
+};
+
+export type DashboardStackParamList = {
+  Dashboard: BottomTabParamsList;
+};
+
+export type BottomTabParamsList = {
+  Home: undefined;
+  Plans: undefined;
+  Wallet: undefined;
+  Feeds: undefined;
+  Account: undefined;
 };
 
 export type LoginParams = {
