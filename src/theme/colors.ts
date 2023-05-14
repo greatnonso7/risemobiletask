@@ -24,4 +24,5 @@ export const colors = {
   OFF_WHITE_300: '#FFFFFF33',
   OFF_WHITE_400: '#FAFBFD',
   PRIMARY_LIGHT_COLOR_100: '#40BBC326',
+  OFF_WHITE_500: '#71879C0D',
 };
