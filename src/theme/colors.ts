@@ -9,6 +9,7 @@ export const colors = {
   WHITE: '#FFFFFF',
   TEXT_BLACK: '#222222',
   BLACK: '#000000',
+  BLACK_100: '#00000066',
   DARK_TEXT: '#012224',
   SOFT_TEXT: '#71879C',
   OFF_WHITE: '#71879C1A',

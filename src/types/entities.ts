@@ -24,6 +24,7 @@ export type DashboardStackParamList = {
   PlanDate: undefined;
   ReviewPlan: undefined;
   PlanComplete: undefined;
+  ViewPlan: undefined;
 };
 
 export type BottomTabParamsList = {

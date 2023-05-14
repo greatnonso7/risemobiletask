@@ -9,11 +9,14 @@ export const Header = ({
   onPressLeftIcon,
   tintColor,
   leftIconStyle,
+  rightIconStyle,
   hasCloseButton,
   headerTitle,
   backgroundColor,
   hasRightIcon,
   onPressRightIcon,
+  titleColor,
+  hasSubText,
 }: HeaderProps) => {
   const renderHeaderLeft = () => {
     if (hasBackButton) {
@@ -53,7 +56,7 @@ export const Header = ({
       return (
         <TouchableOpacity
           activeOpacity={0.5}
-          style={[styles.rightIconContainer, { borderColor: tintColor }]}
+          style={[styles.rightIconContainer, rightIconStyle]}
           onPress={onPressRightIcon}>
           <Image
             source={hasRightIcon}
@@ -67,7 +70,14 @@ export const Header = ({
 
   const renderHeaderTitle = () => {
     if (headerTitle) {
-      return <Text style={[styles.headerTitle]}>{headerTitle}</Text>;
+      return (
+        <View>
+          <Text style={[styles.headerTitle, { color: titleColor }]}>
+            {headerTitle}
+          </Text>
+          {hasSubText && <Text style={styles.subText}>{hasSubText}</Text>}
+        </View>
+      );
     }
   };
 

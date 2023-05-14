@@ -12,4 +12,7 @@ export interface HeaderProps {
   rightIcon?: boolean;
   headerTitle?: string;
   hasRightIcon?: ImageSourcePropType;
+  rightIconStyle?: ViewStyle;
+  titleColor?: string;
+  hasSubText?: string;
 }

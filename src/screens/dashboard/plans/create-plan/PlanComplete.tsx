@@ -3,8 +3,12 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { styles } from './style';
 import { Button, Icon } from 'design-system';
+import { DashboardStackParamList } from 'types';
+import { StackScreenProps } from '@react-navigation/stack';
 
-const PlanComplete = () => {
+type ScreenProps = StackScreenProps<DashboardStackParamList, 'PlanComplete'>;
+
+const PlanComplete = ({ navigation: { navigate } }: ScreenProps) => {
   return (
     <Screen>
       <View style={[styles.bodyContainer, styles.completeOnboardingContainer]}>
@@ -15,7 +19,7 @@ const PlanComplete = () => {
         <Text style={styles.welcomeSubText}>Well done, Deborah</Text>
       </View>
 
-      <Button title="View plan" />
+      <Button title="View plan" onPress={() => navigate('ViewPlan')} />
     </Screen>
   );
 };

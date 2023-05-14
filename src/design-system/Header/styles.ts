@@ -42,6 +42,11 @@ export const styles = StyleSheet.create({
   rightIconContainer: {
     position: 'absolute',
     right: wp(20),
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 100,
+    height: 40,
+    width: 40,
   },
 
   headerTitle: {
@@ -50,6 +55,13 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     color: theme.colors.BLACK,
     lineHeight: hp(26),
+  },
+  subText: {
+    textAlign: 'center',
+    fontFamily: theme.font.DMSansRegular,
+    fontSize: hp(15),
+    color: theme.colors.WHITE,
+    lineHeight: hp(22),
   },
   leftIcon: {
     height: hp(20),
