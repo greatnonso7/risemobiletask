@@ -18,6 +18,7 @@ export const images = {
   'graph-2': require('assets/images/graph-2.png'),
   'header-bg': require('assets/images/header-bg.png'),
   invest: require('assets/images/icons/invest.png'),
+  'left-arrow': require('assets/images/icons/left-arrow.png'),
   more: require('assets/images/icons/more.png'),
   'right-arrow': require('assets/images/icons/right-arrow.png'),
   'question-mark': require('assets/images/icons/question-mark.png'),

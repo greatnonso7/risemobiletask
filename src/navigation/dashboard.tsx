@@ -10,6 +10,7 @@ import ReviewPlan from 'screens/dashboard/plans/create-plan/ReviewPlan';
 import PlanComplete from 'screens/dashboard/plans/create-plan/PlanComplete';
 import ViewPlan from 'screens/dashboard/plans/view-plan';
 import FundWallet from 'screens/dashboard/wallet/fund-wallet';
+import ChoosePlan from 'screens/dashboard/plans/choose-plan';
 
 const Stack = createStackNavigator<DashboardStackParamList>();
 
@@ -27,6 +28,7 @@ const DashboardNavigation = () => {
       <Stack.Screen component={PlanComplete} name="PlanComplete" />
       <Stack.Screen component={ViewPlan} name="ViewPlan" />
       <Stack.Screen component={FundWallet} name="FundWallet" />
+      <Stack.Screen component={ChoosePlan} name="ChoosePlan" />
     </Stack.Navigator>
   );
 };

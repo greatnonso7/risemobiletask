@@ -6,9 +6,10 @@ import { styles } from './style';
 interface AboutRateProps {
   isVisible: boolean;
   onClose: () => void;
+  onComplete: () => void;
 }
 
-const AboutRate = ({ isVisible, onClose }: AboutRateProps) => {
+const AboutRate = ({ isVisible, onClose, onComplete }: AboutRateProps) => {
   return (
     <BaseModal visible={isVisible} onClose={() => onClose()} hideButton>
       <View style={styles.container}>
@@ -21,20 +22,24 @@ const AboutRate = ({ isVisible, onClose }: AboutRateProps) => {
         <View style={styles.bodyContainer}>
           <View style={styles.rateInfoContainer}>
             <View>
-              <Text>USD Buy Rate</Text>
-              <Text>We buy US dollars at this rate</Text>
+              <Text style={styles.rateMainText}>USD Buy Rate</Text>
+              <Text style={styles.rateSubText}>
+                We buy US dollars at this rate
+              </Text>
             </View>
             <View>
-              <Text>₦490</Text>
+              <Text style={styles.rateMainText}>₦490</Text>
             </View>
           </View>
           <View style={styles.rateInfoContainer}>
             <View>
-              <Text>USD Buy Rate</Text>
-              <Text>We buy US dollars at this rate</Text>
+              <Text style={styles.rateMainText}>USD Buy Rate</Text>
+              <Text style={styles.rateSubText}>
+                The current value of your investments in Naira
+              </Text>
             </View>
             <View>
-              <Text>₦490</Text>
+              <Text style={styles.rateMainText}>₦490</Text>
             </View>
           </View>
 
@@ -47,6 +52,7 @@ const AboutRate = ({ isVisible, onClose }: AboutRateProps) => {
 
           <Button
             isNotBottom
+            onPress={onComplete}
             title="Accept & Continue"
             titleStyle={styles.buttonTitleStyle}
           />

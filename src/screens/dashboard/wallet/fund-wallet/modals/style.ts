@@ -29,6 +29,18 @@ export const styles = StyleSheet.create({
     borderBottomColor: theme.colors.OFF_WHITE,
     borderBottomWidth: 1,
   },
+  rateMainText: {
+    fontFamily: theme.font.DMSansRegular,
+    fontSize: hp(15),
+    lineHeight: hp(22),
+    color: theme.colors.TEXT_BLACK,
+  },
+  rateSubText: {
+    fontFamily: theme.font.DMSansRegular,
+    fontSize: hp(12),
+    lineHeight: hp(18),
+    color: theme.colors.SOFT_TEXT,
+  },
   infoText: {
     fontFamily: theme.font.DMSansRegular,
     fontSize: hp(10.8),

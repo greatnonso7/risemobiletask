@@ -5,13 +5,28 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { styles } from './style';
 import AboutRate from './modals/AboutRate';
+import { DashboardStackParamList } from 'types';
+import { StackScreenProps } from '@react-navigation/stack';
 
-const FundWallet = () => {
+type ScreenProps = StackScreenProps<DashboardStackParamList, 'FundWallet'>;
+
+const FundWallet = ({ navigation: { navigate, goBack } }: ScreenProps) => {
   const [showRateModal, setShowRateModal] = useState(false);
+
+  const onSelectFundingOption = async () => {
+    setShowRateModal(false);
+    setTimeout(() => {
+      navigate('ChoosePlan');
+    }, 500);
+  };
 
   return (
     <Screen>
-      <Header hasCloseButton headerTitle="Fund Wallet" />
+      <Header
+        hasCloseButton
+        onPressLeftIcon={() => goBack()}
+        headerTitle="Fund Wallet"
+      />
       <View style={styles.bodyContainer}>
         {fundOptions.map(option => {
           return (
@@ -40,6 +55,7 @@ const FundWallet = () => {
       <AboutRate
         isVisible={showRateModal}
         onClose={() => setShowRateModal(false)}
+        onComplete={onSelectFundingOption}
       />
     </Screen>
   );

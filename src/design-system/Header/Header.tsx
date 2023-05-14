@@ -31,7 +31,7 @@ export const Header = ({
           ]}
           onPress={onPressLeftIcon}>
           <Image
-            source={theme.images['arrow-left']}
+            source={theme.images['left-arrow']}
             style={[styles.backIcon, { tintColor }]}
           />
         </TouchableOpacity>

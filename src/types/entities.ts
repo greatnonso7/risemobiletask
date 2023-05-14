@@ -26,6 +26,7 @@ export type DashboardStackParamList = {
   PlanComplete: undefined;
   ViewPlan: undefined;
   FundWallet: undefined;
+  ChoosePlan: undefined;
 };
 
 export type BottomTabParamsList = {
