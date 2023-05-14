@@ -14,8 +14,15 @@ import DashboardHeader from './components/DashboardHeader';
 import DashboardWallet from './components/DashboardWallet';
 import { Button, Icon } from 'design-system';
 import QuoteContainer from './components/QuoteContainer';
+import { BottomTabParamsList, DashboardStackParamList } from 'types';
+import { StackScreenProps } from '@react-navigation/stack';
 
-const Home = () => {
+type ScreenProps = StackScreenProps<
+  BottomTabParamsList & DashboardStackParamList,
+  'Home'
+>;
+
+const Home = ({ navigation: { navigate } }: ScreenProps) => {
   const [plansList, setPlansList] = useState([]);
   return (
     <ImageBackground
@@ -57,6 +64,7 @@ const Home = () => {
                 scrollEnabled={plansList.length === 0 ? false : true}
                 contentContainerStyle={styles.containerStyle}>
                 <TouchableOpacity
+                  onPress={() => navigate('CreatePlan')}
                   activeOpacity={0.6}
                   style={styles.createNewPlanContainer}>
                   <View style={styles.addIconContainer}>

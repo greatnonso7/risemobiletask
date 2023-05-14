@@ -18,6 +18,11 @@ export type AuthStackParamList = {
 
 export type DashboardStackParamList = {
   DashboardSection: BottomTabParamsList;
+  CreatePlan: undefined;
+  PlanGoal: undefined;
+  PlanAmount: undefined;
+  PlanDate: undefined;
+  ReviewPlan: undefined;
 };
 
 export type BottomTabParamsList = {

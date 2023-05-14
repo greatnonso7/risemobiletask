@@ -9,9 +9,14 @@ export const images = {
   'arrow-right': require('assets/images/icons/arrow-right.png'),
   'arrow-left': require('assets/images/icons/arrow-left.png'),
   bell: require('assets/images/icons/bell.png'),
+  calendar: require('assets/images/icons/calendar.png'),
   delete: require('assets/images/icons/delete.png'),
   'gain-icon': require('assets/images/icons/gain-icon.png'),
+  graph: require('assets/images/graph.png'),
+  invest: require('assets/images/icons/invest.png'),
   'right-arrow': require('assets/images/icons/right-arrow.png'),
+  'question-mark': require('assets/images/icons/question-mark.png'),
+  settings: require('assets/images/icons/settings.png'),
   x: require('assets/images/icons/x.png'),
 
   // bottom-tabs

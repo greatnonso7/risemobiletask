@@ -428,3 +428,27 @@ export const walletDataInfo = [
     hasGain: false,
   },
 ];
+
+export const investOptions = [
+  {
+    id: 1,
+    title: 'Give us a few details',
+    icon: theme.images['question-mark'],
+    description:
+      'Tell us what you want to achieve and we will help you get there.',
+  },
+  {
+    id: 2,
+    title: 'Turn on auto-invest',
+    icon: theme.images.calendar,
+    description:
+      'The easiest way to get your investment working for you is to fund to periodically.',
+  },
+  {
+    id: 3,
+    title: 'Modify as you progress',
+    icon: theme.images.settings,
+    description:
+      'You are in charge. Make changes to your plan, from adding funds, funding source, adding money to your wallet and more.',
+  },
+];

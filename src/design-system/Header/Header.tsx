@@ -37,9 +37,12 @@ export const Header = ({
       return (
         <TouchableOpacity
           activeOpacity={0.5}
-          style={[styles.headerCloseLeftIconContainer, leftIconStyle]}
+          style={[styles.headerLeftIconContainer, leftIconStyle]}
           onPress={onPressLeftIcon}>
-          <Image source={theme.images.x} />
+          <Image
+            source={theme.images.x}
+            style={[styles.backIcon, { tintColor }]}
+          />
         </TouchableOpacity>
       );
     }
@@ -64,11 +67,7 @@ export const Header = ({
 
   const renderHeaderTitle = () => {
     if (headerTitle) {
-      return (
-        <Text style={[styles.headerTitle, { color: tintColor }]}>
-          {headerTitle}
-        </Text>
-      );
+      return <Text style={[styles.headerTitle]}>{headerTitle}</Text>;
     }
   };
 

@@ -6,6 +6,7 @@ export const styles = StyleSheet.create({
   headerContainer: {
     backgroundColor: theme.colors.WHITE,
     width: deviceWidth,
+    marginTop: hp(10),
   },
   navBar: {
     width: '100%',
@@ -27,8 +28,8 @@ export const styles = StyleSheet.create({
     width: 40,
   },
   backIcon: {
-    width: wp(14),
-    height: hp(14),
+    width: wp(17),
+    height: hp(17),
     tintColor: theme.colors.PRIMARY,
   },
   headerCloseLeftIconContainer: {
@@ -44,9 +45,11 @@ export const styles = StyleSheet.create({
   },
 
   headerTitle: {
-    fontSize: hp(20),
+    fontSize: hp(24),
     fontFamily: theme.font.TomatoGroteskBold,
     textAlign: 'center',
+    color: theme.colors.BLACK,
+    lineHeight: hp(26),
   },
   leftIcon: {
     height: hp(20),
