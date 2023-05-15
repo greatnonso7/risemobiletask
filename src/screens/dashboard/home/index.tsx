@@ -14,7 +14,7 @@ import DashboardHeader from './components/DashboardHeader';
 import DashboardWallet from './components/DashboardWallet';
 import { Button, Icon } from 'design-system';
 import QuoteContainer from './components/QuoteContainer';
-import { BottomTabParamsList, DashboardStackParamList } from 'types';
+import { BottomTabParamsList, DashboardStackParamList, UserData } from 'types';
 import { StackScreenProps } from '@react-navigation/stack';
 import { useQuery, useQueryClient } from 'react-query';
 import * as API from 'services/apis';
@@ -26,12 +26,12 @@ type ScreenProps = StackScreenProps<
 >;
 
 const Home = ({ navigation: { navigate } }: ScreenProps) => {
-  const [plansList, setPlansList] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
   const queryClient = useQueryClient();
-  const userData = queryClient.getQueryData<any>('user');
-
+  const userData = queryClient.getQueryData<UserData>('user');
   const { data: quoteData } = useQuery('quotes', API.getQuotes);
+  const { data: planData } = useQuery('plans', API.getPlans);
+  const totalPlans = planData?.item_count === 0;
 
   const handleRefresh = () => {
     setRefreshing(true);
@@ -56,7 +56,7 @@ const Home = ({ navigation: { navigate } }: ScreenProps) => {
           }
           showsVerticalScrollIndicator={false}>
           <View style={styles.backgroundCover}>
-            <DashboardHeader first_name={userData.first_name} />
+            <DashboardHeader first_name={userData!.first_name} />
             <DashboardWallet userData={userData} />
             <Button
               isNotBottom
@@ -68,24 +68,45 @@ const Home = ({ navigation: { navigate } }: ScreenProps) => {
             />
             <View style={styles.investmentPlanContainer}>
               <View style={styles.createPlanContainer}>
-                <Text style={styles.planMainText}>Create a plan</Text>
+                <Text style={styles.planMainText}>
+                  {totalPlans ? 'Create a plan' : 'Your plans'}
+                </Text>
                 <TouchableOpacity
                   activeOpacity={1}
                   style={styles.viewMorePlansContainer}>
-                  <Text style={[styles.viewMorePlansText]}>View all plans</Text>
+                  <Text
+                    style={[
+                      styles.viewMorePlansText,
+                      {
+                        color: totalPlans
+                          ? theme.colors.GREY
+                          : theme.colors.PRIMARY,
+                      },
+                    ]}>
+                    View all plans
+                  </Text>
                   <Image
                     source={theme.images['right-arrow']}
                     resizeMode="contain"
-                    style={styles.rightArrow}
+                    style={[
+                      styles.rightArrow,
+                      {
+                        tintColor: totalPlans
+                          ? theme.colors.GREY
+                          : theme.colors.PRIMARY,
+                      },
+                    ]}
                   />
                 </TouchableOpacity>
               </View>
-              <Text style={styles.planSubText}>
-                Start your investment journey by creating a plan
-              </Text>
+              {totalPlans && (
+                <Text style={styles.planSubText}>
+                  Start your investment journey by creating a plan
+                </Text>
+              )}
               <ScrollView
                 horizontal
-                scrollEnabled={plansList.length === 0 ? false : true}
+                scrollEnabled={totalPlans ? false : true}
                 contentContainerStyle={styles.containerStyle}>
                 <TouchableOpacity
                   onPress={() => navigate('CreatePlan')}

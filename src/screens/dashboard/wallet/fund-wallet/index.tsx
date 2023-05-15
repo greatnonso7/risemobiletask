@@ -7,11 +7,15 @@ import { styles } from './style';
 import AboutRate from './modals/AboutRate';
 import { DashboardStackParamList } from 'types';
 import { StackScreenProps } from '@react-navigation/stack';
+import { useQuery } from 'react-query';
+import * as API from 'services/apis';
 
 type ScreenProps = StackScreenProps<DashboardStackParamList, 'FundWallet'>;
 
 const FundWallet = ({ navigation: { navigate, goBack } }: ScreenProps) => {
   const [showRateModal, setShowRateModal] = useState(false);
+
+  const { data: ratesData } = useQuery('rates', API.getRates);
 
   const onSelectFundingOption = async () => {
     setShowRateModal(false);
@@ -45,7 +49,9 @@ const FundWallet = ({ navigation: { navigate, goBack } }: ScreenProps) => {
                 </View>
               </View>
               <View style={styles.fundRateContainer}>
-                <Text style={styles.fundSubText}>{option.rate}</Text>
+                <Text style={styles.fundSubText}>
+                  Rate - $1 = ₦{ratesData?.sell_rate}
+                </Text>
                 <Text style={styles.fundSubText}>{option.fee}</Text>
               </View>
             </TouchableOpacity>

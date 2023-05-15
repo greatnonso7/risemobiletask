@@ -27,8 +27,8 @@ const DashboardNavigation = () => {
       <Stack.Screen component={ReviewPlan} name="ReviewPlan" />
       <Stack.Screen component={PlanComplete} name="PlanComplete" />
       <Stack.Screen component={ViewPlan} name="ViewPlan" />
-      <Stack.Screen component={FundWallet} name="FundWallet" />
       <Stack.Screen component={ChoosePlan} name="ChoosePlan" />
+      <Stack.Screen component={FundWallet} name="FundWallet" />
     </Stack.Navigator>
   );
 };

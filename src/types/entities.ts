@@ -57,3 +57,13 @@ export type CreatePlanParams = {
   target_amount: number;
   maturity_date: Date;
 };
+
+export type UserData = {
+  email_address: string;
+  first_name: string;
+  last_name: string;
+  token: string;
+  total_balance: number;
+  total_returns: number | null;
+  username: string;
+};

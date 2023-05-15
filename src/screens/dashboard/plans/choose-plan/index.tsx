@@ -7,9 +7,9 @@ import { DashboardStackParamList } from 'types';
 import { styles } from './style';
 import theme from 'theme';
 
-type ScreenProps = StackScreenProps<DashboardStackParamList, 'FundWallet'>;
+type ScreenProps = StackScreenProps<DashboardStackParamList, 'ChoosePlan'>;
 
-const ChoosePlan = ({ navigation: { navigate, goBack } }: ScreenProps) => {
+const ChoosePlan = ({ navigation: { goBack } }: ScreenProps) => {
   return (
     <Screen>
       <Header

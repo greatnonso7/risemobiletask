@@ -64,18 +64,12 @@ const Login = ({ navigation }: ScreenProps) => {
       });
     },
   });
-  const { refetch } = useQuery('user', API.getLogin, {
-    enabled: false,
-    refetchOnWindowFocus: false,
-  });
 
   const { mutate: setLogin, status } = useMutation(API.setLogin, {
     onSuccess: async data => {
-      const res = await refetch();
-      const responseData = res.data;
-      if (res.data) {
-        const token = responseData.token;
-        storage.setItem('user_token', token);
+      if (data) {
+        console.log(data, 'login success');
+        storage.setItem('user_token', data?.token);
         queryClient.setQueryData('user', data);
         //@ts-ignore
         navigation.replace('DashboardStack', { screen: 'DashboardSection' });
