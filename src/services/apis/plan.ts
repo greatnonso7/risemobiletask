@@ -9,8 +9,10 @@ export const getPlanProjection = (req: any) =>
     req,
   ).then(({ data }) => data);
 
-export const getPlan = (req: any) =>
-  Axios.get(`plans/${req?.queryKey[0]}`, req).then(({ data }) => data);
+export const getPlan = (req: any) => {
+  console.log(req?.queryKey, 'plans');
+  return Axios.get(`plans/${req?.queryKey[0]}`, req).then(({ data }) => data);
+};
 
 export const createPlan = (req: CreatePlanParams) =>
   Axios.post('plans', req).then(({ data }) => data);

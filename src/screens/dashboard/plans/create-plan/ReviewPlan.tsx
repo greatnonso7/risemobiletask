@@ -4,7 +4,7 @@ import { Button, Header, Icon } from 'design-system';
 import React from 'react';
 import { View, Text, Image, ScrollView } from 'react-native';
 import theme from 'theme';
-import { DashboardStackParamList, RateData } from 'types';
+import { DashboardStackParamList, RateData, UserData } from 'types';
 import { styles } from './style';
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { useMutation, useQueryClient } from 'react-query';
@@ -20,6 +20,7 @@ const ReviewPlan = ({ navigation: { navigate, goBack } }: ScreenProps) => {
     useRoute<RouteProp<DashboardStackParamList, 'ReviewPlan'>>().params;
   const total_maturity_amount = Number(target_amount.split(',').join(''));
   const userRates = queryClient.getQueryData<RateData>('rates');
+  const userData = queryClient.getQueryData<UserData>('user');
   const monthlyInvest = total_maturity_amount / total_months;
   const totalInvestment = total_maturity_amount / userRates!.sell_rate;
   const getReturns = totalInvestment / 12;
@@ -50,7 +51,9 @@ const ReviewPlan = ({ navigation: { navigate, goBack } }: ScreenProps) => {
           headerTitle="Review"
         />
         <View style={[styles.bodyContainer, styles.reviewPlanContainer]}>
-          <Text style={styles.investorText}>Kate Ventures</Text>
+          <Text style={styles.investorText}>
+            {userData?.first_name} {userData?.last_name}
+          </Text>
           <Text style={styles.amountText}>${formatAmount(totalReturns)}</Text>
           <Text style={styles.durationText}>
             by {dayjs(maturity_date).format('DD MMM YYYY')}

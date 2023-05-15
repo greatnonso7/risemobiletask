@@ -474,16 +474,16 @@ export const planInfo = [
     title: 'Balance in Naira (*₦505)',
     value: '₦31,918,837.5',
   },
-  {
-    id: 5,
-    title: 'Plan created on',
-    value: '23rd July, 2019',
-  },
-  {
-    id: 6,
-    title: 'Maturity date',
-    value: '24th July 2022',
-  },
+  // {
+  //   id: 5,
+  //   title: 'Plan created on',
+  //   value: '23rd July, 2019',
+  // },
+  // {
+  //   id: 6,
+  //   title: 'Maturity date',
+  //   value: '24th July 2022',
+  // },
 ];
 
 export const transactionsList = [

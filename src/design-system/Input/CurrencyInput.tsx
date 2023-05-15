@@ -11,7 +11,7 @@ const CurrencyInput = (props: PhoneInputProps & TextInputProps) => {
     <>
       <View
         style={[
-          styles.phoneInputContainer,
+          styles.currencyInputContainer,
           isFocused && styles.focusedContainer,
         ]}>
         <View style={styles.currencyContainer}>
@@ -20,7 +20,7 @@ const CurrencyInput = (props: PhoneInputProps & TextInputProps) => {
         <TextInput
           {...props}
           placeholderTextColor={theme.colors.GREY}
-          style={[styles.textInput, styles.phoneTextInput]}
+          style={[styles.textInput, styles.currencyTextInput]}
           placeholder="Enter target amount"
           selectionColor={theme.colors.PRIMARY}
           keyboardType="numeric"

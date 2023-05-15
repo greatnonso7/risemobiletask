@@ -6,12 +6,15 @@ import { Button, Icon } from 'design-system';
 import { DashboardStackParamList, UserData } from 'types';
 import { StackScreenProps } from '@react-navigation/stack';
 import { useQueryClient } from 'react-query';
+import { RouteProp, useRoute } from '@react-navigation/native';
 
 type ScreenProps = StackScreenProps<DashboardStackParamList, 'PlanComplete'>;
 
 const PlanComplete = ({ navigation: { navigate } }: ScreenProps) => {
   const queryClient = useQueryClient();
   const userData = queryClient.getQueryData<UserData>('user');
+  const { plan_id } =
+    useRoute<RouteProp<DashboardStackParamList, 'PlanComplete'>>().params;
 
   return (
     <Screen>
@@ -25,7 +28,10 @@ const PlanComplete = ({ navigation: { navigate } }: ScreenProps) => {
         </Text>
       </View>
 
-      <Button title="View plan" onPress={() => navigate('ViewPlan')} />
+      <Button
+        title="View plan"
+        onPress={() => navigate('ViewPlan', { plan_id })}
+      />
     </Screen>
   );
 };

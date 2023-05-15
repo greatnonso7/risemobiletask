@@ -40,9 +40,10 @@ const DashboardWallet = ({ userData }: DashboardWalletProps) => {
   const { currentPage: pageIndex } = sliderState;
 
   return (
-    <LinearGradient
-      colors={['rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0)']}>
-      <View style={styles.dashboardWalletContainer}>
+    <View>
+      <LinearGradient
+        style={styles.dashboardWalletContainer}
+        colors={['rgba(255, 255, 255, 0.8)', 'rgba(255, 255, 255, 0)']}>
         <ScrollView
           horizontal
           style={styles.scrollViewContainer}
@@ -117,8 +118,8 @@ const DashboardWallet = ({ userData }: DashboardWalletProps) => {
             );
           })}
         </View>
-      </View>
-    </LinearGradient>
+      </LinearGradient>
+    </View>
   );
 };
 

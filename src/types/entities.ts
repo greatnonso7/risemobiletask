@@ -29,7 +29,7 @@ export type DashboardStackParamList = {
     total_months: any;
   };
   PlanComplete: { plan_id: string };
-  ViewPlan: undefined;
+  ViewPlan: { plan_id: string; fromViewPlans?: boolean };
   FundWallet: undefined;
   ChoosePlan: undefined;
 };
@@ -76,4 +76,16 @@ export type UserData = {
 export type RateData = {
   sell_rate: number;
   buy_rate: number;
+};
+
+export type PlanData = {
+  id: string;
+  created_at: Date;
+  plan_name: string;
+  invested_amount: number;
+  total_returns: number;
+  target_amount: number;
+  maturity_date: number;
+  user_id: string;
+  returns: any[];
 };

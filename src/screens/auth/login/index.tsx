@@ -109,7 +109,7 @@ const Login = ({ navigation }: ScreenProps) => {
               label="Password"
               autoCapitalize="none"
               password
-              secureTextEntry={showPassword}
+              secureTextEntry={true}
               onTogglePassword={() => setShowPassword(!showPassword)}
               keyboardType="email-address"
               errorText={errors.password}

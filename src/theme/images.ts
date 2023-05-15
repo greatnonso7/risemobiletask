@@ -20,6 +20,7 @@ export const images = {
   invest: require('assets/images/icons/invest.png'),
   'left-arrow': require('assets/images/icons/left-arrow.png'),
   more: require('assets/images/icons/more.png'),
+  'plans-card': require('assets/images/icons/plans-card.png'),
   'right-arrow': require('assets/images/icons/right-arrow.png'),
   'question-mark': require('assets/images/icons/question-mark.png'),
   settings: require('assets/images/icons/settings.png'),

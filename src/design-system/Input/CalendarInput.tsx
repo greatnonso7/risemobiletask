@@ -32,7 +32,9 @@ const CalendarInput = ({ onChangeValue }: CalendarProps) => {
           setShowModal(false);
         }}
       />
-      <TouchableOpacity onPress={() => setShowModal(true)}>
+      <TouchableOpacity
+        style={styles.calendarInputContainer}
+        onPress={() => setShowModal(true)}>
         <Text style={[styles.textInput, isSelected && styles.placeholderText]}>
           {!isSelected ? 'Choose date' : `${formatDOB(selectedDate)}`}
         </Text>

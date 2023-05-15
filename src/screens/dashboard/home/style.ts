@@ -1,4 +1,4 @@
-import { deviceHeight, deviceWidth, hp, wp } from 'constants/layout';
+import { deviceWidth, hp, wp } from 'constants/layout';
 import { StyleSheet } from 'react-native';
 import theme from 'theme';
 
@@ -8,9 +8,10 @@ export const styles = StyleSheet.create({
   },
   dashboardImageContainer: {
     width: deviceWidth,
-    height: hp(400),
+    height: hp(700),
     flex: 1,
-    backgroundColor: theme.colors.OFF_WHITE_400,
+    opacity: 0.5,
+    // backgroundColor: '#efeff6',
   },
   buttonContainer: {
     height: hp(100),
@@ -20,6 +21,7 @@ export const styles = StyleSheet.create({
     marginTop: hp(24),
     backgroundColor: theme.colors.WHITE,
     borderWidth: 1,
+    marginBottom: hp(20),
     borderColor: theme.colors.OFF_WHITE_200,
   },
   titleStyle: {
@@ -34,7 +36,9 @@ export const styles = StyleSheet.create({
   },
   investmentPlanContainer: {
     paddingTop: hp(31),
-    backgroundColor: theme.colors.OFF_WHITE_400,
+    // height: hp(500),
+    // backgroundColor: '#efeff6',
+    // backgroundColor: theme.colors.OFF_WHITE_400,
   },
   createPlanContainer: {
     flexDirection: 'row',
@@ -46,6 +50,7 @@ export const styles = StyleSheet.create({
     fontFamily: theme.font.TomatoGroteskRegular,
     fontSize: hp(18),
     lineHeight: 22,
+    color: theme.colors.BLACK,
   },
   viewMorePlansContainer: {
     flexDirection: 'row',
@@ -118,14 +123,24 @@ export const styles = StyleSheet.create({
   containerStyle: {
     marginLeft: wp(20),
     marginTop: hp(20),
+    paddingRight: wp(50),
   },
   createNewPlanContainer: {
-    width: wp(188),
+    width: wp(178),
     height: hp(243),
     borderRadius: hp(12),
     backgroundColor: theme.colors.OFF_WHITE,
     justifyContent: 'center',
     alignItems: 'center',
+    marginRight: wp(15),
+  },
+  spacingRight: {
+    marginRight: wp(24),
+  },
+  planContainer: {
+    width: wp(188),
+    bottom: 10,
+    height: hp(270),
   },
   addIconContainer: {
     width: 42,
@@ -139,6 +154,7 @@ export const styles = StyleSheet.create({
     fontFamily: theme.font.DMSansBold,
     fontSize: hp(14),
     lineHeight: hp(18),
+    color: theme.colors.BLACK,
     width: wp(121),
     textAlign: 'center',
     paddingTop: hp(10),
@@ -147,4 +163,27 @@ export const styles = StyleSheet.create({
     width: wp(20),
     height: hp(20),
   },
+  planBodyContainer: {
+    position: 'absolute',
+    alignSelf: 'flex-start',
+    paddingHorizontal: wp(30),
+    bottom: hp(50),
+  },
+  planName: {
+    fontFamily: theme.font.DMSansRegular,
+    color: theme.colors.WHITE,
+    fontSize: hp(15),
+    lineHeight: hp(22),
+  },
+  planAmount: {
+    fontFamily: theme.font.DMSansRegular,
+    fontSize: hp(18),
+    lineHeight: hp(21),
+    color: theme.colors.WHITE,
+  },
+  noMargin: {
+    marginRight: 10,
+    marginBottom: hp(20),
+  },
+  widthStyle: { width: wp(170), height: hp(250) },
 });

@@ -3,6 +3,7 @@ import FlashMessage from 'react-native-flash-message';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { RootNavigation } from 'navigation';
 import SplashScreen from 'react-native-splash-screen';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const queryTime = 1000 * 60 * 60 * 24;
 const queryClient = new QueryClient({
@@ -30,8 +31,10 @@ const App = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <RootNavigation />
-      <FlashMessage position="top" />
+      <SafeAreaProvider>
+        <RootNavigation />
+        <FlashMessage position="top" />
+      </SafeAreaProvider>
     </QueryClientProvider>
   );
 };

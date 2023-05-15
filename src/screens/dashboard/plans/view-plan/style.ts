@@ -1,10 +1,13 @@
 import { deviceWidth, hp, wp } from 'constants/layout';
-import { StyleSheet } from 'react-native';
+import { StatusBar, StyleSheet } from 'react-native';
 import theme from 'theme';
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  headerContainer: {
+    paddingTop: StatusBar?.currentHeight + hp(20),
   },
   headerImage: {
     width: deviceWidth,
@@ -201,5 +204,11 @@ export const styles = StyleSheet.create({
     fontSize: hp(15),
     lineHeight: hp(20),
     color: theme.colors.GREY_TEXT_100,
+  },
+  loadingContainer: {
+    backgroundColor: 'rgba(255, 255, 255, 0.5)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: deviceWidth,
   },
 });

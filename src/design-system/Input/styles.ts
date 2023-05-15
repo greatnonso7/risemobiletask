@@ -1,4 +1,5 @@
 import { hp, wp } from 'constants/layout';
+import { isIos } from 'constants/platform';
 import { StyleSheet } from 'react-native';
 import theme from 'theme';
 
@@ -10,7 +11,7 @@ export const styles = StyleSheet.create({
     borderRadius: hp(5),
     marginHorizontal: wp(20),
     backgroundColor: theme.colors.WHITE,
-    padding: 16,
+    paddingHorizontal: wp(16),
     flexGrow: 1,
     marginBottom: hp(17),
   },
@@ -25,10 +26,14 @@ export const styles = StyleSheet.create({
     fontFamily: theme.font.DMSansBold,
     fontSize: hp(15),
     lineHeight: hp(18),
+    height: isIos ? hp(55) : hp(40),
     flexGrow: 1,
   },
   phoneTextInput: {
     paddingLeft: wp(0),
+  },
+  currencyTextInput: {
+    height: hp(40),
   },
   titleContainer: {
     marginBottom: 10,
@@ -42,6 +47,15 @@ export const styles = StyleSheet.create({
   },
   focusedDateContainer: {
     borderColor: theme.colors.OFF_WHITE,
+  },
+  calendarInputContainer: {
+    height: hp(40),
+    width: wp(300),
+    padding: hp(10),
+  },
+  currencyInputContainer: {
+    flexDirection: 'row',
+    marginTop: hp(7),
   },
   phoneInputContainer: {
     flexDirection: 'row',
@@ -62,7 +76,7 @@ export const styles = StyleSheet.create({
     zIndex: 2,
   },
   calendarContainer: {
-    flex: 1,
+    // flex: 1,
   },
   centerContent: {
     flexDirection: 'row',
