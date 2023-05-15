@@ -28,7 +28,7 @@ export const styles = StyleSheet.create({
     flexGrow: 1,
   },
   phoneTextInput: {
-    paddingLeft: wp(10),
+    paddingLeft: wp(0),
   },
   titleContainer: {
     marginBottom: 10,
@@ -173,6 +173,17 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     borderRightWidth: 1,
     borderRightColor: theme.colors.OFF_WHITE,
+  },
+  currencyContainer: {
+    width: wp(50),
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+  },
+  currencyPlaceholder: {
+    fontFamily: theme.font.DMSansBold,
+    fontSize: hp(15),
+    color: theme.colors.PRIMARY,
   },
   flagText: {
     fontSize: hp(14),

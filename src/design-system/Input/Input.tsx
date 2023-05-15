@@ -15,6 +15,7 @@ import CalendarInput from './CalendarInput';
 import theme from 'theme';
 import { InputProps, PhoneInputProps } from './types';
 import PhoneInput from './PhoneInput';
+import CurrencyInput from './CurrencyInput';
 
 export const Input = (props: TextInputProps & PhoneInputProps & InputProps) => {
   const inputRef = useRef<TextInput>(null);
@@ -47,6 +48,7 @@ export const Input = (props: TextInputProps & PhoneInputProps & InputProps) => {
   const isLongPress = type === 'longPress';
   const isSelectInput = type === 'select';
   const isPhoneInput = type === 'phone';
+  const isCurrency = type === 'currency';
 
   const focusAnim = useRef(new Animated.Value(0)).current;
 
@@ -102,6 +104,15 @@ export const Input = (props: TextInputProps & PhoneInputProps & InputProps) => {
             {isPhoneInput && (
               <View style={styles.calendarContainer}>
                 <PhoneInput
+                  {...props}
+                  setIsFocused={setIsFocused}
+                  isFocused={isFocused}
+                />
+              </View>
+            )}
+            {isCurrency && (
+              <View style={styles.calendarContainer}>
+                <CurrencyInput
                   {...props}
                   setIsFocused={setIsFocused}
                   isFocused={isFocused}

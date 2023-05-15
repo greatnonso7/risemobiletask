@@ -20,8 +20,8 @@ export type DashboardStackParamList = {
   DashboardSection: BottomTabParamsList;
   CreatePlan: undefined;
   PlanGoal: undefined;
-  PlanAmount: undefined;
-  PlanDate: undefined;
+  PlanAmount: { plan_name: string };
+  PlanDate: { plan_name: string; target_amount: string };
   ReviewPlan: undefined;
   PlanComplete: undefined;
   ViewPlan: undefined;

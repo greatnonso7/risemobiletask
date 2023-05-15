@@ -6,7 +6,7 @@ export interface InputProps {
   password?: boolean;
   onTogglePassword?: () => void;
   onToggleDropDown?: () => void;
-  type?: 'calendar' | 'longPress' | 'select' | 'phone';
+  type?: 'calendar' | 'longPress' | 'select' | 'phone' | 'currency';
   isDropDown?: boolean;
   isMultiLine?: boolean;
   onLongPress?: () => void;

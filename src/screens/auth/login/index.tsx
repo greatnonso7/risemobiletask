@@ -13,7 +13,7 @@ import { Text, View } from 'react-native';
 import { styles } from './style';
 import { FormikProps, useFormik } from 'formik';
 import * as API from 'services/apis';
-import { useMutation, useQuery, useQueryClient } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 import { storage } from 'utils/storage';
 import { showMessage } from 'react-native-flash-message';
 
@@ -71,7 +71,6 @@ const Login = ({ navigation }: ScreenProps) => {
         console.log(data, 'login success');
         storage.setItem('user_token', data?.token);
         queryClient.setQueryData('user', data);
-        //@ts-ignore
         navigation.replace('DashboardStack', { screen: 'DashboardSection' });
       }
     },
