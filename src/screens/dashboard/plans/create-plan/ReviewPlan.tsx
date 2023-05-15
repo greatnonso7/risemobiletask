@@ -4,12 +4,42 @@ import { Button, Header, Icon } from 'design-system';
 import React from 'react';
 import { View, Text, Image, ScrollView } from 'react-native';
 import theme from 'theme';
-import { DashboardStackParamList } from 'types';
+import { DashboardStackParamList, RateData } from 'types';
 import { styles } from './style';
+import { RouteProp, useRoute } from '@react-navigation/native';
+import { useMutation, useQueryClient } from 'react-query';
+import { formatAmount } from 'utils';
+import dayjs from 'dayjs';
+import * as API from 'services/apis';
 
 type ScreenProps = StackScreenProps<DashboardStackParamList, 'ReviewPlan'>;
 
 const ReviewPlan = ({ navigation: { navigate, goBack } }: ScreenProps) => {
+  const queryClient = useQueryClient();
+  const { maturity_date, target_amount, total_months, plan_name } =
+    useRoute<RouteProp<DashboardStackParamList, 'ReviewPlan'>>().params;
+  const total_maturity_amount = Number(target_amount.split(',').join(''));
+  const userRates = queryClient.getQueryData<RateData>('rates');
+  const monthlyInvest = total_maturity_amount / total_months;
+  const totalInvestment = total_maturity_amount / userRates!.sell_rate;
+  const getReturns = totalInvestment / 12;
+  const totalReturns = getReturns + totalInvestment;
+
+  const { mutate: createPlan, status } = useMutation(API.createPlan, {
+    onSuccess: async data => {
+      console.log(data);
+      navigate('PlanComplete', { plan_id: data.id });
+    },
+  });
+
+  const createInvestPlan = async () => {
+    const data = {
+      maturity_date,
+      plan_name,
+      target_amount: total_maturity_amount,
+    };
+    await createPlan(data);
+  };
   return (
     <Screen>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -21,19 +51,25 @@ const ReviewPlan = ({ navigation: { navigate, goBack } }: ScreenProps) => {
         />
         <View style={[styles.bodyContainer, styles.reviewPlanContainer]}>
           <Text style={styles.investorText}>Kate Ventures</Text>
-          <Text style={styles.amountText}>$10,930.75</Text>
-          <Text style={styles.durationText}>by 20 June 2021</Text>
+          <Text style={styles.amountText}>${formatAmount(totalReturns)}</Text>
+          <Text style={styles.durationText}>
+            by {dayjs(maturity_date).format('DD MMM YYYY')}
+          </Text>
         </View>
         <View style={styles.investmentReturnContainer}>
           <View style={styles.investmentReturnSection}>
             <View
               style={[styles.pointDot, { backgroundColor: theme.colors.GREY }]}
             />
-            <Text style={styles.returnText}>Investments • $50,400</Text>
+            <Text style={styles.returnText}>
+              Investments • ${formatAmount(totalInvestment)}
+            </Text>
           </View>
           <View style={styles.investmentReturnSection}>
             <View style={[styles.pointDot]} />
-            <Text style={styles.returnText}>Returns • $20,803</Text>
+            <Text style={styles.returnText}>
+              Returns • ${formatAmount(getReturns)}
+            </Text>
           </View>
         </View>
         <Image
@@ -45,7 +81,9 @@ const ReviewPlan = ({ navigation: { navigate, goBack } }: ScreenProps) => {
           <Text style={styles.estimatedRevenueText}>
             Estimated monthly investment
           </Text>
-          <Text style={styles.estimatedRevenueAmount}>$120</Text>
+          <Text style={styles.estimatedRevenueAmount}>
+            ${formatAmount(monthlyInvest / userRates!.buy_rate)}
+          </Text>
         </View>
         <View style={styles.riskReturnContainer}>
           <Icon name="infoIcon" />
@@ -61,8 +99,10 @@ const ReviewPlan = ({ navigation: { navigate, goBack } }: ScreenProps) => {
         <View>
           <Button
             isNotBottom
-            onPress={() => navigate('PlanComplete')}
+            onPress={() => createInvestPlan()}
+            // onPress={() => navigate('PlanComplete')}
             title="Agree & continue"
+            loading={status === 'loading'}
             buttonStyle={styles.agreeButtonStyle}
           />
           <Button

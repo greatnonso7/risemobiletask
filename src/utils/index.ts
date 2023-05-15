@@ -13,7 +13,7 @@ export const formatPhone = (val: string | number) => {
   }
 };
 
-export const formatAmount = (value: string) =>
+export const formatAmount = (value: string | number) =>
   Number(value)
     .toFixed(2)
     .replace(/\d(?=(\d{3})+\.)/g, '$&,');

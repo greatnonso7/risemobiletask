@@ -3,12 +3,16 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { styles } from './style';
 import { Button, Icon } from 'design-system';
-import { DashboardStackParamList } from 'types';
+import { DashboardStackParamList, UserData } from 'types';
 import { StackScreenProps } from '@react-navigation/stack';
+import { useQueryClient } from 'react-query';
 
 type ScreenProps = StackScreenProps<DashboardStackParamList, 'PlanComplete'>;
 
 const PlanComplete = ({ navigation: { navigate } }: ScreenProps) => {
+  const queryClient = useQueryClient();
+  const userData = queryClient.getQueryData<UserData>('user');
+
   return (
     <Screen>
       <View style={[styles.bodyContainer, styles.completeOnboardingContainer]}>
@@ -16,7 +20,9 @@ const PlanComplete = ({ navigation: { navigate } }: ScreenProps) => {
           <Icon name="goodTick" />
         </View>
         <Text style={styles.welcomeMainText}>You just created your plan.</Text>
-        <Text style={styles.welcomeSubText}>Well done, Deborah</Text>
+        <Text style={styles.welcomeSubText}>
+          Well done, {userData?.first_name}
+        </Text>
       </View>
 
       <Button title="View plan" onPress={() => navigate('ViewPlan')} />

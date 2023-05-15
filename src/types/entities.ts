@@ -22,8 +22,13 @@ export type DashboardStackParamList = {
   PlanGoal: undefined;
   PlanAmount: { plan_name: string };
   PlanDate: { plan_name: string; target_amount: string };
-  ReviewPlan: undefined;
-  PlanComplete: undefined;
+  ReviewPlan: {
+    plan_name: string;
+    target_amount: string;
+    maturity_date: any;
+    total_months: any;
+  };
+  PlanComplete: { plan_id: string };
   ViewPlan: undefined;
   FundWallet: undefined;
   ChoosePlan: undefined;
@@ -66,4 +71,9 @@ export type UserData = {
   total_balance: number;
   total_returns: number | null;
   username: string;
+};
+
+export type RateData = {
+  sell_rate: number;
+  buy_rate: number;
 };
