@@ -47,7 +47,7 @@ export type RegisterParams = {
   last_name: string;
   email_address?: string;
   password?: string;
-  date_of_birth: Date;
+  date_of_birth: any;
   username?: string;
   phone_number?: string;
 };

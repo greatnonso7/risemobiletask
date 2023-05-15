@@ -3,14 +3,15 @@ import Screen from 'components/Screen';
 import { Button, Input } from 'design-system';
 import React, { useState } from 'react';
 import { StackScreenProps } from '@react-navigation/stack';
-import { AuthStackParamList } from 'types';
+import { AuthStackParamList, BottomTabParamsList, RootStackParamList } from 'types';
 import * as yup from 'yup';
 import { Text, View } from 'react-native';
 import { styles } from './style';
 import { FormikProps, useFormik } from 'formik';
 import * as API from 'services/apis';
-import { useMutation, useQueryClient } from 'react-query';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { storage } from 'utils/storage';
+import { showMessage } from 'react-native-flash-message';
 
 interface FormData {
   email: string;
@@ -28,7 +29,10 @@ const schema = yup.object().shape({
     .min(8, 'Password must be at least 8 characters'),
 });
 
-type ScreenProps = StackScreenProps<AuthStackParamList, 'Login'>;
+type ScreenProps = StackScreenProps<
+  AuthStackParamList & RootStackParamList & BottomTabParamsList,
+  'Login'
+>;
 
 const Login = ({ navigation }: ScreenProps) => {
   const [showPassword, setShowPassword] = useState(true);
@@ -39,9 +43,9 @@ const Login = ({ navigation }: ScreenProps) => {
     password: '',
   };
   const {
-    isValid,
     values,
     handleChange,
+    dirty,
     errors,
     handleSubmit,
   }: FormikProps<FormData> = useFormik({
@@ -56,16 +60,21 @@ const Login = ({ navigation }: ScreenProps) => {
       });
     },
   });
-  const {
-    mutate: setLogin,
-    error,
-    status,
-  } = useMutation(API.setLogin, {
+  const { refetch } = useQuery('user', API.getLogin, {
+    enabled: false,
+    refetchOnWindowFocus: false,
+  });
+
+  const { mutate: setLogin, status } = useMutation(API.setLogin, {
     onSuccess: async data => {
-      console.log(data);
-      // const userData = data?.data?.user;
-      // queryClient.setQueryData('user', userData);
-      // storage.set('user_token', data?.data?.token);
+      const res = await refetch();
+      const responseData = res.data;
+      if (res.data) {
+        const token = responseData.token;
+        storage.setItem('user_token', token);
+        queryClient.setQueryData('user', data);
+        navigation.replace('DashboardStack', { screen: 'DashboardSection' });
+      }
       // storage.set('user_data', JSON.stringify(userData));
 
       // const checkVerification = storage.getBoolean('has_done_verification');
@@ -84,7 +93,18 @@ const Login = ({ navigation }: ScreenProps) => {
       //   }
       // }, 500);
     },
+    onError: async (error: any) => {
+      showMessage({
+        message: 'Error',
+        description: error.data.message,
+        duration: 2000,
+        type: 'danger',
+        icon: 'danger',
+      });
+    },
   });
+
+  console.log(dirty);
   return (
     <Screen>
       <AvoidingView>
@@ -117,8 +137,9 @@ const Login = ({ navigation }: ScreenProps) => {
           </View>
           <Button
             isNotBottom
-            disabled={!isValid}
+            disabled={!dirty}
             title="Sign In"
+            loading={status === 'loading'}
             onPress={handleSubmit}
           />
           <Button

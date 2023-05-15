@@ -3,12 +3,16 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import theme from 'theme';
 
-const DashboardHeader = () => {
+interface DashboardHeaderProps {
+  first_name: string;
+}
+
+const DashboardHeader = ({ first_name }: DashboardHeaderProps) => {
   return (
     <View style={styles.dashboardHeaderContainer}>
       <View>
         <Text style={styles.greetingText}>Good morning ☀</Text>
-        <Text style={styles.usernameText}>Deborah</Text>
+        <Text style={styles.usernameText}>{first_name}</Text>
       </View>
       <View style={styles.dashboardInfoContainer}>
         <TouchableOpacity activeOpacity={0.6} style={styles.bonusContainer}>

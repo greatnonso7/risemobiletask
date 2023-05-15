@@ -16,6 +16,7 @@ import { Button, Icon } from 'design-system';
 import QuoteContainer from './components/QuoteContainer';
 import { BottomTabParamsList, DashboardStackParamList } from 'types';
 import { StackScreenProps } from '@react-navigation/stack';
+import { useQueryClient } from 'react-query';
 
 type ScreenProps = StackScreenProps<
   BottomTabParamsList & DashboardStackParamList,
@@ -24,6 +25,9 @@ type ScreenProps = StackScreenProps<
 
 const Home = ({ navigation: { navigate } }: ScreenProps) => {
   const [plansList, setPlansList] = useState([]);
+  const queryClient = useQueryClient();
+  const userData = queryClient.getQueryData<any>('user');
+
   return (
     <ImageBackground
       source={theme.images['dashboard-bg']}
@@ -32,8 +36,8 @@ const Home = ({ navigation: { navigate } }: ScreenProps) => {
       <SafeAreaView>
         <ScrollView showsVerticalScrollIndicator={false} bounces={false}>
           <View style={styles.backgroundCover}>
-            <DashboardHeader />
-            <DashboardWallet />
+            <DashboardHeader first_name={userData.first_name} />
+            <DashboardWallet userData={userData} />
             <Button
               isNotBottom
               hasIcon

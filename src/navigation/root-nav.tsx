@@ -12,7 +12,7 @@ const AppNavigation = () => {
   return (
     <NavigationContainer ref={navigationRef}>
       <Stack.Navigator
-        initialRouteName={'DashboardStack'}
+        initialRouteName={'Auth'}
         screenOptions={{ headerShown: false }}>
         <Stack.Screen component={AuthNavigation} name="Auth" />
         <Stack.Screen component={DashboardNavigation} name="DashboardStack" />

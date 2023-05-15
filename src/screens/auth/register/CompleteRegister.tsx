@@ -10,6 +10,11 @@ import { StackScreenProps } from '@react-navigation/stack';
 import * as yup from 'yup';
 import { useRoute } from '@react-navigation/native';
 import { PhoneCountry } from 'design-system/Input/types';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
+import { storage } from 'utils/storage';
+import * as API from 'services/apis';
+import { formatPhone } from 'utils';
+import { showMessage } from 'react-native-flash-message';
 
 type ScreenProps = StackScreenProps<AuthStackParamList, 'CompleteRegister'>;
 
@@ -29,6 +34,8 @@ const schema = yup.object().shape({
 
 const CompleteRegister = ({ navigation: { navigate } }: ScreenProps) => {
   const { params }: any = useRoute();
+  const queryClient = useQueryClient();
+
   const [selectedCountry, setSelectedCountry] = useState<PhoneCountry | null>(
     null,
   );
@@ -58,14 +65,67 @@ const CompleteRegister = ({ navigation: { navigate } }: ScreenProps) => {
       phone_number,
       username,
     }) => {
-      console.log({
-        first_name,
+      console.log(phone_number);
+      const data = {
         last_name,
+        first_name,
+        email_address: params.email,
+        password: params.password,
         date_of_birth,
-        phone_number,
         username,
+        phone_number: `${selectedCountry?.dial_code}${formatPhone(
+          phone_number,
+        )}`,
+      };
+      // const currentYear = new Date().getFullYear();
+      // const birthYear = date_of_birth?.slice(0, 4);
+      // const currentAge = currentYear - Number(birthYear);
+      setRegister(data);
+      // } else {
+      //   showMessage({
+      //     message: 'Error',
+      //     description: 'You must be at least 18 years of age',
+      //     duration: 2000,
+      //     type: 'danger',
+      //     icon: 'danger',
+      //   });
+      // }
+    },
+  });
+
+  const { data: userSessionData, refetch } = useQuery('user', API.getLogin, {
+    enabled: false,
+    refetchOnWindowFocus: false,
+  });
+
+  const { mutate: setRegister, status } = useMutation(API.setRegister, {
+    onSuccess: async data => {
+      console.log(data);
+      const userData = data?.data?.user;
+      queryClient.setQueryData('user', userData);
+      refetch();
+      // storage.setItem('user_token', data?.data?.token);
+      // storage.set('user_data', JSON.stringify(userData));
+      // setTimeout(() => {
+      //   setLoading(false);
+      //   if (
+      //     verificationKeys.includes(userData.id_verification) &&
+      //     !checkVerification
+      //   ) {
+      //     navigation.navigate('KYCVerification');
+      //   } else {
+      //     navigation.replace('Main');
+      //   }
+      // }, 500);
+    },
+    onError: async (error: any) => {
+      showMessage({
+        message: 'Error',
+        description: error.data.message,
+        duration: 2000,
+        type: 'danger',
+        icon: 'danger',
       });
-      navigate('CompleteOnboarding');
     },
   });
   return (
@@ -98,6 +158,7 @@ const CompleteRegister = ({ navigation: { navigate } }: ScreenProps) => {
               selectedCountry={selectedCountry}
               setSelectedCountry={setSelectedCountry}
               phoneFocused={true}
+              onChangeText={handleChange('phone_number')}
               label="Phone number"
             />
             <Input
@@ -111,9 +172,9 @@ const CompleteRegister = ({ navigation: { navigate } }: ScreenProps) => {
           <Button
             isNotBottom
             buttonStyle={styles.buttonStyle}
-            // disabled={!isValid}
-            // onPress={handleSubmit}
-            onPress={() => navigate('CompleteOnboarding')}
+            disabled={!isValid}
+            onPress={handleSubmit}
+            loading={status === 'loading'}
             title="Sign Up"
           />
 

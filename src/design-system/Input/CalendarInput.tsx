@@ -26,8 +26,7 @@ const CalendarInput = ({ onChangeValue }: CalendarProps) => {
           setShowModal(false);
           setIsSelected(true);
           setSelectedDate(date);
-          onChangeValue &&
-            onChangeValue(dayjs(date).format('YYYY-MM-DDTHH:mm:ssZ'));
+          onChangeValue && onChangeValue(dayjs(date).format('YYYY-MM-DD'));
         }}
         onCancel={() => {
           setShowModal(false);

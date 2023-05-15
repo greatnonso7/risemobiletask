@@ -39,7 +39,7 @@ export const Input = (props: TextInputProps & PhoneInputProps & InputProps) => {
 
   useEffect(() => {
     inputRef?.current?.setNativeProps({
-      style: { fontFamily: theme.font.DMSansRegular },
+      style: { fontFamily: theme.font.DMSansBold },
     });
   }, [props.secureTextEntry]);
 
@@ -161,8 +161,8 @@ export const Input = (props: TextInputProps & PhoneInputProps & InputProps) => {
                     isFocused && value?.length > 0
                       ? theme.colors.PRIMARY
                       : errorText
-                      ? theme.colors.RED
-                      : theme.colors.PLACEHOLDER_TEXT_COLOR,
+                        ? theme.colors.RED
+                        : theme.colors.PLACEHOLDER_TEXT_COLOR,
                 },
               ]}>
               {label}

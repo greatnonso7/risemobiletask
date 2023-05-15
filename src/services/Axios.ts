@@ -6,11 +6,13 @@ const Axios = axios.create({
   baseURL: Config.BASE_URL,
 });
 
+console.log(Config, 'Config');
+
 Axios.defaults.headers.post['Content-Type'] = 'application/json';
 Axios.defaults.headers.post.Accept = 'application/json';
 
 Axios.interceptors.request.use(async (config: any) => {
-  const token = storage.getString('user_token');
+  const token = storage.getItem('user_token');
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
@@ -28,7 +30,7 @@ Axios.interceptors.response.use(
     if (statusCode === 401 && !originalRequest._retry) {
       console.log(error.response);
     }
-    console.log(error.response);
+    // console.log(error.response);
     return Promise.reject(error.response);
   },
 );

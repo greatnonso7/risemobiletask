@@ -124,6 +124,13 @@ const Register = ({ navigation: { navigate } }: ScreenProps) => {
           />
         </View>
       </AvoidingView>
+      <View style={styles.signUpAccountContainer}>
+        <Text style={styles.signUpMainText}>Already have an account?</Text>
+        <Text style={styles.signUpSubText} onPress={() => navigate('Login')}>
+          {' '}
+          Log in
+        </Text>
+      </View>
     </Screen>
   );
 };

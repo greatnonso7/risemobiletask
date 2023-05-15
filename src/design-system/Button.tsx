@@ -46,7 +46,7 @@ export const Button = ({
         style={[
           styles.buttonStyle,
           buttonStyle,
-          disabled && styles.disabledButton,
+          (disabled || loading) && styles.disabledButton,
         ]}>
         {loading ? (
           <ActivityIndicator size="small" color={theme.colors.WHITE} />

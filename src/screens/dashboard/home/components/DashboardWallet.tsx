@@ -13,8 +13,13 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import theme from 'theme';
+import { formatAmount } from 'utils';
 
-const DashboardWallet = () => {
+interface DashboardWalletProps {
+  userData: any;
+}
+
+const DashboardWallet = ({ userData }: DashboardWalletProps) => {
   const [showAmount, setShowAmount] = useState(true);
 
   const scrollRef = useRef<ScrollView>(null);
@@ -65,7 +70,7 @@ const DashboardWallet = () => {
                 <View style={styles.balanceContainer}>
                   {showAmount ? (
                     <Text style={styles.balanceAmountText}>
-                      {wallet.amount}
+                      ${formatAmount(userData?.total_balance)}
                     </Text>
                   ) : (
                     <Text style={styles.balanceAmountText}>*****</Text>

@@ -21,8 +21,10 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 24,
   },
   textInput: {
-    ...theme.typography.body.semiRegularText,
-    color: theme.colors.TEXT_BLACK,
+    color: theme.colors.PLACEHOLDER_TEXT_COLOR,
+    fontFamily: theme.font.DMSansBold,
+    fontSize: hp(15),
+    lineHeight: hp(18),
     flexGrow: 1,
   },
   phoneTextInput: {

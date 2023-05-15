@@ -1,13 +1,19 @@
 import { Icon } from 'design-system/Icon';
 import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, TextInput } from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  TextInput,
+  TextInputProps,
+} from 'react-native';
 import { PhoneCountry, PhoneInputProps } from './types';
 import { styles } from './styles';
 import CountryPickerModal from './CountryPickerModal';
 import { countryList } from 'data';
 import theme from 'theme';
 
-const PhoneInput = (props: PhoneInputProps) => {
+const PhoneInput = (props: PhoneInputProps & TextInputProps) => {
   const [showPicker, setShowPicker] = useState(false);
 
   const { setSelectedCountry, selectedCountry, isFocused } = props;
@@ -41,7 +47,7 @@ const PhoneInput = (props: PhoneInputProps) => {
         </TouchableOpacity>
         <TextInput
           {...props}
-          placeholderTextColor={theme.colors.PLACEHOLDER_TEXT_COLOR}
+          placeholderTextColor={theme.colors.GREY}
           style={[styles.textInput, styles.phoneTextInput]}
           placeholder="817  390  2910"
           selectionColor={theme.colors.PRIMARY}
