@@ -51,3 +51,9 @@ export type RegisterParams = {
   username?: string;
   phone_number?: string;
 };
+
+export type CreatePlanParams = {
+  plan_name: string;
+  target_amount: number;
+  maturity_date: Date;
+};

@@ -3,7 +3,11 @@ import Screen from 'components/Screen';
 import { Button, Input } from 'design-system';
 import React, { useState } from 'react';
 import { StackScreenProps } from '@react-navigation/stack';
-import { AuthStackParamList, BottomTabParamsList, RootStackParamList } from 'types';
+import {
+  AuthStackParamList,
+  BottomTabParamsList,
+  RootStackParamList,
+} from 'types';
 import * as yup from 'yup';
 import { Text, View } from 'react-native';
 import { styles } from './style';

@@ -16,7 +16,8 @@ import { Button, Icon } from 'design-system';
 import QuoteContainer from './components/QuoteContainer';
 import { BottomTabParamsList, DashboardStackParamList } from 'types';
 import { StackScreenProps } from '@react-navigation/stack';
-import { useQueryClient } from 'react-query';
+import { useQuery, useQueryClient } from 'react-query';
+import * as API from 'services/apis';
 
 type ScreenProps = StackScreenProps<
   BottomTabParamsList & DashboardStackParamList,
@@ -27,6 +28,11 @@ const Home = ({ navigation: { navigate } }: ScreenProps) => {
   const [plansList, setPlansList] = useState([]);
   const queryClient = useQueryClient();
   const userData = queryClient.getQueryData<any>('user');
+
+  const { data: quoteData, refetch: refetchQuotes } = useQuery(
+    'quotes',
+    API.getQuotes,
+  );
 
   return (
     <ImageBackground
@@ -95,7 +101,7 @@ const Home = ({ navigation: { navigate } }: ScreenProps) => {
                   titleStyle={styles.helpText}
                 />
               </View>
-              <QuoteContainer />
+              <QuoteContainer quoteData={quoteData} />
               <View style={styles.riseIconContainer}>
                 <Icon name="riseIcon" />
               </View>

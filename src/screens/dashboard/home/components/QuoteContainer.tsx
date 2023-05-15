@@ -4,20 +4,24 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import theme from 'theme';
 
-const QuoteContainer = () => {
+interface QuoteResponseData {
+  author: string;
+  quote: string;
+}
+interface QuoteContainerProps {
+  quoteData: QuoteResponseData;
+}
+
+const QuoteContainer = ({ quoteData }: QuoteContainerProps) => {
   return (
     <View style={styles.quoteContainer}>
       <View style={styles.innerQuoteContainer}>
         <View style={styles.quoteBodyContainer}>
           <Text style={styles.quoteTitleText}>Today's Quote</Text>
           <View style={styles.quoteTitleDivider} />
-          <Text style={styles.quoteText}>
-            We have no intention of rotating capital out of strong multi-year
-            investments because they've recently done well or because "growth"
-            has out performed "value".
-          </Text>
+          <Text style={styles.quoteText}>{quoteData?.quote}</Text>
           <View style={styles.quoteCreatorContainer}>
-            <Text style={styles.quoteCreator}>Carl Sagan</Text>
+            <Text style={styles.quoteCreator}>{quoteData?.author}</Text>
             <TouchableOpacity
               activeOpacity={0.6}
               style={styles.shareIconContainer}>
