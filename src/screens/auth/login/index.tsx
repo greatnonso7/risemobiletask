@@ -77,25 +77,9 @@ const Login = ({ navigation }: ScreenProps) => {
         const token = responseData.token;
         storage.setItem('user_token', token);
         queryClient.setQueryData('user', data);
+        //@ts-ignore
         navigation.replace('DashboardStack', { screen: 'DashboardSection' });
       }
-      // storage.set('user_data', JSON.stringify(userData));
-
-      // const checkVerification = storage.getBoolean('has_done_verification');
-      // const verificationKeys = ['Pending', 'None'];
-      // await Keychain.setGenericPassword(formattedPhone, formik.values.password);
-
-      // setTimeout(() => {
-      //   setLoading(false);
-      //   if (
-      //     verificationKeys.includes(userData.id_verification) &&
-      //     !checkVerification
-      //   ) {
-      //     navigation.navigate('KYCVerification');
-      //   } else {
-      //     navigation.replace('Main');
-      //   }
-      // }, 500);
     },
     onError: async (error: any) => {
       showMessage({
@@ -108,7 +92,6 @@ const Login = ({ navigation }: ScreenProps) => {
     },
   });
 
-  console.log(dirty);
   return (
     <Screen>
       <AvoidingView>

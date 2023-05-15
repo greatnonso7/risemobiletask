@@ -18,6 +18,7 @@ import { BottomTabParamsList, DashboardStackParamList } from 'types';
 import { StackScreenProps } from '@react-navigation/stack';
 import { useQuery, useQueryClient } from 'react-query';
 import * as API from 'services/apis';
+import { RefreshControl } from 'react-native';
 
 type ScreenProps = StackScreenProps<
   BottomTabParamsList & DashboardStackParamList,
@@ -26,13 +27,18 @@ type ScreenProps = StackScreenProps<
 
 const Home = ({ navigation: { navigate } }: ScreenProps) => {
   const [plansList, setPlansList] = useState([]);
+  const [refreshing, setRefreshing] = useState(false);
   const queryClient = useQueryClient();
   const userData = queryClient.getQueryData<any>('user');
 
-  const { data: quoteData, refetch: refetchQuotes } = useQuery(
-    'quotes',
-    API.getQuotes,
-  );
+  const { data: quoteData } = useQuery('quotes', API.getQuotes);
+
+  const handleRefresh = () => {
+    setRefreshing(true);
+    queryClient.invalidateQueries('quotes');
+    queryClient.invalidateQueries('user');
+    setRefreshing(false);
+  };
 
   return (
     <ImageBackground
@@ -40,7 +46,15 @@ const Home = ({ navigation: { navigate } }: ScreenProps) => {
       resizeMode="stretch"
       style={styles.dashboardImageContainer}>
       <SafeAreaView>
-        <ScrollView showsVerticalScrollIndicator={false} bounces={false}>
+        <ScrollView
+          refreshControl={
+            <RefreshControl
+              tintColor={theme.colors.PRIMARY}
+              refreshing={refreshing}
+              onRefresh={handleRefresh}
+            />
+          }
+          showsVerticalScrollIndicator={false}>
           <View style={styles.backgroundCover}>
             <DashboardHeader first_name={userData.first_name} />
             <DashboardWallet userData={userData} />
