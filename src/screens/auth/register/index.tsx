@@ -88,19 +88,19 @@ const Register = ({ navigation: { navigate } }: ScreenProps) => {
               onChangeText={handleChange('email')}
               label="Email"
               autoCapitalize="none"
-              errorText={errors.email}
               keyboardType="email-address"
+              errorText={errors.email}
             />
             <Input
               value={values.password}
-              onChangeText={text => checkPassword(text)}
+              onChangeText={handleChange('password')}
               label="Password"
-              autoCapitalize="none"
               password
-              errorText={errors.password}
-              secureTextEntry={showPassword}
+              show={showPassword}
               onTogglePassword={() => setShowPassword(!showPassword)}
-              keyboardType="email-address"
+              secureTextEntry={showPassword}
+              keyboardType="default"
+              errorText={errors.password}
             />
           </View>
           <PasswordText
