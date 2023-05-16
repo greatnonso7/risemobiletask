@@ -93,7 +93,7 @@ const Register = ({ navigation: { navigate } }: ScreenProps) => {
             />
             <Input
               value={values.password}
-              onChangeText={handleChange('password')}
+              onChangeText={(text: string) => checkPassword(text)}
               label="Password"
               password
               show={showPassword}
