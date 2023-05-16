@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import FlashMessage from 'react-native-flash-message';
-import { QueryClient, QueryClientProvider } from 'react-query';
 import { RootNavigation } from 'navigation';
 import SplashScreen from 'react-native-splash-screen';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -8,18 +7,8 @@ import theme from 'theme';
 import { hp } from 'constants/layout';
 import { StatusBar, StyleSheet } from 'react-native';
 import { isIos } from 'constants/platform';
-
-const queryTime = 1000 * 60 * 60 * 24;
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      retry: false,
-      staleTime: 1800 * 1000,
-      cacheTime: queryTime,
-    },
-  },
-});
-
+import { Provider } from 'react-redux';
+import { store } from 'redux/store';
 
 const App = () => {
   useEffect(() => {
@@ -29,7 +18,7 @@ const App = () => {
   }, []);
 
   return (
-    <QueryClientProvider client={queryClient}>
+    <Provider store={store}>
       <SafeAreaProvider>
         <StatusBar />
         <RootNavigation />
@@ -42,7 +31,7 @@ const App = () => {
           floating={isIos}
         />
       </SafeAreaProvider>
-    </QueryClientProvider>
+    </Provider>
   );
 };
 

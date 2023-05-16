@@ -14,6 +14,9 @@
     "@react-navigation/bottom-tabs": "^6.5.7",
     "@react-navigation/native": "^6.1.6",
     "@react-navigation/stack": "^6.3.16",
+    "@rematch/core": "2.1.0",
+    "@rematch/loading": "2.1.0",
+    "@rematch/persist": "2.1.0",
     "@tanstack/query-async-storage-persister": "^4.29.7",
     "@tanstack/react-query": "^4.29.7",
     "@tanstack/react-query-persist-client": "^4.29.7",
@@ -36,6 +39,9 @@
     "react-native-splash-screen": "^3.3.0",
     "react-native-svg": "^13.9.0",
     "react-query": "^3.39.3",
+    "react-redux": "^8.0.5",
+    "redux": "^4.2.1",
+    "redux-persist-transform-filter": "^0.0.22",
     "yup": "^1.1.1"
   },
   "devDependencies": {
