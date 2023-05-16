@@ -1,5 +1,11 @@
-import React from 'react';
-import { Image, ImageSourcePropType, StyleSheet, View } from 'react-native';
+import React, { useCallback } from 'react';
+import {
+  Image,
+  ImageSourcePropType,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from 'screens/dashboard/home';
 import { hp, wp } from 'constants/layout';
@@ -14,26 +20,35 @@ interface TabBarIconProps {
   image: ImageSourcePropType;
   focused: boolean;
   isScan?: boolean;
+  label: string;
 }
 
 const DashboardBottomTabs = createBottomTabNavigator<BottomTabParamsList>();
 
 const BottomTabBar = () => {
-  function TabBarIcon({ image }: TabBarIconProps) {
-    return (
-      <View style={styles.tabBarContainer}>
-        <Image
-          source={image}
-          resizeMode="contain"
-          // eslint-disable-next-line react-native/no-inline-styles
-          style={{
-            height: wp(34),
-            width: hp(34),
-          }}
-        />
-      </View>
-    );
-  }
+  const TabBarIcon = useCallback(
+    ({ image, focused, label }: TabBarIconProps) => {
+      return (
+        <View style={styles.tabBarContainer}>
+          <Image
+            source={image}
+            resizeMode="contain"
+            // eslint-disable-next-line react-native/no-inline-styles
+            style={{
+              height: wp(34),
+              width: hp(34),
+            }}
+          />
+          {focused ? (
+            <View style={styles.focusedContainer} />
+          ) : (
+            <Text style={styles.labelStyle}>{label}</Text>
+          )}
+        </View>
+      );
+    },
+    [],
+  );
 
   return (
     <DashboardBottomTabs.Navigator
@@ -57,7 +72,11 @@ const BottomTabBar = () => {
         options={{
           headerShown: false,
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon image={theme.images.home} focused={focused} />
+            <TabBarIcon
+              label="Home"
+              image={theme.images.home}
+              focused={focused}
+            />
           ),
         }}
       />
@@ -67,7 +86,11 @@ const BottomTabBar = () => {
         options={{
           headerShown: false,
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon image={theme.images.plans} focused={focused} />
+            <TabBarIcon
+              label="Plans"
+              image={theme.images.plans}
+              focused={focused}
+            />
           ),
         }}
       />
@@ -78,7 +101,11 @@ const BottomTabBar = () => {
         options={{
           headerShown: false,
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon image={theme.images.wallet} focused={focused} />
+            <TabBarIcon
+              label="Wallet"
+              image={theme.images.wallet}
+              focused={focused}
+            />
           ),
         }}
       />
@@ -88,7 +115,11 @@ const BottomTabBar = () => {
         options={{
           headerShown: false,
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon image={theme.images.feed} focused={focused} />
+            <TabBarIcon
+              label="Feeds"
+              image={theme.images.feed}
+              focused={focused}
+            />
           ),
         }}
       />
@@ -98,7 +129,11 @@ const BottomTabBar = () => {
         options={{
           headerShown: false,
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon image={theme.images.account} focused={focused} />
+            <TabBarIcon
+              label="Account"
+              image={theme.images.account}
+              focused={focused}
+            />
           ),
         }}
       />
@@ -125,6 +160,17 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     top: hp(5),
+  },
+  focusedContainer: {
+    width: 8,
+    height: 8,
+    borderRadius: 100,
+    backgroundColor: theme.colors.PRIMARY,
+  },
+  labelStyle: {
+    fontFamily: theme.font.DMSansRegular,
+    fontSize: hp(12),
+    color: theme.colors.GREY,
   },
 });
 
