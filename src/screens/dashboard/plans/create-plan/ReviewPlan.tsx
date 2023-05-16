@@ -112,6 +112,7 @@ const ReviewPlan = ({ navigation: { navigate, goBack } }: ScreenProps) => {
           />
           <Button
             isNotBottom
+            onPress={() => navigate('Home')}
             buttonStyle={styles.cancelButtonStyle}
             titleStyle={styles.cancelTextStyle}
             title="Start over"

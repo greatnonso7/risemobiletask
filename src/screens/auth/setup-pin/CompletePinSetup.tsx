@@ -3,22 +3,14 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { styles } from './style';
 import { Button, Icon } from 'design-system';
-import { StackScreenProps } from '@react-navigation/stack';
-import {
-  AuthStackParamList,
-  BottomTabParamsList,
-  RootStackParamList,
-} from 'types';
+import { useDispatch } from 'react-redux';
 
-type ScreenProps = StackScreenProps<
-  AuthStackParamList & BottomTabParamsList & RootStackParamList,
-  'CompletePinSetup'
->;
-
-const CompletePinSetup = ({ navigation: { replace } }: ScreenProps) => {
+const CompletePinSetup = () => {
+  const {
+    Auth: { accessDashboard },
+  } = useDispatch();
   const loginAccount = async () => {
-    //@ts-ignore
-    replace('DashboardStack', { screen: 'DashboardSection' });
+    accessDashboard();
   };
   return (
     <Screen>

@@ -1,5 +1,6 @@
 import dayjs from 'dayjs';
 import { storage } from './storage';
+import { store } from 'redux/store';
 
 export const formatDOB = (val: string | Date) =>
   dayjs(val).format('YYYY-MM-DD');
@@ -21,4 +22,8 @@ export const formatAmount = (value: string | number) =>
 export const getToken = async () => {
   const token = await storage.getItem('user_token');
   return token;
+};
+
+export const getAllModels = () => {
+  return store.getState();
 };

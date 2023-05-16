@@ -12,8 +12,8 @@ export const styles = StyleSheet.create({
   },
   headerImage: {
     width: deviceWidth,
+    paddingTop: hp(10),
     height: hp(120),
-    paddingTop: isIos ? paddingTopiOS + hp(20) : hp(10),
     justifyContent: 'center',
   },
   leftIconStyle: {

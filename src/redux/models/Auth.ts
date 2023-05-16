@@ -26,8 +26,8 @@ export const Auth = {
         const api: any = await API.setLogin(data);
         if (api) {
           dispatch.Auth.setState({
-            token: api?.data?.token,
-            userData: api?.data,
+            token: api?.token,
+            userData: api,
           });
           return true;
         }
@@ -59,13 +59,17 @@ export const Auth = {
         const api: any = await API.setRegister(data);
         if (api) {
           dispatch.Auth.setState({
-            userDate: api?.data,
+            userDate: api,
           });
           return true;
         }
       } catch (e) {
         this.handleError(e);
       }
+    },
+
+    async logout() {
+      dispatch({ type: 'RESET_APP' });
     },
 
     async handleError(error: any) {

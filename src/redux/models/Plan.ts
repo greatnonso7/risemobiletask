@@ -41,8 +41,9 @@ export const Plan = {
       try {
         const api = await API.createPlan(data);
         if (api) {
-          const plan_id = api.data?.plan_id;
+          const plan_id = api?.id;
           dispatch.Plan.getPlans();
+          dispatch.Plan.getPlan(plan_id);
           return plan_id;
         }
       } catch (e) {
@@ -50,6 +51,7 @@ export const Plan = {
       }
     },
     async getPlan(data: string) {
+      console.log(data);
       dispatch.Plan.setError(false);
       try {
         const api = await API.getPlan(data);
@@ -57,6 +59,7 @@ export const Plan = {
           dispatch.Plan.setState({
             plan: api,
           });
+          return api;
         }
       } catch (error) {
         this.handleError(error);

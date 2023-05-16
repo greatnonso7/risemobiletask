@@ -28,7 +28,11 @@ const AuthNavigation = () => {
       />
       <Stack.Screen component={SetupPin} name="SetupPin" />
       <Stack.Screen component={ConfirmPin} name="ConfirmPin" />
-      <Stack.Screen component={CompletePinSetup} name="CompletePinSetup" />
+      <Stack.Screen
+        component={CompletePinSetup}
+        name="CompletePinSetup"
+        options={{ gestureEnabled: false }}
+      />
     </Stack.Navigator>
   );
 };

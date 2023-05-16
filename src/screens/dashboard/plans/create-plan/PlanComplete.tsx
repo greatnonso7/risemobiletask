@@ -15,6 +15,7 @@ const PlanComplete = ({ navigation: { navigate } }: ScreenProps) => {
   const userData = useSelector((state: RootState) => state.Auth.userData);
   const { plan_id } =
     useRoute<RouteProp<DashboardStackParamList, 'PlanComplete'>>().params;
+  console.log(plan_id);
 
   return (
     <Screen>

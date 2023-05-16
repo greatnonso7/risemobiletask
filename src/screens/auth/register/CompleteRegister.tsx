@@ -88,7 +88,7 @@ const CompleteRegister = ({ navigation: { navigate } }: ScreenProps) => {
       const res = await setRegister(data);
       if (res) {
         const payload = {
-          email,
+          email_address: email,
           password,
         };
         const response = await setLogin(payload);

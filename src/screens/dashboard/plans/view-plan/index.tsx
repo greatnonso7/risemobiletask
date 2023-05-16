@@ -1,5 +1,5 @@
 import { Button, Header, Icon } from 'design-system';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -15,7 +15,7 @@ import { styles } from './style';
 import * as Progress from 'react-native-progress';
 import { hp, wp } from 'constants/layout';
 import { planInfo, transactionsList } from 'data';
-import { BottomTabParamsList, DashboardStackParamList } from 'types';
+import { BottomTabParamsList, DashboardStackParamList, PlanData } from 'types';
 import { StackScreenProps } from '@react-navigation/stack';
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { formatAmount } from 'utils';
@@ -31,6 +31,7 @@ type ScreenProps = StackScreenProps<
 const ViewPlan = ({ navigation: { navigate, goBack } }: ScreenProps) => {
   const userData = useSelector((state: RootState) => state.Auth.userData);
   const userRates = useSelector((state: RootState) => state.User.rates);
+  const [userPlan, setUserPlan] = useState<PlanData>({});
 
   const { plan_id } =
     useRoute<RouteProp<DashboardStackParamList, 'ViewPlan'>>().params;
@@ -41,18 +42,21 @@ const ViewPlan = ({ navigation: { navigate, goBack } }: ScreenProps) => {
   } = useDispatch();
 
   useEffect(() => {
-    getPlan(plan_id);
-  }, [getPlan, plan_id]);
+    const getUserPlan = async () => {
+      const res = await getPlan(plan_id);
+      setUserPlan(res);
+    };
+    getUserPlan();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const isLoading = useSelector(
     (state: RootState) => state.loading.effects.Plan.getPlan,
   );
 
-  const plan = useSelector((state: RootState) => state.Plan.plan);
-
-  const getGain = (plan?.total_returns * plan?.invested_amount) / 100;
+  const getGain = (userPlan?.total_returns * userPlan?.invested_amount) / 100;
   const getInvestProgress =
-    (plan?.invested_amount * plan?.invested_amount) / 100;
+    (userPlan?.invested_amount * userPlan?.invested_amount) / 100;
 
   if (isLoading) {
     return (
@@ -75,7 +79,7 @@ const ViewPlan = ({ navigation: { navigate, goBack } }: ScreenProps) => {
           height={hp(120)}
           hasRightIcon={theme.images.more}
           tintColor={theme.colors.WHITE}
-          headerTitle={`${plan?.plan_name}`}
+          headerTitle={`${userPlan?.plan_name}`}
           titleColor={theme.colors.WHITE}
           hasSubText={`for ${userData?.first_name}`}
           rightIconStyle={styles.leftIconStyle}
@@ -90,11 +94,14 @@ const ViewPlan = ({ navigation: { navigate, goBack } }: ScreenProps) => {
             <View style={styles.planBodyContainer}>
               <Text style={styles.planText}>Plan Balance</Text>
               <Text style={styles.amountText}>
-                ${formatAmount(plan?.invested_amount)}
+                ${formatAmount(userPlan?.invested_amount)}
               </Text>
               <View style={styles.nairaValueContainer}>
                 <Text style={styles.nairaValueText}>
-                  ~ ₦{formatAmount(plan?.invested_amount * userRates!.buy_rate)}
+                  ~ ₦
+                  {formatAmount(
+                    userPlan?.invested_amount * userRates!.buy_rate,
+                  )}
                 </Text>
                 <Icon name="infoIconHelp" />
               </View>
@@ -102,7 +109,8 @@ const ViewPlan = ({ navigation: { navigate, goBack } }: ScreenProps) => {
             <View style={[styles.planBodyContainer, styles.topSpacing]}>
               <Text style={styles.gainMainText}>Gains</Text>
               <Text style={styles.gainRate}>
-                +${formatAmount(plan?.total_returns)} • +{getGain.toFixed(2)}%{' '}
+                +${formatAmount(userPlan?.total_returns)} • +
+                {getGain.toFixed(2)}%{' '}
               </Text>
             </View>
             <View style={styles.planProgressContainer}>
@@ -111,7 +119,7 @@ const ViewPlan = ({ navigation: { navigate, goBack } }: ScreenProps) => {
                   {getInvestProgress.toFixed(1)} achieved
                 </Text>
                 <Text style={styles.planProgressText}>
-                  Target: ${formatAmount(plan?.target_amount)}
+                  Target: ${formatAmount(userPlan?.target_amount)}
                 </Text>
               </View>
               <Progress.Bar
@@ -153,13 +161,13 @@ const ViewPlan = ({ navigation: { navigate, goBack } }: ScreenProps) => {
               <View style={styles.planItemInfoContainer}>
                 <Text style={styles.mainPlanText}>Plan created on</Text>
                 <Text style={styles.valuePlanText}>
-                  {dayjs(plan?.created_at).format('ddd D MMM YYYY')}
+                  {dayjs(userPlan?.created_at).format('ddd D MMM YYYY')}
                 </Text>
               </View>
               <View style={styles.planItemInfoContainer}>
                 <Text style={styles.mainPlanText}>Maturity date</Text>
                 <Text style={styles.valuePlanText}>
-                  {dayjs(plan?.maturity_date).format('ddd D MMM YYYY')}
+                  {dayjs(userPlan?.maturity_date).format('ddd D MMM YYYY')}
                 </Text>
               </View>
             </View>
