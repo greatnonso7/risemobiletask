@@ -7,7 +7,6 @@ export const useToken = () => {
   useEffect(() => {
     const getToken = async () => {
       const queryClient = await storage.getItem('user_token');
-      console.log(queryClient, 'app navigation');
       setToken(queryClient);
     };
     getToken();

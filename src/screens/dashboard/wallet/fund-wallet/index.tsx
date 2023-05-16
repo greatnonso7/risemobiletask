@@ -50,7 +50,7 @@ const FundWallet = ({ navigation: { navigate, goBack } }: ScreenProps) => {
               </View>
               <View style={styles.fundRateContainer}>
                 <Text style={styles.fundSubText}>
-                  Rate - $1 = ₦{ratesData?.sell_rate}
+                  Rate - $1 = ₦{ratesData?.buy_rate}
                 </Text>
                 <Text style={styles.fundSubText}>{option.fee}</Text>
               </View>

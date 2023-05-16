@@ -3,8 +3,23 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { styles } from './style';
 import { Button, Icon } from 'design-system';
+import { StackScreenProps } from '@react-navigation/stack';
+import {
+  AuthStackParamList,
+  BottomTabParamsList,
+  RootStackParamList,
+} from 'types';
 
-const CompletePinSetup = () => {
+type ScreenProps = StackScreenProps<
+  AuthStackParamList & BottomTabParamsList & RootStackParamList,
+  'CompletePinSetup'
+>;
+
+const CompletePinSetup = ({ navigation: { replace } }: ScreenProps) => {
+  const loginAccount = async () => {
+    //@ts-ignore
+    replace('DashboardStack', { screen: 'DashboardSection' });
+  };
   return (
     <Screen>
       <View style={[styles.bodyContainer, styles.completeOnboardingContainer]}>
@@ -18,7 +33,7 @@ const CompletePinSetup = () => {
         </Text>
       </View>
 
-      <Button title="Okay" />
+      <Button title="Okay" onPress={() => loginAccount()} />
     </Screen>
   );
 };

@@ -59,7 +59,6 @@ const PlanAmount = ({ navigation: { navigate, goBack } }: ScreenProps) => {
   const formatAmountInput = async (text: string) => {
     const numberAmount = Number(text.replace(/\D/g, ''));
     const formattedValue = (Number(numberAmount) || '').toLocaleString();
-    console.log(formattedValue);
     setFieldValue('target_amount', formattedValue);
   };
 

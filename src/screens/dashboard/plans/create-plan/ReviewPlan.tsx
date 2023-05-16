@@ -28,7 +28,6 @@ const ReviewPlan = ({ navigation: { navigate, goBack } }: ScreenProps) => {
 
   const { mutate: createPlan, status } = useMutation(API.createPlan, {
     onSuccess: async data => {
-      console.log(data);
       navigate('PlanComplete', { plan_id: data.id });
     },
   });

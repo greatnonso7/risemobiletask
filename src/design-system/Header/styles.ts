@@ -1,5 +1,6 @@
-import { deviceWidth, hp, wp } from 'constants/layout';
-import { StyleSheet } from 'react-native';
+import { deviceWidth, hp, paddingTopiOS, wp } from 'constants/layout';
+import { isIos } from 'constants/platform';
+import { StatusBar, StyleSheet } from 'react-native';
 import theme from 'theme';
 
 export const styles = StyleSheet.create({
@@ -11,7 +12,8 @@ export const styles = StyleSheet.create({
   navBar: {
     width: '100%',
     backgroundColor: theme.colors.WHITE,
-    height: hp(44),
+    height: hp(50),
+    paddingTop: isIos ? paddingTopiOS : StatusBar.currentHeight,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',

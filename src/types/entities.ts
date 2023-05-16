@@ -11,13 +11,14 @@ export type AuthStackParamList = {
   Register: undefined;
   SetupPin: undefined;
   CompleteRegister: { email: string; password: string };
-  CompleteOnboarding: undefined;
+  CompleteOnboarding: { first_name: string };
   ConfirmPin: { pin: string };
   CompletePinSetup: undefined;
 };
 
 export type DashboardStackParamList = {
   DashboardSection: BottomTabParamsList;
+  Home: undefined;
   CreatePlan: undefined;
   PlanGoal: undefined;
   PlanAmount: { plan_name: string };

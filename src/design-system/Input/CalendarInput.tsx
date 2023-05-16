@@ -5,11 +5,17 @@ import { formatDOB } from 'utils';
 import dayjs from 'dayjs';
 import { styles } from './styles';
 
-interface CalendarProps {
+export interface CalendarProps {
   onChangeValue?: (val: string | Date) => void;
+  isMaximum?: boolean;
+  isMinimum?: boolean;
 }
 
-const CalendarInput = ({ onChangeValue }: CalendarProps) => {
+const CalendarInput = ({
+  onChangeValue,
+  isMaximum,
+  isMinimum,
+}: CalendarProps) => {
   const [showModal, setShowModal] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [isSelected, setIsSelected] = useState(false);
@@ -22,6 +28,8 @@ const CalendarInput = ({ onChangeValue }: CalendarProps) => {
         theme="light"
         open={showModal}
         date={selectedDate}
+        maximumDate={isMaximum ? new Date() : undefined}
+        minimumDate={isMinimum ? new Date() : undefined}
         onConfirm={(date: any) => {
           setShowModal(false);
           setIsSelected(true);

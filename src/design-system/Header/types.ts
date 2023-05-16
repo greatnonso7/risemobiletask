@@ -16,4 +16,5 @@ export interface HeaderProps {
   titleColor?: string;
   hasSubText?: string;
   headerTitleStyle?: TextStyle;
+  height?: number;
 }

@@ -11,13 +11,15 @@ import {
 } from 'react-native';
 import { Icon } from '../Icon';
 import { styles } from './styles';
-import CalendarInput from './CalendarInput';
+import CalendarInput, { CalendarProps } from './CalendarInput';
 import theme from 'theme';
 import { InputProps, PhoneInputProps } from './types';
 import PhoneInput from './PhoneInput';
 import CurrencyInput from './CurrencyInput';
 
-export const Input = (props: TextInputProps & PhoneInputProps & InputProps) => {
+export const Input = (
+  props: TextInputProps & PhoneInputProps & InputProps & CalendarProps,
+) => {
   const inputRef = useRef<TextInput>(null);
   const [isFocused, setIsFocused] = useState(
     props.dateFocused || props.phoneFocused || false,
@@ -98,7 +100,11 @@ export const Input = (props: TextInputProps & PhoneInputProps & InputProps) => {
           <>
             {isCalendar && (
               <View style={styles.calendarContainer}>
-                <CalendarInput onChangeValue={onChangeValue} />
+                <CalendarInput
+                  isMaximum={props?.isMaximum}
+                  isMinimum={props?.isMinimum}
+                  onChangeValue={onChangeValue}
+                />
               </View>
             )}
             {isPhoneInput && (

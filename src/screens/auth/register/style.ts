@@ -36,6 +36,9 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    position: 'absolute',
+    bottom: hp(40),
+    alignSelf: 'center',
   },
   signUpMainText: {
     ...theme.typography.body.regularBold,

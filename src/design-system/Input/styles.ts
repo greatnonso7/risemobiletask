@@ -30,7 +30,7 @@ export const styles = StyleSheet.create({
     flexGrow: 1,
   },
   phoneTextInput: {
-    paddingLeft: wp(0),
+    paddingLeft: wp(10),
   },
   currencyTextInput: {
     height: hp(40),
@@ -59,6 +59,7 @@ export const styles = StyleSheet.create({
   },
   phoneInputContainer: {
     flexDirection: 'row',
+    marginTop: isIos ? hp(4) : hp(7),
   },
   errorTextContainer: {
     borderColor: theme.colors.RED,
@@ -184,8 +185,10 @@ export const styles = StyleSheet.create({
     width: wp(100),
     flexDirection: 'row',
     alignItems: 'center',
+    alignSelf: 'center',
     justifyContent: 'space-evenly',
     borderRightWidth: 1,
+    height: hp(40),
     borderRightColor: theme.colors.OFF_WHITE,
   },
   currencyContainer: {

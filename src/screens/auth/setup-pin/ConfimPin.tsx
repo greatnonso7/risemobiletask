@@ -7,14 +7,14 @@ import { styles } from './style';
 import KeyPad from 'components/KeyPad';
 import { AuthStackParamList } from 'types';
 import { StackScreenProps } from '@react-navigation/stack';
-import { useRoute } from '@react-navigation/native';
+import { RouteProp, useRoute } from '@react-navigation/native';
 import { showMessage } from 'react-native-flash-message';
 
 type ScreenProps = StackScreenProps<AuthStackParamList, 'ConfirmPin'>;
 
 const ConfirmPin = ({ navigation: { navigate } }: ScreenProps) => {
-  const { params }: any = useRoute();
-  const pin = params?.pin;
+  const { pin } =
+    useRoute<RouteProp<AuthStackParamList, 'ConfirmPin'>>().params;
   const onCompletePin = async (completePin: string) => {
     if (completePin) {
       if (pin === completePin) {
@@ -23,9 +23,11 @@ const ConfirmPin = ({ navigation: { navigate } }: ScreenProps) => {
         }, 500);
       } else {
         return showMessage({
-          message: 'Transaction pins do not match',
+          message: 'Error',
+          description: 'Transaction pins do not match',
           duration: 2000,
           type: 'danger',
+          icon: 'danger',
         });
       }
     }

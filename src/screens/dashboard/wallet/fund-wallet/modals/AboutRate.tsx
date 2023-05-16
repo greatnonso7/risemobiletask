@@ -2,6 +2,8 @@ import { BaseModal, Button, Header } from 'design-system';
 import React from 'react';
 import { View, Text } from 'react-native';
 import { styles } from './style';
+import * as API from 'services/apis';
+import { useQuery } from 'react-query';
 
 interface AboutRateProps {
   isVisible: boolean;
@@ -10,6 +12,8 @@ interface AboutRateProps {
 }
 
 const AboutRate = ({ isVisible, onClose, onComplete }: AboutRateProps) => {
+  const { data: userRates } = useQuery('rates', API.getRates);
+
   return (
     <BaseModal visible={isVisible} onClose={() => onClose()} hideButton>
       <View style={styles.container}>
@@ -28,7 +32,7 @@ const AboutRate = ({ isVisible, onClose, onComplete }: AboutRateProps) => {
               </Text>
             </View>
             <View>
-              <Text style={styles.rateMainText}>₦490</Text>
+              <Text style={styles.rateMainText}>₦{userRates?.buy_rate}</Text>
             </View>
           </View>
           <View style={styles.rateInfoContainer}>
@@ -39,7 +43,7 @@ const AboutRate = ({ isVisible, onClose, onComplete }: AboutRateProps) => {
               </Text>
             </View>
             <View>
-              <Text style={styles.rateMainText}>₦490</Text>
+              <Text style={styles.rateMainText}>₦{userRates?.sell_rate}</Text>
             </View>
           </View>
 

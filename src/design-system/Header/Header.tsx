@@ -13,6 +13,7 @@ export const Header = ({
   hasCloseButton,
   headerTitle,
   backgroundColor,
+  height,
   hasRightIcon,
   onPressRightIcon,
   titleColor,
@@ -96,7 +97,7 @@ export const Header = ({
       <View
         style={[
           styles.navBar,
-          { backgroundColor: backgroundColor || theme.colors.WHITE },
+          { backgroundColor: backgroundColor || theme.colors.WHITE, height },
         ]}>
         {renderHeaderLeft()}
         {renderHeaderTitle()}

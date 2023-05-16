@@ -21,7 +21,11 @@ const AuthNavigation = () => {
       <Stack.Screen component={Login} name="Login" />
       <Stack.Screen component={Register} name="Register" />
       <Stack.Screen component={CompleteRegister} name="CompleteRegister" />
-      <Stack.Screen component={CompleteOnboarding} name="CompleteOnboarding" />
+      <Stack.Screen
+        component={CompleteOnboarding}
+        name="CompleteOnboarding"
+        options={{ gestureEnabled: false }}
+      />
       <Stack.Screen component={SetupPin} name="SetupPin" />
       <Stack.Screen component={ConfirmPin} name="ConfirmPin" />
       <Stack.Screen component={CompletePinSetup} name="CompletePinSetup" />

@@ -36,6 +36,9 @@ export const styles = StyleSheet.create({
   signUpAccountContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+    position: 'absolute',
+    bottom: hp(40),
+    alignSelf: 'center',
     justifyContent: 'center',
   },
   signUpMainText: {

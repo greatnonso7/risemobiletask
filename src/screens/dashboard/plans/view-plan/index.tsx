@@ -58,29 +58,29 @@ const ViewPlan = ({ navigation: { navigate, goBack } }: ScreenProps) => {
   }
 
   return (
-    <ImageBackground
-      source={theme.images['header-bg']}
-      style={styles.headerImage}>
-      <SafeAreaView style={styles.headerContainer}>
+    <View style={styles.container}>
+      <ImageBackground
+        source={theme.images['header-bg']}
+        style={styles.headerImage}>
+        <Header
+          onPressLeftIcon={() => (fromViewPlans ? goBack() : navigate('Home'))}
+          backgroundColor="transparent"
+          leftIconStyle={styles.leftIconStyle}
+          hasBackButton
+          height={hp(120)}
+          hasRightIcon={theme.images.more}
+          tintColor={theme.colors.WHITE}
+          headerTitle={`${data?.plan_name}`}
+          titleColor={theme.colors.WHITE}
+          hasSubText={`for ${userData?.first_name}`}
+          rightIconStyle={styles.leftIconStyle}
+        />
+      </ImageBackground>
+      <SafeAreaView>
         <ScrollView
           bounces={false}
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.scrollContainer}>
-          <Header
-            onPressLeftIcon={() =>
-              fromViewPlans ? goBack() : navigate('Home')
-            }
-            backgroundColor="transparent"
-            leftIconStyle={styles.leftIconStyle}
-            hasBackButton
-            hasRightIcon={theme.images.more}
-            tintColor={theme.colors.WHITE}
-            headerTitle={`${data?.plan_name}`}
-            titleColor={theme.colors.WHITE}
-            hasSubText={`for ${userData?.first_name}`}
-            rightIconStyle={styles.leftIconStyle}
-          />
-
           <View style={styles.bodyContainer}>
             <View style={styles.planBodyContainer}>
               <Text style={styles.planText}>Plan Balance</Text>
@@ -202,7 +202,7 @@ const ViewPlan = ({ navigation: { navigate, goBack } }: ScreenProps) => {
           </View>
         </ScrollView>
       </SafeAreaView>
-    </ImageBackground>
+    </View>
   );
 };
 

@@ -39,6 +39,7 @@ const Home = ({ navigation: { navigate } }: ScreenProps) => {
   const userData = queryClient.getQueryData<UserData>('user');
   const { data: quoteData } = useQuery('quotes', API.getQuotes);
   const { data: planData } = useQuery('plans', API.getPlans);
+  const { data } = useQuery('rates', API.getRates);
   const totalPlans = planData?.item_count === 0;
   const myPlans = planData?.items;
 

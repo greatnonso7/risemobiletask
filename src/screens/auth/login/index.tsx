@@ -68,9 +68,9 @@ const Login = ({ navigation }: ScreenProps) => {
   const { mutate: setLogin, status } = useMutation(API.setLogin, {
     onSuccess: async data => {
       if (data) {
-        console.log(data, 'login success');
         storage.setItem('user_token', data?.token);
         queryClient.setQueryData('user', data);
+        //@ts-ignore
         navigation.replace('DashboardStack', { screen: 'DashboardSection' });
       }
     },

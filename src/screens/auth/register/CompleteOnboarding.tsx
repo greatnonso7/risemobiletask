@@ -3,8 +3,12 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { styles } from './style';
 import { Button, Icon } from 'design-system';
+import { AuthStackParamList } from 'types';
+import { StackScreenProps } from '@react-navigation/stack';
 
-const CompleteOnboarding = () => {
+type ScreenProps = StackScreenProps<AuthStackParamList, 'CompleteOnboarding'>;
+
+const CompleteOnboarding = ({ navigation: { navigate } }: ScreenProps) => {
   return (
     <Screen>
       <View style={[styles.bodyContainer, styles.completeOnboardingContainer]}>
@@ -19,7 +23,7 @@ const CompleteOnboarding = () => {
         </Text>
       </View>
 
-      <Button title="Okay" />
+      <Button title="Okay" onPress={() => navigate('SetupPin')} />
     </Screen>
   );
 };

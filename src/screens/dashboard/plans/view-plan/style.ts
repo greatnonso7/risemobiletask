@@ -1,4 +1,5 @@
-import { deviceWidth, hp, wp } from 'constants/layout';
+import { deviceWidth, hp, paddingTopiOS, wp } from 'constants/layout';
+import { isIos } from 'constants/platform';
 import { StatusBar, StyleSheet } from 'react-native';
 import theme from 'theme';
 
@@ -7,23 +8,22 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   headerContainer: {
-    paddingTop: StatusBar?.currentHeight + hp(20),
+    paddingTop: isIos ? paddingTopiOS + hp(20) : StatusBar?.currentHeight,
   },
   headerImage: {
     width: deviceWidth,
-    height: hp(190),
-    flex: 1,
-    marginBottom: hp(20),
+    height: hp(120),
+    paddingTop: isIos ? paddingTopiOS + hp(20) : hp(10),
+    justifyContent: 'center',
   },
   leftIconStyle: {
     backgroundColor: theme.colors.BLACK_100,
   },
   scrollContainer: {
-    paddingBottom: hp(0),
+    paddingBottom: hp(50),
   },
   bodyContainer: {
     backgroundColor: theme.colors.WHITE,
-    marginTop: hp(30),
     paddingTop: hp(30),
     paddingBottom: hp(100),
   },

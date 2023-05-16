@@ -8,9 +8,9 @@ import { FormikProps, useFormik } from 'formik';
 import { AuthStackParamList } from 'types';
 import { StackScreenProps } from '@react-navigation/stack';
 import * as yup from 'yup';
-import { useRoute } from '@react-navigation/native';
+import { RouteProp, useRoute } from '@react-navigation/native';
 import { PhoneCountry } from 'design-system/Input/types';
-import { useMutation, useQuery, useQueryClient } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 import { storage } from 'utils/storage';
 import * as API from 'services/apis';
 import { formatPhone } from 'utils';
@@ -27,13 +27,15 @@ interface FormData {
 }
 
 const schema = yup.object().shape({
-  first_name: yup.string().required(),
-  last_name: yup.string().required(),
-  date_of_birth: yup.string().required(),
+  first_name: yup.string().required('First Name is required'),
+  last_name: yup.string().required('Last Name is required'),
+  date_of_birth: yup.string().required('Date of birth is required'),
+  username: yup.string().required('Username is required'),
 });
 
 const CompleteRegister = ({ navigation: { navigate } }: ScreenProps) => {
-  const { params }: any = useRoute();
+  const { email, password } =
+    useRoute<RouteProp<AuthStackParamList, 'CompleteRegister'>>().params;
   const queryClient = useQueryClient();
 
   const [selectedCountry, setSelectedCountry] = useState<PhoneCountry | null>(
@@ -52,6 +54,7 @@ const CompleteRegister = ({ navigation: { navigate } }: ScreenProps) => {
     values,
     handleChange,
     isValid,
+    errors,
     setFieldValue,
     handleSubmit,
   }: FormikProps<FormData> = useFormik({
@@ -65,58 +68,43 @@ const CompleteRegister = ({ navigation: { navigate } }: ScreenProps) => {
       phone_number,
       username,
     }) => {
-      console.log(phone_number);
       const data = {
         last_name,
         first_name,
-        email_address: params.email,
-        password: params.password,
+        // email_address: 'params.email',
+        email_address: 'greatchinonso1223@gmail.com',
+        password,
         date_of_birth,
         username,
         phone_number: `${selectedCountry?.dial_code}${formatPhone(
           phone_number,
         )}`,
       };
-      // const currentYear = new Date().getFullYear();
-      // const birthYear = date_of_birth?.slice(0, 4);
-      // const currentAge = currentYear - Number(birthYear);
       setRegister(data);
-      // } else {
-      //   showMessage({
-      //     message: 'Error',
-      //     description: 'You must be at least 18 years of age',
-      //     duration: 2000,
-      //     type: 'danger',
-      //     icon: 'danger',
-      //   });
-      // }
     },
   });
 
-  const { data: userSessionData, refetch } = useQuery('user', API.getLogin, {
-    enabled: false,
-    refetchOnWindowFocus: false,
-  });
+  const { mutate: setLogin, status: loadingLogin } = useMutation(
+    'user',
+    API.setLogin,
+    {
+      onSuccess: async data => {
+        if (data) {
+          storage.setItem('user_token', data?.token);
+          queryClient.setQueryData('user', data);
+          navigate('CompleteOnboarding', { first_name: data.first_name });
+        }
+      },
+    },
+  );
 
   const { mutate: setRegister, status } = useMutation(API.setRegister, {
     onSuccess: async data => {
-      console.log(data);
-      const userData = data?.data?.user;
-      queryClient.setQueryData('user', userData);
-      refetch();
-      // storage.setItem('user_token', data?.data?.token);
-      // storage.set('user_data', JSON.stringify(userData));
-      // setTimeout(() => {
-      //   setLoading(false);
-      //   if (
-      //     verificationKeys.includes(userData.id_verification) &&
-      //     !checkVerification
-      //   ) {
-      //     navigation.navigate('KYCVerification');
-      //   } else {
-      //     navigation.replace('Main');
-      //   }
-      // }, 500);
+      const payload = {
+        email_address: data.email_address,
+        password,
+      };
+      setLogin(payload);
     },
     onError: async (error: any) => {
       showMessage({
@@ -132,26 +120,29 @@ const CompleteRegister = ({ navigation: { navigate } }: ScreenProps) => {
     <Screen>
       <AvoidingView>
         <View style={styles.bodyContainer}>
-          <Text style={styles.headerText}>Create an account</Text>
+          <Text style={styles.headerText}>Tell Us More About You</Text>
           <Text style={styles.subHeaderText}>
-            Start building your dollar-denominated investment portfolio
+            Please use your name as it appears on your ID.
           </Text>
           <View style={styles.formContainer}>
             <Input
               value={values.first_name}
               onChangeText={handleChange('first_name')}
               label="Legal first name"
+              errorText={errors.first_name}
             />
             <Input
               value={values.last_name}
               onChangeText={handleChange('last_name')}
               label="Legal last name"
+              errorText={errors.last_name}
             />
             <Input
               value={values.username}
               onChangeText={handleChange('username')}
               label="Nick name"
               autoCapitalize="none"
+              errorText={errors.username}
             />
             <Input
               type="phone"
@@ -165,7 +156,10 @@ const CompleteRegister = ({ navigation: { navigate } }: ScreenProps) => {
               type="calendar"
               label="Date of birth"
               dateFocused={true}
-              onChangeValue={date => setFieldValue('date_of_birth', date)}
+              isMaximum
+              onChangeValue={(date: any) =>
+                setFieldValue('date_of_birth', date)
+              }
             />
           </View>
 
@@ -174,7 +168,7 @@ const CompleteRegister = ({ navigation: { navigate } }: ScreenProps) => {
             buttonStyle={styles.buttonStyle}
             disabled={!isValid}
             onPress={handleSubmit}
-            loading={status === 'loading'}
+            loading={status === 'loading' || loadingLogin === 'loading'}
             title="Sign Up"
           />
 

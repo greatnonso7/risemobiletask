@@ -42,7 +42,6 @@ const PlanDate = ({ navigation: { navigate, goBack } }: ScreenProps) => {
 
   const continueProcess = async (payload: FormData) => {
     const diff = dayjs(payload.maturity_date).diff(dayjs(), 'months');
-    console.log(diff, 'months');
     if (diff >= 12) {
       navigate('ReviewPlan', {
         plan_name: params?.plan_name,

@@ -42,14 +42,14 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="178dp"
+        android:layout_width="128dp"
         android:layout_height="61dp"
         android:fontFamily="@font/dm_sans"
         android:gravity="center"
         android:text="@string/app_copyright"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="20sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
