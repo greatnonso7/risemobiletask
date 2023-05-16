@@ -7,13 +7,12 @@ export const styles = StyleSheet.create({
   headerContainer: {
     backgroundColor: theme.colors.WHITE,
     width: deviceWidth,
-    marginTop: hp(10),
+    paddingTop: isIos ? paddingTopiOS : StatusBar.currentHeight,
   },
   navBar: {
     width: '100%',
     backgroundColor: theme.colors.WHITE,
     height: hp(50),
-    paddingTop: isIos ? paddingTopiOS : StatusBar.currentHeight,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',

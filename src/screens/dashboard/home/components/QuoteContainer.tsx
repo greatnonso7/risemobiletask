@@ -4,7 +4,7 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import theme from 'theme';
 
-interface QuoteResponseData {
+export interface QuoteResponseData {
   author: string;
   quote: string;
 }

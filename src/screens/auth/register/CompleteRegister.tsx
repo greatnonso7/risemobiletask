@@ -10,11 +10,9 @@ import { StackScreenProps } from '@react-navigation/stack';
 import * as yup from 'yup';
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { PhoneCountry } from 'design-system/Input/types';
-import { useMutation, useQueryClient } from 'react-query';
-import { storage } from 'utils/storage';
-import * as API from 'services/apis';
 import { formatPhone } from 'utils';
-import { showMessage } from 'react-native-flash-message';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'redux/store';
 
 type ScreenProps = StackScreenProps<AuthStackParamList, 'CompleteRegister'>;
 
@@ -36,10 +34,18 @@ const schema = yup.object().shape({
 const CompleteRegister = ({ navigation: { navigate } }: ScreenProps) => {
   const { email, password } =
     useRoute<RouteProp<AuthStackParamList, 'CompleteRegister'>>().params;
-  const queryClient = useQueryClient();
 
   const [selectedCountry, setSelectedCountry] = useState<PhoneCountry | null>(
     null,
+  );
+
+  const {
+    Auth: { setLogin, setRegister },
+  } = useDispatch();
+  const isLoading = useSelector(
+    (state: RootState) =>
+      state.loading.effects.Auth.setRegister ||
+      state.loading.effects.Auth.setLogin,
   );
 
   const initialState = {
@@ -61,7 +67,7 @@ const CompleteRegister = ({ navigation: { navigate } }: ScreenProps) => {
     validateOnMount: true,
     initialValues: initialState,
     validationSchema: schema,
-    onSubmit: ({
+    onSubmit: async ({
       first_name,
       last_name,
       date_of_birth,
@@ -79,42 +85,20 @@ const CompleteRegister = ({ navigation: { navigate } }: ScreenProps) => {
           phone_number,
         )}`,
       };
-      setRegister(data);
-    },
-  });
-
-  const { mutate: setLogin, status: loadingLogin } = useMutation(
-    'user',
-    API.setLogin,
-    {
-      onSuccess: async data => {
-        if (data) {
-          storage.setItem('user_token', data?.token);
-          queryClient.setQueryData('user', data);
-          navigate('CompleteOnboarding', { first_name: data.first_name });
+      const res = await setRegister(data);
+      if (res) {
+        const payload = {
+          email,
+          password,
+        };
+        const response = await setLogin(payload);
+        if (response) {
+          navigate('CompleteOnboarding', { first_name: values.first_name });
         }
-      },
-    },
-  );
-
-  const { mutate: setRegister, status } = useMutation(API.setRegister, {
-    onSuccess: async data => {
-      const payload = {
-        email_address: data.email_address,
-        password,
-      };
-      setLogin(payload);
-    },
-    onError: async (error: any) => {
-      showMessage({
-        message: 'Error',
-        description: error.data.message,
-        duration: 2000,
-        type: 'danger',
-        icon: 'danger',
-      });
+      }
     },
   });
+
   return (
     <Screen>
       <AvoidingView>
@@ -167,7 +151,7 @@ const CompleteRegister = ({ navigation: { navigate } }: ScreenProps) => {
             buttonStyle={styles.buttonStyle}
             disabled={!isValid}
             onPress={handleSubmit}
-            loading={status === 'loading' || loadingLogin === 'loading'}
+            loading={isLoading}
             title="Sign Up"
           />
 

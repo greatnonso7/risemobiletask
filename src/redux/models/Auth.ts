@@ -1,13 +1,19 @@
 import * as API from 'services/apis';
 import { reducerActions as reducers } from './reducer';
 import { showMessage } from 'react-native-flash-message';
-import { LoginParams, RegisterParams } from 'types';
+import { LoginParams, RegisterParams, UserData } from 'types';
 
-const IsState = {
+const IsState: Auth = {
   token: null,
-  userData: null,
+  userData: {},
   isLoggedIn: false,
-};
+} as Auth;
+
+interface Auth {
+  userData: UserData;
+  token: string | null;
+  isLoggedIn: boolean;
+}
 
 export const Auth = {
   name: 'Auth',
@@ -23,6 +29,7 @@ export const Auth = {
             token: api?.data?.token,
             userData: api?.data,
           });
+          return true;
         }
       } catch (e) {
         this.handleError(e);
@@ -31,15 +38,20 @@ export const Auth = {
     async getLogin() {
       dispatch.Auth.setError(false);
       try {
-        const api: any = await API.getLogin();
+        const api = await API.getLogin();
         if (api) {
           dispatch.Auth.setState({
-            userData: api?.data,
+            userData: api,
           });
         }
       } catch (e) {
         this.handleError(e);
       }
+    },
+    async accessDashboard() {
+      dispatch.Auth.setState({
+        isLoggedIn: true,
+      });
     },
     async setRegister(data: RegisterParams) {
       dispatch.Auth.setError(false);
@@ -49,6 +61,7 @@ export const Auth = {
           dispatch.Auth.setState({
             userDate: api?.data,
           });
+          return true;
         }
       } catch (e) {
         this.handleError(e);
@@ -64,9 +77,11 @@ export const Auth = {
           'An error occured. Please try again.';
 
         return showMessage({
-          message,
+          message: 'Error',
+          description: message,
           type: 'danger',
           duration: 2500,
+          icon: 'danger',
         });
       }
     },

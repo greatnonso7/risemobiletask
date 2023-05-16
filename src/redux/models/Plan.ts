@@ -1,11 +1,22 @@
 import * as API from 'services/apis';
 import { reducerActions as reducers } from './reducer';
 import { showMessage } from 'react-native-flash-message';
-import { CreatePlanParams } from 'types';
+import { CreatePlanParams, PlanData } from 'types';
 
-const IsState = {
+const IsState: Plan = {
   plans: null,
-};
+  plan: {},
+} as Plan;
+
+interface Plan {
+  plans: PlanDataResponse | null;
+  plan: PlanData;
+}
+
+interface PlanDataResponse {
+  item_count: number;
+  items: PlanData[];
+}
 
 export const Plan = {
   name: 'Plan',
@@ -13,12 +24,12 @@ export const Plan = {
   reducers,
   effects: (dispatch: any) => ({
     async getPlans() {
-      dispatch.Auth.setError(false);
+      dispatch.Plan.setError(false);
       try {
-        const api: any = await API.getPlans();
+        const api = await API.getPlans();
         if (api) {
           dispatch.Plan.setState({
-            plans: api?.data,
+            plans: api,
           });
         }
       } catch (e) {
@@ -26,9 +37,9 @@ export const Plan = {
       }
     },
     async createPlan(data: CreatePlanParams) {
-      dispatch.Auth.setError(false);
+      dispatch.Plan.setError(false);
       try {
-        const api: any = await API.createPlan(data);
+        const api = await API.createPlan(data);
         if (api) {
           const plan_id = api.data?.plan_id;
           dispatch.Plan.getPlans();
@@ -36,6 +47,19 @@ export const Plan = {
         }
       } catch (e) {
         this.handleError(e);
+      }
+    },
+    async getPlan(data: string) {
+      dispatch.Plan.setError(false);
+      try {
+        const api = await API.getPlan(data);
+        if (api) {
+          dispatch.Plan.setState({
+            plan: api,
+          });
+        }
+      } catch (error) {
+        this.handleError(error);
       }
     },
     async handleError(error: any) {
@@ -47,9 +71,11 @@ export const Plan = {
           'An error occured. Please try again.';
 
         return showMessage({
-          message,
+          message: 'Error',
+          description: message,
           type: 'danger',
           duration: 2500,
+          icon: 'danger',
         });
       }
     },

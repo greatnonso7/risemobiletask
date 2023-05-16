@@ -13,10 +13,11 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import theme from 'theme';
+import { UserData } from 'types';
 import { formatAmount } from 'utils';
 
 interface DashboardWalletProps {
-  userData: any;
+  userData?: UserData;
 }
 
 const DashboardWallet = ({ userData }: DashboardWalletProps) => {

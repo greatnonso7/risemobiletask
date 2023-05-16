@@ -1,12 +1,17 @@
 import * as API from 'services/apis';
 import { reducerActions as reducers } from './reducer';
 import { showMessage } from 'react-native-flash-message';
+import { QuoteData, RateData } from 'types';
 
-const IsState = {
+const IsState: UserData = {
   quotes: null,
-  banks: [],
   rates: null,
-};
+} as UserData;
+
+interface UserData {
+  rates: RateData | null;
+  quotes: QuoteData | null;
+}
 
 export const User = {
   name: 'User',
@@ -29,10 +34,10 @@ export const User = {
     async getQuotes() {
       dispatch.User.setError(false);
       try {
-        const api: any = await API.getQuotes();
+        const api = await API.getQuotes();
         if (api) {
           dispatch.User.setState({
-            quote: api?.data,
+            quotes: api,
           });
         }
       } catch (e) {
@@ -45,7 +50,7 @@ export const User = {
         const api: any = await API.getRates();
         if (api) {
           dispatch.User.setState({
-            rates: api?.data,
+            rates: api,
           });
         }
       } catch (e) {
@@ -62,9 +67,11 @@ export const User = {
           'An error occured. Please try again.';
 
         return showMessage({
-          message,
+          message: 'Error',
+          description: message,
           type: 'danger',
           duration: 2500,
+          icon: 'danger',
         });
       }
     },

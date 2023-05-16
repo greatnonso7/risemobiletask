@@ -14,6 +14,7 @@ Axios.interceptors.request.use(async (config: any) => {
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
+  console.log(config);
   return config;
 });
 
@@ -27,6 +28,7 @@ Axios.interceptors.response.use(
     if (statusCode === 401 && !originalRequest._retry) {
       console.log(error.response);
     }
+    console.log(error.response);
     return Promise.reject(error.response);
   },
 );

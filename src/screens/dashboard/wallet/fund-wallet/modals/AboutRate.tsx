@@ -2,8 +2,8 @@ import { BaseModal, Button, Header } from 'design-system';
 import React from 'react';
 import { View, Text } from 'react-native';
 import { styles } from './style';
-import * as API from 'services/apis';
-import { useQuery } from 'react-query';
+import { useSelector } from 'react-redux';
+import { RootState } from 'redux/store';
 
 interface AboutRateProps {
   isVisible: boolean;
@@ -12,7 +12,7 @@ interface AboutRateProps {
 }
 
 const AboutRate = ({ isVisible, onClose, onComplete }: AboutRateProps) => {
-  const { data: userRates } = useQuery('rates', API.getRates);
+  const userRates = useSelector((state: RootState) => state.User.rates);
 
   return (
     <BaseModal visible={isVisible} onClose={() => onClose()} hideButton>
@@ -37,7 +37,7 @@ const AboutRate = ({ isVisible, onClose, onComplete }: AboutRateProps) => {
           </View>
           <View style={styles.rateInfoContainer}>
             <View>
-              <Text style={styles.rateMainText}>USD Buy Rate</Text>
+              <Text style={styles.rateMainText}>USD Sell Rate</Text>
               <Text style={styles.rateSubText}>
                 The current value of your investments in Naira
               </Text>

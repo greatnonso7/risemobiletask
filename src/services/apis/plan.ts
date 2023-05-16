@@ -10,7 +10,7 @@ export const getPlanProjection = (req: any) =>
   ).then(({ data }) => data);
 
 export const getPlan = (req: any) =>
-  Axios.get(`plans/${req?.queryKey[0]}`, req).then(({ data }) => data);
+  Axios.get(`plans/${req}`, req).then(({ data }) => data);
 
 export const createPlan = (req: CreatePlanParams) =>
   Axios.post('plans', req).then(({ data }) => data);

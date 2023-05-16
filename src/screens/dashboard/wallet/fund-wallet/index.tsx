@@ -7,15 +7,15 @@ import { styles } from './style';
 import AboutRate from './modals/AboutRate';
 import { DashboardStackParamList } from 'types';
 import { StackScreenProps } from '@react-navigation/stack';
-import { useQuery } from 'react-query';
-import * as API from 'services/apis';
+import { useSelector } from 'react-redux';
+import { RootState } from 'redux/store';
 
 type ScreenProps = StackScreenProps<DashboardStackParamList, 'FundWallet'>;
 
 const FundWallet = ({ navigation: { navigate, goBack } }: ScreenProps) => {
   const [showRateModal, setShowRateModal] = useState(false);
 
-  const { data: ratesData } = useQuery('rates', API.getRates);
+  const ratesData = useSelector((state: RootState) => state.User.rates);
 
   const onSelectFundingOption = async () => {
     setShowRateModal(false);

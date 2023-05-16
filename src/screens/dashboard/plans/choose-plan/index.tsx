@@ -5,14 +5,14 @@ import { View, Text, SafeAreaView, FlatList } from 'react-native';
 import { DashboardStackParamList } from 'types';
 import { styles } from './style';
 import theme from 'theme';
-import { useQuery } from 'react-query';
-import * as API from 'services/apis';
 import PlanItem from 'screens/dashboard/home/components/PlanItem';
+import { useSelector } from 'react-redux';
+import { RootState } from 'redux/store';
 
 type ScreenProps = StackScreenProps<DashboardStackParamList, 'ChoosePlan'>;
 
 const ChoosePlan = ({ navigation: { goBack, navigate } }: ScreenProps) => {
-  const { data: planData } = useQuery('plans', API.getPlans);
+  const planData = useSelector((state: RootState) => state.Plan.plans);
   const myPlans = planData?.items;
 
   return (
@@ -38,7 +38,7 @@ const ChoosePlan = ({ navigation: { goBack, navigate } }: ScreenProps) => {
           ListEmptyComponent={() => {
             return (
               <View>
-                <Text></Text>
+                <Text style={styles.mainText}>Empty plan</Text>
               </View>
             );
           }}

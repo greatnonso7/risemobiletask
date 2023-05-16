@@ -5,7 +5,7 @@ import theme from 'theme';
 import { UserData } from 'types';
 
 interface DashboardHeaderProps {
-  userData?: UserData;
+  userData: UserData;
 }
 
 const DashboardHeader = ({ userData }: DashboardHeaderProps) => {

@@ -90,3 +90,12 @@ export type PlanData = {
   user_id: string;
   returns: any[];
 };
+
+export interface Response {
+  data?: any;
+}
+
+export interface QuoteData {
+  quote: string;
+  author: string;
+}

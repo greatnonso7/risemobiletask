@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -15,18 +15,13 @@ import DashboardHeader from './components/DashboardHeader';
 import DashboardWallet from './components/DashboardWallet';
 import { Button, Icon } from 'design-system';
 import QuoteContainer from './components/QuoteContainer';
-import {
-  BottomTabParamsList,
-  DashboardStackParamList,
-  PlanData,
-  UserData,
-} from 'types';
+import { BottomTabParamsList, DashboardStackParamList, PlanData } from 'types';
 import { StackScreenProps } from '@react-navigation/stack';
-import { useQuery, useQueryClient } from 'react-query';
-import * as API from 'services/apis';
 import { RefreshControl } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import PlanItem from './components/PlanItem';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'redux/store';
 
 type ScreenProps = StackScreenProps<
   BottomTabParamsList & DashboardStackParamList,
@@ -35,19 +30,33 @@ type ScreenProps = StackScreenProps<
 
 const Home = ({ navigation: { navigate } }: ScreenProps) => {
   const [refreshing, setRefreshing] = useState(false);
-  const queryClient = useQueryClient();
-  const userData = queryClient.getQueryData<UserData>('user');
-  const { data: quoteData } = useQuery('quotes', API.getQuotes);
-  const { data: planData } = useQuery('plans', API.getPlans);
-  useQuery('rates', API.getRates);
+
+  const {
+    Plan: { getPlans },
+    User: { getQuotes, getRates },
+    Auth: { getLogin },
+  } = useDispatch();
+
+  useEffect(() => {
+    getLogin();
+    getPlans();
+    getQuotes();
+    getRates();
+  }, [getPlans, getQuotes, getLogin, getRates]);
+
+  const planData = useSelector((state: RootState) => state.Plan.plans);
+  const userData = useSelector((state: RootState) => state.Auth.userData);
+  const quoteData = useSelector((state: RootState) => state.User.quotes);
+
   const totalPlans = planData?.item_count === 0;
   const myPlans = planData?.items;
 
   const handleRefresh = () => {
     setRefreshing(true);
-    queryClient.invalidateQueries('quotes');
-    queryClient.invalidateQueries('user');
-    queryClient.invalidateQueries('plans');
+    getPlans();
+    getLogin();
+    getQuotes();
+    getRates();
     setRefreshing(false);
   };
 

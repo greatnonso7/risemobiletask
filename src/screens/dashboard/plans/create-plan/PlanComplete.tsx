@@ -3,16 +3,16 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { styles } from './style';
 import { Button, Icon } from 'design-system';
-import { DashboardStackParamList, UserData } from 'types';
+import { DashboardStackParamList } from 'types';
 import { StackScreenProps } from '@react-navigation/stack';
-import { useQueryClient } from 'react-query';
 import { RouteProp, useRoute } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
+import { RootState } from 'redux/store';
 
 type ScreenProps = StackScreenProps<DashboardStackParamList, 'PlanComplete'>;
 
 const PlanComplete = ({ navigation: { navigate } }: ScreenProps) => {
-  const queryClient = useQueryClient();
-  const userData = queryClient.getQueryData<UserData>('user');
+  const userData = useSelector((state: RootState) => state.Auth.userData);
   const { plan_id } =
     useRoute<RouteProp<DashboardStackParamList, 'PlanComplete'>>().params;
 

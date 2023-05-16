@@ -12,10 +12,9 @@ import * as yup from 'yup';
 import { Text, View } from 'react-native';
 import { styles } from './style';
 import { FormikProps, useFormik } from 'formik';
-import * as API from 'services/apis';
-import { useMutation, useQueryClient } from 'react-query';
-import { storage } from 'utils/storage';
-import { showMessage } from 'react-native-flash-message';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'redux/store';
+import Config from 'react-native-config';
 
 interface FormData {
   email: string;
@@ -40,7 +39,10 @@ type ScreenProps = StackScreenProps<
 
 const Login = ({ navigation }: ScreenProps) => {
   const [showPassword, setShowPassword] = useState(true);
-  const queryClient = useQueryClient();
+
+  const {
+    Auth: { setLogin, accessDashboard },
+  } = useDispatch();
 
   const initialState = {
     email: '',
@@ -57,34 +59,23 @@ const Login = ({ navigation }: ScreenProps) => {
     validateOnChange: false,
     initialValues: initialState,
     validationSchema: schema,
-    onSubmit: ({ email, password }) => {
-      setLogin({
+    onSubmit: async ({ email, password }) => {
+      const res = await setLogin({
         email_address: email,
         password,
       });
-    },
-  });
-
-  const { mutate: setLogin, status } = useMutation(API.setLogin, {
-    onSuccess: async data => {
-      if (data) {
-        storage.setItem('user_token', data?.token);
-        queryClient.setQueryData('user', data);
-        //@ts-ignore
-        navigation.replace('DashboardStack', { screen: 'DashboardSection' });
+      console.log(res);
+      if (res) {
+        accessDashboard();
       }
     },
-    onError: async (error: any) => {
-      showMessage({
-        message: 'Error',
-        description: error.data.message,
-        duration: 2000,
-        type: 'danger',
-        icon: 'danger',
-      });
-    },
   });
 
+  const isLoading = useSelector(
+    (state: RootState) => state.loading.effects.Auth.setLogin,
+  );
+
+  console.log(Config);
   return (
     <Screen>
       <AvoidingView>
@@ -109,7 +100,7 @@ const Login = ({ navigation }: ScreenProps) => {
               label="Password"
               autoCapitalize="none"
               password
-              secureTextEntry={true}
+              secureTextEntry={showPassword}
               onTogglePassword={() => setShowPassword(!showPassword)}
               keyboardType="email-address"
               errorText={errors.password}
@@ -119,7 +110,7 @@ const Login = ({ navigation }: ScreenProps) => {
             isNotBottom
             disabled={!dirty}
             title="Sign In"
-            loading={status === 'loading'}
+            loading={isLoading}
             onPress={handleSubmit}
           />
           <Button

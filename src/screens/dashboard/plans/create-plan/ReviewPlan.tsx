@@ -4,33 +4,34 @@ import { Button, Header, Icon } from 'design-system';
 import React from 'react';
 import { View, Text, Image, ScrollView } from 'react-native';
 import theme from 'theme';
-import { DashboardStackParamList, RateData, UserData } from 'types';
+import { DashboardStackParamList } from 'types';
 import { styles } from './style';
 import { RouteProp, useRoute } from '@react-navigation/native';
-import { useMutation, useQueryClient } from 'react-query';
 import { formatAmount } from 'utils';
 import dayjs from 'dayjs';
-import * as API from 'services/apis';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'redux/store';
 
 type ScreenProps = StackScreenProps<DashboardStackParamList, 'ReviewPlan'>;
 
 const ReviewPlan = ({ navigation: { navigate, goBack } }: ScreenProps) => {
-  const queryClient = useQueryClient();
   const { maturity_date, target_amount, total_months, plan_name } =
     useRoute<RouteProp<DashboardStackParamList, 'ReviewPlan'>>().params;
   const total_maturity_amount = Number(target_amount.split(',').join(''));
-  const userRates = queryClient.getQueryData<RateData>('rates');
-  const userData = queryClient.getQueryData<UserData>('user');
+  const userRates = useSelector((state: RootState) => state.User.rates);
+  const userData = useSelector((state: RootState) => state.Auth.userData);
   const monthlyInvest = total_maturity_amount / total_months;
   const totalInvestment = total_maturity_amount / userRates!.sell_rate;
   const getReturns = totalInvestment / 12;
   const totalReturns = getReturns + totalInvestment;
 
-  const { mutate: createPlan, status } = useMutation(API.createPlan, {
-    onSuccess: async data => {
-      navigate('PlanComplete', { plan_id: data.id });
-    },
-  });
+  const {
+    Plan: { createPlan },
+  } = useDispatch();
+
+  const isLoading = useSelector(
+    (state: RootState) => state.loading.effects.Plan.createPlan,
+  );
 
   const createInvestPlan = async () => {
     const data = {
@@ -38,7 +39,10 @@ const ReviewPlan = ({ navigation: { navigate, goBack } }: ScreenProps) => {
       plan_name,
       target_amount: total_maturity_amount,
     };
-    await createPlan(data);
+    const res = await createPlan(data);
+    if (res) {
+      navigate('PlanComplete', { plan_id: res });
+    }
   };
   return (
     <Screen>
@@ -102,9 +106,8 @@ const ReviewPlan = ({ navigation: { navigate, goBack } }: ScreenProps) => {
           <Button
             isNotBottom
             onPress={() => createInvestPlan()}
-            // onPress={() => navigate('PlanComplete')}
             title="Agree & continue"
-            loading={status === 'loading'}
+            loading={isLoading}
             buttonStyle={styles.agreeButtonStyle}
           />
           <Button
