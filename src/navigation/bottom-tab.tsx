@@ -15,7 +15,6 @@ import Plans from 'screens/dashboard/plans';
 import Wallet from 'screens/dashboard/wallet';
 import Feeds from 'screens/dashboard/feeds';
 import Account from 'screens/dashboard/account';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 interface TabBarIconProps {
   image: ImageSourcePropType;
@@ -27,8 +26,6 @@ interface TabBarIconProps {
 const DashboardBottomTabs = createBottomTabNavigator<BottomTabParamsList>();
 
 const BottomTabBar = () => {
-  const insets = useSafeAreaInsets();
-
   const TabBarIcon = ({ image, focused, label }: TabBarIconProps) => {
     return (
       <View style={styles.tabBarContainer}>
@@ -41,11 +38,11 @@ const BottomTabBar = () => {
             width: hp(34),
           }}
         />
-        {/* {focused ? (
+        {focused ? (
           <View style={styles.focusedContainer} />
         ) : (
           <Text style={styles.labelStyle}>{label}</Text>
-        )} */}
+        )}
       </View>
     );
   };
@@ -153,7 +150,6 @@ export const styles = StyleSheet.create({
   titleStyle: {
     paddingTop: hp(5),
     fontSize: hp(14),
-    fontWeight: '600',
     fontFamily: theme.font.DMSansRegular,
   },
   tabBarContainer: {
