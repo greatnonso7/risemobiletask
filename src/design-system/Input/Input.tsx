@@ -40,11 +40,11 @@ export const Input = (
     errorText,
   } = props;
 
-  useEffect(() => {
-    inputRef?.current?.setNativeProps({
-      style: { fontFamily: theme.font.DMSansBold },
-    });
-  }, [props.secureTextEntry]);
+  // useEffect(() => {
+  //   inputRef?.current?.setNativeProps({
+  //     style: { fontFamily: theme.font.DMSansBold },
+  //   });
+  // }, [props.secureTextEntry]);
 
   const isCalendar = type === 'calendar';
   const isLongPress = type === 'longPress';
@@ -89,6 +89,7 @@ export const Input = (
               onBlur?.(event);
               password && blurText && blurText();
             }}
+            secureTextEntry={props.secureTextEntry}
             selectionColor={theme.colors.PRIMARY}
             onFocus={event => {
               setIsFocused(true);

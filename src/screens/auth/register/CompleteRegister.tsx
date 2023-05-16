@@ -71,8 +71,7 @@ const CompleteRegister = ({ navigation: { navigate } }: ScreenProps) => {
       const data = {
         last_name,
         first_name,
-        // email_address: 'params.email',
-        email_address: 'greatchinonso1223@gmail.com',
+        email_address: email,
         password,
         date_of_birth,
         username,
