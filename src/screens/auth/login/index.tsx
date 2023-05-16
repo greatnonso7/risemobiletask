@@ -14,7 +14,6 @@ import { styles } from './style';
 import { FormikProps, useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'redux/store';
-import Config from 'react-native-config';
 
 interface FormData {
   email: string;
@@ -75,7 +74,6 @@ const Login = ({ navigation }: ScreenProps) => {
     (state: RootState) => state.loading.effects.Auth.setLogin,
   );
 
-  console.log(Config);
   return (
     <Screen>
       <AvoidingView>
@@ -98,11 +96,11 @@ const Login = ({ navigation }: ScreenProps) => {
               value={values.password}
               onChangeText={handleChange('password')}
               label="Password"
-              autoCapitalize="none"
               password
-              secureTextEntry={showPassword}
+              show={showPassword}
               onTogglePassword={() => setShowPassword(!showPassword)}
-              keyboardType="email-address"
+              secureTextEntry={showPassword}
+              keyboardType="default"
               errorText={errors.password}
             />
           </View>

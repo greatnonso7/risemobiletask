@@ -41,6 +41,9 @@ export const styles = StyleSheet.create({
     color: theme.colors.SOFT_TEXT,
     paddingBottom: hp(2),
   },
+  headerBodyContainer: {
+    bottom: hp(20),
+  },
   amountText: {
     fontFamily: theme.font.TomatoGroteskBold,
     fontSize: hp(24),

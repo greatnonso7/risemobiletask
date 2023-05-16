@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import {
   Image,
   ImageSourcePropType,
@@ -15,6 +15,7 @@ import Plans from 'screens/dashboard/plans';
 import Wallet from 'screens/dashboard/wallet';
 import Feeds from 'screens/dashboard/feeds';
 import Account from 'screens/dashboard/account';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 interface TabBarIconProps {
   image: ImageSourcePropType;
@@ -26,29 +27,28 @@ interface TabBarIconProps {
 const DashboardBottomTabs = createBottomTabNavigator<BottomTabParamsList>();
 
 const BottomTabBar = () => {
-  const TabBarIcon = useCallback(
-    ({ image, focused, label }: TabBarIconProps) => {
-      return (
-        <View style={styles.tabBarContainer}>
-          <Image
-            source={image}
-            resizeMode="contain"
-            // eslint-disable-next-line react-native/no-inline-styles
-            style={{
-              height: wp(34),
-              width: hp(34),
-            }}
-          />
-          {focused ? (
-            <View style={styles.focusedContainer} />
-          ) : (
-            <Text style={styles.labelStyle}>{label}</Text>
-          )}
-        </View>
-      );
-    },
-    [],
-  );
+  const insets = useSafeAreaInsets();
+
+  const TabBarIcon = ({ image, focused, label }: TabBarIconProps) => {
+    return (
+      <View style={styles.tabBarContainer}>
+        <Image
+          source={image}
+          resizeMode="contain"
+          // eslint-disable-next-line react-native/no-inline-styles
+          style={{
+            height: wp(34),
+            width: hp(34),
+          }}
+        />
+        {/* {focused ? (
+          <View style={styles.focusedContainer} />
+        ) : (
+          <Text style={styles.labelStyle}>{label}</Text>
+        )} */}
+      </View>
+    );
+  };
 
   return (
     <DashboardBottomTabs.Navigator

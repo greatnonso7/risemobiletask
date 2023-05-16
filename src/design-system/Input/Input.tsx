@@ -38,6 +38,7 @@ export const Input = (
     blurText,
     label,
     errorText,
+    show,
   } = props;
 
   useEffect(() => {
@@ -80,7 +81,6 @@ export const Input = (
         ]}>
         {!type ? (
           <TextInput
-            {...props}
             ref={inputRef}
             editable={isDropDown || isLongPress ? false : true}
             style={styles.textInput}
@@ -89,13 +89,13 @@ export const Input = (
               onBlur?.(event);
               password && blurText && blurText();
             }}
-            secureTextEntry={props.secureTextEntry}
             selectionColor={theme.colors.PRIMARY}
             onFocus={event => {
               setIsFocused(true);
               onFocus?.(event);
             }}
-            multiline={isMultiLine}
+            secureTextEntry={show}
+            {...props}
           />
         ) : (
           <>

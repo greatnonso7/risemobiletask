@@ -58,7 +58,7 @@ const ViewPlan = ({ navigation: { navigate, goBack } }: ScreenProps) => {
   const getInvestProgress =
     (userPlan?.invested_amount * userPlan?.invested_amount) / 100;
 
-  if (isLoading) {
+  if (isLoading || Object.entries(userPlan).length === 0) {
     return (
       <View style={styles.loadingContainer}>
         <ActivityIndicator size={'large'} color={theme.colors.PRIMARY} />
@@ -71,19 +71,21 @@ const ViewPlan = ({ navigation: { navigate, goBack } }: ScreenProps) => {
       <ImageBackground
         source={theme.images['header-bg']}
         style={styles.headerImage}>
-        <Header
-          onPressLeftIcon={() => (fromViewPlans ? goBack() : navigate('Home'))}
-          backgroundColor="transparent"
-          leftIconStyle={styles.leftIconStyle}
-          hasBackButton
-          height={hp(120)}
-          hasRightIcon={theme.images.more}
-          tintColor={theme.colors.WHITE}
-          headerTitle={`${userPlan?.plan_name}`}
-          titleColor={theme.colors.WHITE}
-          hasSubText={`for ${userData?.first_name}`}
-          rightIconStyle={styles.leftIconStyle}
-        />
+        <View style={styles.headerBodyContainer}>
+          <Header
+            onPressLeftIcon={() => (fromViewPlans ? goBack() : navigate('Home'))}
+            backgroundColor="transparent"
+            leftIconStyle={styles.leftIconStyle}
+            hasBackButton
+            height={hp(120)}
+            hasRightIcon={theme.images.more}
+            tintColor={theme.colors.WHITE}
+            headerTitle={`${userPlan?.plan_name}`}
+            titleColor={theme.colors.WHITE}
+            hasSubText={`for ${userData?.first_name}`}
+            rightIconStyle={styles.leftIconStyle}
+          />
+        </View>
       </ImageBackground>
       <SafeAreaView>
         <ScrollView

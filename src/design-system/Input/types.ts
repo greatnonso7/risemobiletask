@@ -17,6 +17,7 @@ export interface InputProps {
   errorText?: string;
   dateFocused?: boolean;
   phoneFocused?: boolean;
+  show?: boolean;
 }
 
 export interface PhoneInputProps {
